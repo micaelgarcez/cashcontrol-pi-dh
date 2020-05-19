@@ -1,0 +1,55 @@
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+#lp-header{
+  nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0;
+    li{
+      margin: 0 15px;
+    }
+    a{
+      font-size: 16px;
+      color: $text-color;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 600;
+      &.btn{
+        padding: 5px 20px;
+        border-radius: 50px;
+      }
+      &.blue{
+        background-color: $blue-color;
+        color: $white;
+      }
+      &.orange{
+        background-color: $orange-color;
+        color: $white;
+      }
+    }
+  }
+  .container-logo{
+    width: 64px;
+    img{
+      max-width: 64px;
+    }
+  }
+  .container-navigation{
+    width: calc(100% - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+.container{
+  display: flex;
+  div{
+    width: 50%;
+  }
+}
