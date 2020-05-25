@@ -1,0 +1,236 @@
+@import 'reset';
+@import 'Variables/all';
+
+a{
+  font-size: 16px;
+  color: $text-color;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.container-button{
+  text-align: center;
+  margin: 10px 0;
+}
+
+.btn{
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
+  transition: .3s;
+}
+
+.btn-circle{
+  display: block;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: .3s;
+  &.add{
+    background-color: $blue-color;
+    span{
+      display: block;
+      height: 100%;
+      width: 100%;
+      color: #fff;
+      &:before,
+      &:after{
+        content: "";
+        display: block;
+        height: 2px;
+        width: 20px;
+        border-radius: 5px;
+        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transition: .3s;
+      }
+      &:before{
+        transform: translate(-50%, -50%);
+      }
+      &:after{
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+  }
+}
+.btn, 
+.btn-circle{
+  &.green{
+    background-color: $green-color;
+    color: $white;
+    border: none;
+    svg{
+      fill: $white;
+    }
+    &:hover, &:active, &:focus{
+      transform: scale(.97);
+    }
+  }
+  &.red{
+    background-color: $white;
+    border: 1px solid $red-color;
+    svg{
+      fill: $red-color;
+    }
+    &:hover, &:active, &:focus{
+      background-color: $red-color;
+      color: $white;
+      svg{
+        fill: $white;
+      }
+    }
+  }
+  &.blue{
+    background-color: $white;
+    border: 1px solid $blue-color;
+    svg{
+      fill: $blue-color;
+    }
+    &:hover, &:active, &:focus{
+      background-color: $blue-color;
+      color: $white;
+      svg{
+        fill: $white;
+      }
+    }
+  }
+  &.facebook{
+    margin-bottom: 20px;
+    background-color: #1877f2;
+    border: none;
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    &:hover, &:active, &:focus{
+      transform: scale(0.9);
+    }
+  }
+  &.google{
+    margin-bottom: 20px;
+    background-color: #DB4437;
+    border: none;
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    &:hover, &:active, &:focus{
+      transform: scale(0.9);
+    }
+  }
+}
+
+.arrow-up{
+  display: flex;
+  justify-content: center;
+  transform: rotate(90deg);
+}
+.arrow-down{
+  display: flex;
+  justify-content: center;
+  transform: rotate(-90deg);
+}
+
+form{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  .title{
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .container-field{
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    input, select{
+      display: block;
+      width: 100%;
+      border: none;
+      font-size: 16px;
+      padding: 5px 15px;
+      height: 38px;
+      border-radius: 50px;
+      box-sizing: border-box;
+    }
+  }
+  .btn.green{
+    margin-left: auto;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
+
+.last-link{
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  a{
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: normal;
+    color: #fff;
+  }
+}
+
+
+.sob-popup{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.8);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 4;
+  transition: .3s;
+  &.active{
+    visibility: visible;
+    opacity: 1;
+  }
+}
+#popup{
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 375px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $text-color;
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 4;
+  &.active{
+    visibility: visible;
+    opacity: 1;
+  }
+  .popup-body{
+    max-width: 300px;
+    width: 100%;
+  }
+}

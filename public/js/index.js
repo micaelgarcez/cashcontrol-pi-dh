@@ -1,10 +1,19 @@
 const $ = document.querySelector.bind(document);
 
-function toggleMenu() {
-  $('.container-navigation').classList.toggle('open');
-  $('#hamburger').classList.toggle('open');
+function toggleActive(arrayItems) {
+  arrayItems.forEach(item => {
+    $(item).classList.toggle('active');
+  });
 }
 
-$('#hamburger').onclick = toggleMenu;
+$('.btn-circle.add').onclick = () => { toggleActive([
+  '.sob-buttons', 
+  '.container-buttons'
+]) };
 
-console.log('teste');
+const classToggleMenu = [
+  '.container-navigation',
+  '.sob-menu'
+];
+$('#hamburger').onclick = () => { toggleActive(classToggleMenu) };
+$('.sob-menu').onclick = () => { toggleActive(classToggleMenu) };
