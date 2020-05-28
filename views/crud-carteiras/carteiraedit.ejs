@@ -1,31 +1,5 @@
 <%- include('../parts/head',{title:'CASH - Alterando Carteira'}); %>
 <main>
-  <form method="POST" action="/carteiras/<%= carteira.id%>/update?_method=PUT">
-    <span class="title"> Editar Carteira </span>
-    <% if (typeof(erros) != "undefined") { %>
-        <p style="color: red"> ERRO </p>
-        <ul>
-          <% erros.forEach((erro) => { %>
-              <li><%= erro.msg %></li>
-          <% }) %>
-        </ul>
-    <% } %>
-
-    <div class="container-field">
-      <input type="text" name="nome" id="nome" value="<%= carteira.nome %>" placeholder="Digite o nome da carteira">
-    </div>
-
-    <div class="container-field">
-      <select name="tipo" id="tipo">
-          <option selected disabled>Selecione</option>
-          <option value="1" <%= carteira.tipo == '1' ? 'selected' : ''%>>Conta Bancária</option>
-          <option value="2" <%= carteira.tipo == '2' ? 'selected' : ''%>>Carteira Pessoal</option>
-          <option value="3" <%= carteira.tipo == '3' ? 'selected' : ''%>>Cartão de Débito</option>
-          <option value="4" <%= carteira.tipo == '4' ? 'selected' : ''%>>Cartão de Crédito</option>
-      </select>
-    </div>
-
-    <button class="btn green" type="submit">Salvar</button>
-  </form>
+  
 </main>
 <%- include('../parts/foot'); %>

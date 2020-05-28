@@ -1,25 +1,28 @@
 <%- include('../parts/head',{title:'Pizzaria Fantástica - Lista de Usuários'}); %>
-<link rel="stylesheet" href="/css/list-pizza.css">
-<div id="list-pizza">
-	<a href="/users/create">Adicionar novo Usuário</a>
-	<table>
-		<tbody>
-			<% for(let user of users ) { %>
-			<tr>
-				<td><%= user.id %></td>
-				<td><%= user.nome %></td>
-				<td>
-					<%= user.email %>
-				</td>
-				<td>
-					<form method="POST" action="/users/<%= user.id %>/delete?_method=DELETE">
-						<button type="submit">Remover</button>
-					</form>
-					<a href="/users/<%= user.id %>/edit">Editar</button>
-				</td>
-			</tr>
-			<% } %>
-		</tbody>
-	</table>
-</div>
+<main>
+
+	<div>
+		<a href="/users/create">Adicionar novo Usuário</a>
+		<table>
+			<tbody>
+				<% for(let user of users ) { %>
+				<tr>
+					<td><%= user.id %></td>
+					<td><%= user.nome %></td>
+					<td>
+						<%= user.email %>
+					</td>
+					<td>
+						<form method="POST" action="/users/<%= user.id %>/delete?_method=DELETE">
+							<button type="submit">Remover</button>
+						</form>
+						<a href="/users/<%= user.id %>/edit">Editar</button>
+					</td>
+				</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</div>
+	
+</main>
 <%- include('../parts/foot'); %>

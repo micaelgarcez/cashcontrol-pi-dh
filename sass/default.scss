@@ -71,7 +71,7 @@ a{
       fill: $white;
     }
     &:hover, &:active, &:focus{
-      transform: scale(.97);
+      opacity: .97;
     }
   }
   &.red{
@@ -163,7 +163,7 @@ form{
     input, select{
       display: block;
       width: 100%;
-      border: none;
+      border: 1px solid $text-color;
       font-size: 16px;
       padding: 5px 15px;
       height: 38px;

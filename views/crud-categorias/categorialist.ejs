@@ -1,29 +1,31 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Categorias'}); %>
-<div class="container-button">	
-	<a class="btn white" href="/categorias/create">Adicionar nova Categoria</a>
-</div>
-<section class="container">
-	<div class="list-categorias">
-		<h1>Categorias:</h1>
-		<div class="item head">
-			<div class="name"><p>Nome:</p></div>
-			<div class="type"><p>Tipo:</p></div>
-			<div class="buttons"></div>
-		</div>
-		<% for(let categoria of categorias ) { %>
-			<div class="item">
-				<div class="name"><%= categoria.nome %></div>
-				<div class="type"><%= categoria.tipo %></div>
-				<div class="buttons">
-					<a href="/categorias/<%= categoria.id %>/edit">
-						<img src="/img/icons/edit-tools.svg" alt="Icone de editar">
-					</a>
-					<form method="POST" action="/categorias/<%= categoria.id %>/delete?_method=DELETE">
-						<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
-					</form>
-				</div>
-			</div>
-		<% } %>
+<main>
+	<div class="container-button">	
+		<a class="btn white" href="/categorias/create">Adicionar nova Categoria</a>
 	</div>
-</section>
+	<section class="container">
+		<div class="list-categorias">
+			<h1>Categorias:</h1>
+			<div class="item head">
+				<div class="name"><p>Nome:</p></div>
+				<div class="type"><p>Tipo:</p></div>
+				<div class="buttons"></div>
+			</div>
+			<% for(let categoria of categorias ) { %>
+				<div class="item">
+					<div class="name"><%= categoria.nome %></div>
+					<div class="type"><%= categoria.tipo %></div>
+					<div class="buttons">
+						<a href="/categorias/<%= categoria.id %>/edit">
+							<img src="/img/icons/edit-tools.svg" alt="Icone de editar">
+						</a>
+						<form method="POST" action="/categorias/<%= categoria.id %>/delete?_method=DELETE">
+							<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+						</form>
+					</div>
+				</div>
+			<% } %>
+		</div>
+	</section>
+</main>
 <%- include('../parts/foot'); %>

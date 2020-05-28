@@ -2,14 +2,6 @@
 <main>
   <form method="POST" action="/carteiras/store">
     <span class="title"> Nova Carteira </span>
-    <% if (typeof(erros) != "undefined") { %>
-        <p style="color: red"> ERRO </p>
-        <ul>
-          <% erros.forEach((erro) => { %>
-              <li><%= erro.msg %></li>
-          <% }) %>
-        </ul>
-    <% } %>
 
     <div class="container-field">
       <input type="text" name="nome" id="nome" placeholder="Digite o nome da carteira">

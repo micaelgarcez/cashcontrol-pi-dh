@@ -6,10 +6,12 @@ function toggleActive(arrayItems) {
   });
 }
 
-$('.btn-circle.add').onclick = () => { toggleActive([
+const classToggleButtons = [
   '.sob-buttons', 
   '.container-buttons'
-]) };
+];
+$('.btn-circle.add').onclick = () => { toggleActive(classToggleButtons) };
+$('.sob-buttons').onclick = () => { toggleActive(classToggleButtons) };
 
 const classToggleMenu = [
   '.container-navigation',

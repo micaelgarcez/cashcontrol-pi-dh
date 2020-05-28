@@ -1,5 +1,3 @@
-const $ = document.querySelector.bind(document);
-
 function popupActive(arrayItems) {
     arrayItems.forEach(item => {
         if(!$(item).classList.contains('active')){
@@ -60,6 +58,47 @@ const popups = {
                 </p>
             </div>
         </form>
+    `,
+    "carteiraCreate": `
+        <form method="POST" action="/carteiras/store">
+            <span class="title"> Nova Carteira </span>
+
+            <div class="container-field">
+            <input type="text" name="nome" id="nome" placeholder="Digite o nome da carteira" required>
+            </div>
+
+            <div class="container-field">
+            <select name="tipo" id="tipo" required>
+                <option selected disabled>Selecione</option>
+                <option value="1">Conta Bancária</option>
+                <option value="2">Carteira Pessoal</option>
+                <option value="3">Cartão de Débito</option>
+                <option value="4">Cartão de Crédito</option>
+            </select>
+            </div>
+
+            <button class="btn green" type="submit">Salvar</button>
+        </form>
+    `,
+    "carteiraEdit": `
+        <form method="POST" action="/carteiras/cateiraEdit_id/update?_method=PUT">
+            <span class="title"> Editar Carteira </span>
+
+            <div class="container-field">
+            <input type="text" name="nome" id="nome" value="cateiraEdit_name" placeholder="Digite o nome da carteira" required>
+            </div>
+
+            <div class="container-field">
+            <select name="tipo" id="tipo" required>
+                <option value="1">Conta Bancária</option>
+                <option value="2">Carteira Pessoal</option>
+                <option value="3">Cartão de Débito</option>
+                <option value="4">Cartão de Crédito</option>
+            </select>
+            </div>
+
+            <button class="btn green" type="submit">Salvar</button>
+        </form>
     `
 }
 
@@ -71,21 +110,33 @@ const classPopup = [
 function activePopup(e){
     e.preventDefault();
     let popupOpen = e.target.getAttribute('href').replace('#', '');
-    $('#popup .popup-body').innerHTML = popups[popupOpen];
-    popupActive(classPopup);
+    if(popupOpen == 'carteiraEdit'){
+        let id = e.target.getAttribute('data-id');
+        let name = e.target.getAttribute('data-name');
+        let type = e.target.getAttribute('data-type');
+        let newForm = popups[popupOpen]
+            .replace('cateiraEdit_id', id)
+            .replace('cateiraEdit_name', name)
+            .replace(`>${type}`, `selected>${type}`);
+        $('#popup .popup-body').innerHTML = newForm;
+        popupActive(classPopup);
+    } else {
+        $('#popup .popup-body').innerHTML = popups[popupOpen];
+        popupActive(classPopup);
+    }
 }
 
 function deactivatedPopup(e){
     e.preventDefault();
     popupDeactivated(classPopup);
 }
-
-window.onload = () => {
+window.addEventListener("load", () => {
     let popupsLinks = document.querySelectorAll('.popup');
     popupsLinks.forEach(link => {
         link.onclick = (e) => {
+            console.log('teste');
             activePopup(e);
         }
     })
     $('.sob-popup').onclick = (e) => { deactivatedPopup(e) };
-}
+}, false);
