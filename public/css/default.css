@@ -152,6 +152,7 @@ a {
   cursor: pointer;
   box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
   transition: 0.3s;
+  color: #48475c;
 }
 
 .btn-circle {
@@ -216,6 +217,27 @@ a {
 .btn-circle.green:hover,
 .btn-circle.green:active,
 .btn-circle.green:focus {
+  opacity: 0.97;
+}
+
+.btn.gray,
+.btn-circle.gray {
+  background-color: #343a40;
+  color: #fff;
+  border: none;
+}
+
+.btn.gray svg,
+.btn-circle.gray svg {
+  fill: #fff;
+}
+
+.btn.gray:hover,
+.btn.gray:active,
+.btn.gray:focus,
+.btn-circle.gray:hover,
+.btn-circle.gray:active,
+.btn-circle.gray:focus {
   opacity: 0.97;
 }
 
@@ -370,6 +392,12 @@ form .container-field select {
 }
 
 form .btn.green {
+  margin-left: auto;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+form .btn.gray {
   margin-left: auto;
   text-transform: uppercase;
   font-weight: 600;

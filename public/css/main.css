@@ -1,0 +1,86 @@
+body{
+    /* background-color: #343a40; */
+}
+
+main{
+    display: flex;
+}
+
+.container-main img{
+    width: 500px;
+    /* display: flex; */
+    align-items: center;
+    justify-content: left;
+    margin-left: 100px;
+    margin-right: 100px;
+    
+}
+
+
+.container{
+    justify-content: left;
+}
+
+
+.button-cadastro{
+    color: white;
+    margin-top: 10px;    
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.container-login{
+    margin: 30px;
+
+
+}
+
+.container-text{
+    align-items: center;
+    justify-content: left;
+    /* margin-left: 30px; */
+    margin-right: 100px;
+
+}
+
+.container-info{
+    display: flex;
+    margin-left: 100px;
+    margin-right: 100px;    
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.container-contact{    
+    display: flex;
+    margin-left: 400px;
+    margin-right: 400px;    
+    align-items: center;
+    justify-content: space-between;  
+    margin-bottom: 30px;
+   
+}
+/* #92A1AC */
+
+
+.img-small{
+    width: 100px;
+    align-items: center;
+    justify-content: center;  
+    margin: 10px;
+    /* padding: 10px ; */
+    
+}
+
+.cards{
+    text-align: center;
+    padding: 20px;  
+}
+
+h5{
+    text-align: center;    
+}
+
+/* #343a40  ou #6c757d */

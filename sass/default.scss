@@ -74,6 +74,17 @@ a{
       opacity: .97;
     }
   }
+  &.gray{
+    background-color: $gray-color;
+    color: $white;
+    border: none;
+    svg{
+      fill: $white;
+    }
+    &:hover, &:active, &:focus{
+      opacity: .97;
+    }
+  }
   &.red{
     background-color: $white;
     border: 1px solid $red-color;
@@ -172,6 +183,11 @@ form{
     }
   }
   .btn.green{
+    margin-left: auto;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .btn.gray{
     margin-left: auto;
     text-transform: uppercase;
     font-weight: 600;
