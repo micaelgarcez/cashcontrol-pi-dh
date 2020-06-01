@@ -1,0 +1,59 @@
+<%- include('../parts/head',{title:'CASH CONTROL - Lista de Receitas'}); %>
+<main>
+	<div class="container-button">
+		<a class="btn blue popup" href="#receitaCreate">Adicionar nova Receita</a>
+	</div>
+	<section class="container">
+		<div id="list-receita">
+			<div class="item head">
+				<div class="datas">
+                    <div class="name"><p>Carteira</p></div>
+                    <div class="name"><p>Tipo</p></div>
+                    <div class="name"><p>Obs</p></div>
+                </div>
+                <div class="datas">
+                    <div class="name"><p>Data</p></div>
+                    <div class="name"><p>Valor</p></div>
+                </div>
+                <div class="buttons">
+					<a href="#receitaEdit">
+						<%- include('../../public/img/icons/edit.svg'); %>
+					</a>
+					<a href="#receitaDelete">
+						<%- include('../../public/img/icons/delete.svg'); %>
+					</a>
+				</div>
+			</div>
+			<% for(let receita of receitas ) { %>
+				<div class="item">
+					<div class="datas">
+                        <div class="name"><p><%= receita.carteira.nome %></p></div>
+                        <div class="name"><p><%= receita.tiporeceita.nome %></p></div>
+                        <div class="name"><p><%= receita.obs %></p></div>
+                    </div>
+                    <div class="datas">
+                        <div class="name"><p><%= receita.data_receita %></p></div>
+                        <div class="name"><p><%= receita.valor %></p></div>
+					</div>
+					<div class="buttons">
+						<a class="popup" href="#receitaEdit" data-id="<%= receita.id %>" data-name="<%= receita.nome %>">
+							<%- include('../../public/img/icons/edit.svg'); %>
+						</a>
+						<a class="notification" href="#receitaDelete" data-id="<%= receita.id %>">
+							<%- include('../../public/img/icons/delete.svg'); %>
+							<form class="cd-<%= receita.id %>" method="POST" action="/receitas/<%= receita.id %>/delete?_method=DELETE">
+								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+							</form>
+						</a>
+					</div>
+				</div>
+			<% } %>
+		</div>
+	</section>
+</main>
+<script>
+	let carteirasArray = <%- JSON.stringify(carteiras)%>;
+	console.log(carteirasArray);
+</script>
+<%- include('../parts/foot'); %>
+

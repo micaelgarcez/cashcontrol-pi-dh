@@ -7,8 +7,11 @@ function notificationDeactivated() {
 }
 
 const notifications = {
-    "carteiraDelete": "Tem certeza que quer deletar a carteira?"
+    "carteiraDelete": "Tem certeza que quer deletar a Carteira?",
+    "tiporeceitaDelete": "Tem certeza que quer deletar o Tipo de Receita?",
+    "receitaDelete": "Tem certeza que quer deletar a Receita?"
 }
+
 
 function showNotification(e) {
     e.preventDefault();

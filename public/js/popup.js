@@ -1,3 +1,5 @@
+console.log(carteirasArray);
+
 function popupActive(arrayItems) {
     arrayItems.forEach(item => {
         if(!$(item).classList.contains('active')){
@@ -13,6 +15,20 @@ function popupDeactivated(arrayItems) {
         }
     });
 }
+
+/*
+var carteiras;
+
+function activePopup2(e){
+    e.preventDefault();
+    let popupOpen = e.target.getAttribute('href').replace('#', '');
+    if(popupOpen == 'receitaCreate'){
+        carteiras = e.target.getAttribute('data-array');
+    }
+}
+
+${carteiras.forEach(carteira =>`<option value=${carteira.id}>${carteira.nome} </option>`)}
+*/
 
 const popups = {
     "login": `
@@ -99,6 +115,54 @@ const popups = {
 
             <button class="btn green" type="submit">Salvar</button>
         </form>
+    `,
+    "tiporeceitaCreate": `
+        <form method="POST" action="/tiporeceitas/store">
+            <span class="title"> Novo Tipo de Receita </span>
+
+            <div class="container-field">
+            <input type="text" name="nome" id="nome" placeholder="Digite o nome do Tipo de Receita" required>
+            </div>
+
+            <button class="btn green" type="submit">Salvar</button>
+        </form>
+    `,
+    "tiporeceitaEdit": `
+        <form method="POST" action="/tiporeceitas/tiporeceitaEdit_id/update?_method=PUT">
+            <span class="title"> Editar Tipo de Receita </span>
+
+            <div class="container-field">
+            <input type="text" name="nome" id="nome" value="tiporeceitaEdit_name" placeholder="Digite o nome do Tipo de Receita" required>
+            </div>
+
+            <button class="btn green" type="submit">Salvar</button>
+        </form>
+    `,
+    "receitaCreate": `
+        <form method="POST" action="/receitas/store">
+            <span class="title"> Nova Receita </span>
+
+            <div class="container-field">
+            <input type="date" name="data" id="data" placeholder="" required>
+            </div>
+
+            <div class="container-field">
+            <input type="number" step="0.01" name="valor" id="valor" placeholder="Valor da Receita" required>
+            </div>
+
+            <div class="container-field">
+            <select name="carteira" id="carteira" required>
+                <option selected disabled>Selecione</option>
+                ${carteirasArray.forEach(carteira =>`<option value=${carteira.id}>${carteira.nome} </option>`)}
+            </select>
+            </div>
+
+            <div class="container-field">
+            <input type="text" name="obs" id="obs" placeholder="Observação">
+            </div>
+
+            <button class="btn green" type="submit">Salvar</button>
+        </form>
     `
 }
 
@@ -120,7 +184,17 @@ function activePopup(e){
             .replace(`>${type}`, `selected>${type}`);
         $('#popup .popup-body').innerHTML = newForm;
         popupActive(classPopup);
-    } else {
+    } 
+    else if(popupOpen == 'tiporeceitaEdit'){
+        let id = e.target.getAttribute('data-id');
+        let name = e.target.getAttribute('data-name');
+        let newForm = popups[popupOpen]
+            .replace('tiporeceitaEdit_id', id)
+            .replace('tiporeceitaEdit_name', name);
+        $('#popup .popup-body').innerHTML = newForm;
+        popupActive(classPopup);
+    }
+    else {
         $('#popup .popup-body').innerHTML = popups[popupOpen];
         popupActive(classPopup);
     }

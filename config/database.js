@@ -3,7 +3,7 @@ module.exports = {
     host: 'localhost',
     port: '3306',
     username: 'root',
-    password: 'micael',
+    password: 'erisintel',
     database: 'cash',
     define: {
         timestamps: true,

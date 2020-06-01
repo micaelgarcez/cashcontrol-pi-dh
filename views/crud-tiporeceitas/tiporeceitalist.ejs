@@ -1,0 +1,43 @@
+<%- include('../parts/head',{title:'CASH CONTROL - Lista de Tipo de Receitas'}); %>
+<main>
+	<div class="container-button">
+		<a class="btn blue popup" href="#tiporeceitaCreate">Adicionar novo Tipo de Receita</a>
+	</div>
+	<section class="container">
+		<div id="list-tiporeceita">
+			<div class="item head">
+				<div class="datas">
+					<div class="name"><p>Nome Exemplo</p></div>
+				</div>
+				<div class="buttons">
+					<a href="#tiporeceitaEdit">
+						<%- include('../../public/img/icons/edit.svg'); %>
+					</a>
+					<a href="#tiporeceitaDelete">
+						<%- include('../../public/img/icons/delete.svg'); %>
+					</a>
+				</div>
+			</div>
+			<% for(let tiporeceita of tiporeceitas ) { %>
+				<div class="item">
+					<div class="datas">
+						<div class="name"><p><%= tiporeceita.nome %></p></div>
+					</div>
+					<div class="buttons">
+						<a class="popup" href="#tiporeceitaEdit" data-id="<%= tiporeceita.id %>" data-name="<%= tiporeceita.nome %>">
+							<%- include('../../public/img/icons/edit.svg'); %>
+						</a>
+						<a class="notification" href="#tiporeceitaDelete" data-id="<%= tiporeceita.id %>">
+							<%- include('../../public/img/icons/delete.svg'); %>
+							<form class="cd-<%= tiporeceita.id %>" method="POST" action="/tiporeceitas/<%= tiporeceita.id %>/delete?_method=DELETE">
+								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+							</form>
+						</a>
+					</div>
+				</div>
+			<% } %>
+		</div>
+	</section>
+</main>
+<%- include('../parts/foot'); %>
+
