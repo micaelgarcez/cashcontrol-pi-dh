@@ -115,8 +115,6 @@ module.exports = {
             }
           );
 
-        console.log(carteiras);
-                
         res.render('crud-receitas/receitalist', {receitas, carteiras})
     },
     async edit (req, res) {
@@ -209,5 +207,23 @@ module.exports = {
         const receitas = await lista(usuario_id);
 
         res.render('crud-receitas/receitalist', {receitas})
+    },
+    async listaCarteirasReceita (req, res) {
+
+        let { id } = JSON.parse(req.session.usuario);
+
+        const carteiras = await con.query(
+            "Select c.id, c.nome " +
+            "from carteiras c where c.tipo in (1,2) and " +
+            "c.usuario_id=:id",
+            {
+              replacements: {
+                id,
+              },
+              type: Sequelize.QueryTypes.SELECT,
+            }
+          );
+
+        res.send(carteiras);
     }
 }
