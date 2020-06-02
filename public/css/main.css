@@ -1,3 +1,140 @@
+/* @import url(https://fonts.googleapis.com/css?family=Open+Sans); */
+
+body{
+     /* background-color: #343a40;  */
+     color: #5F7D95;  
+}
+
+main{
+    display: flex;
+    margin-left: 100px;
+    margin-bottom: 100px;
+    margin-right: 100px;
+}
+
+.container-main img{
+    width: 400px;
+    /* display: flex; */
+    align-items: center;
+    justify-content: left;
+    margin-left: 100px;
+    margin-right: 50px;    
+}
+
+.container-team img{
+    width: 300px;
+    /* display: flex; */
+    align-items: center;
+    justify-content: left;
+    margin-left: 50px;
+    margin-right: 50px;    
+}
+.container{
+    justify-content: left;
+}
+
+
+.button-cadastro{
+    color: white;
+    margin-top: 10px;    
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.container-login{
+    margin: 30px;
+}
+
+.container-text{
+    /* margin-left: 30px; */
+    /* margin-right: 100px; */
+    /* margin-left: 50px; */
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    line-height: 20px;
+    color: #5F7D95;
+    width: 500px;
+    
+}
+h1{
+    /* text-shadow: rgb(201, 195, 195) 0.1em 0.1em 0.2em; */
+    color: #5F7D95;
+}
+
+.icon-team{
+    width: 300px;
+}
+.text-simple{
+    margin-right: 100px;
+    margin-left: 100px;
+    text-align: center;
+    padding-bottom: 30px;
+
+}
+
+.container-info{
+    display: flex;
+    margin-left: 100px;
+    margin-right: 100px;    
+    align-items: center;
+    justify-content: center; 
+     
+    
+}
+
+.container-contact{    
+    /* flex-direction: row; */
+    margin-left: 400px;
+    margin-right: 400px;    
+    /* align-items: center; */
+    /* justify-content: space-between;   */
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+/*fonte padrão cinza nav e botões LP #92A1AC */
+
+
+.img-small{
+    width: 80px;
+    align-items: center;
+    justify-content: center;  
+    margin: 10px;
+    /* padding: 10px ; */
+    
+}
+
+.cards{
+    text-align: center;
+    padding-left: 40px;  
+    padding-right: 40px;
+}
+
+h5 {
+    text-align: center;
+    
+    /* color: #343a40;     */
+}
+
+.cash-button{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 100px;
+}
+
+.logo-main{
+    width: 80px;    
+}
+
+/* #343a40  ou #6c757d  dark #48475c   fonte #5F7D95*/
+/*fonte padrão cinza nav e botões LP #92A1AC */
+
+/* Config default */
+
 html,
 body,
 div,
@@ -5,13 +142,13 @@ span,
 applet,
 object,
 iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
+/* h1, */
+/* h2, */
+/* h3, */
+/* h4, */
+/* h5, */
+/* h6, */
+/* p, */
 blockquote,
 pre,
 a,
@@ -463,4 +600,3 @@ form .btn.gray {
   max-width: 300px;
   width: 100%;
 }
-
