@@ -16,7 +16,7 @@ module.exports = {
 	async login (req, res) {
 	let { email, password } = req.body;
 	
-			//Procura usuário por e-mail
+	//Procura usuário por e-mail
 	const usuario = await Usuario.findOne({ where: { email } });
 
 	//Criptografa senha digitada

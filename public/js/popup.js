@@ -1,5 +1,3 @@
-console.log(carteirasArray);
-
 function popupActive(arrayItems) {
     arrayItems.forEach(item => {
         if(!$(item).classList.contains('active')){
@@ -15,20 +13,6 @@ function popupDeactivated(arrayItems) {
         }
     });
 }
-
-/*
-var carteiras;
-
-function activePopup2(e){
-    e.preventDefault();
-    let popupOpen = e.target.getAttribute('href').replace('#', '');
-    if(popupOpen == 'receitaCreate'){
-        carteiras = e.target.getAttribute('data-array');
-    }
-}
-
-${carteiras.forEach(carteira =>`<option value=${carteira.id}>${carteira.nome} </option>`)}
-*/
 
 const popups = {
     "login": `
@@ -151,9 +135,8 @@ const popups = {
             </div>
 
             <div class="container-field">
-            <select name="carteira" id="carteira" required>
+            <select name="carteira" id="carteira-create" required>
                 <option selected disabled>Selecione</option>
-                ${carteirasArray.forEach(carteira =>`<option value=${carteira.id}>${carteira.nome} </option>`)}
             </select>
             </div>
 
@@ -193,6 +176,24 @@ function activePopup(e){
             .replace('tiporeceitaEdit_name', name);
         $('#popup .popup-body').innerHTML = newForm;
         popupActive(classPopup);
+    } else if(popupOpen == 'receitaCreate') {
+        let newForm = popups[popupOpen];
+        $('#popup .popup-body').innerHTML = newForm;
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET", "/listacarteirasreceita", true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
+                var data = JSON.parse(ajax.responseText);
+                data.forEach(carteira => {
+                    let option = document.createElement("option");
+                    option.innerHTML = carteira.nome;
+                    option.setAttribute('value', carteira.id);
+                    $('#carteira-create').appendChild(option);
+                })
+                popupActive(classPopup);
+            }
+        }
     }
     else {
         $('#popup .popup-body').innerHTML = popups[popupOpen];
@@ -208,7 +209,6 @@ window.addEventListener("load", () => {
     let popupsLinks = document.querySelectorAll('.popup');
     popupsLinks.forEach(link => {
         link.onclick = (e) => {
-            console.log('teste');
             activePopup(e);
         }
     })

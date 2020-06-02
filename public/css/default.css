@@ -152,7 +152,6 @@ a {
   cursor: pointer;
   box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
   transition: 0.3s;
-  color: #48475c;
 }
 
 .btn-circle {
@@ -222,7 +221,7 @@ a {
 
 .btn.gray,
 .btn-circle.gray {
-  background-color: #343a40;
+  background-color: #48475c;
   color: #fff;
   border: none;
 }
