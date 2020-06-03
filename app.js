@@ -15,6 +15,7 @@ var DespesaRouter = require('./routes/DespesasRouter');
 var MetaRouter = require('./routes/MetasRouter');
 var TipoReceitaRouter = require('./routes/TipoReceitasRouter');
 var ReceitaRouter = require('./routes/ReceitasRouter');
+var MovimentoRouter = require('./routes/MovimentosRouter');
 
 require('./database/index');
 
@@ -41,6 +42,7 @@ app.use('/', DespesaRouter);
 app.use('/', MetaRouter);
 app.use('/', TipoReceitaRouter);
 app.use('/', ReceitaRouter);
+app.use('/', MovimentoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

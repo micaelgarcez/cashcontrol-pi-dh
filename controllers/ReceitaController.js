@@ -5,27 +5,22 @@ const { check, validationResult, body } = require('express-validator');
 const dbConfig = require('../config/database');
 const Sequelize = require('sequelize');
 const con = new Sequelize(dbConfig);
+const Mov = require("../controllers/MovimentoController");
 
 function lista (id){
-    const lista = Receita.findAll({
-        attributes: [
-            'id', 
-            'valor', 
-            'obs', 
-            [Sequelize.fn('date_format', Sequelize.col('data_receita'), '%d/%m/%Y'), 'data_receita']
-        ],
-        where: { usuario_id : id },
-        include: [{
-            model: Carteira,
-            as: 'carteira',
-            attributes: ['nome']
-        },
+    const lista = con.query(
+        "Select c.id, c.valor, c.obs, c.carteira_id, c.tiporeceita_id, t.nome carteira, s.nome tiporeceita, " +
+        "DATE_FORMAT (c.data_receita,'%d/%m/%Y') AS data_receita, DATE_FORMAT (c.data_receita,'%Y-%m-%d') AS data_receita2 " +
+        "from receitas c INNER JOIN carteiras t ON c.carteira_id=t.id INNER JOIN tiporeceitas s ON c.tiporeceita_id=s.id " +
+        "where c.usuario_id=:id",
         {
-            model: tiporeceitas,
-            as: 'tiporeceita',
-            attributes: ['nome']
-        }]
-    });
+          replacements: {
+            id,
+          },
+          type: Sequelize.QueryTypes.SELECT,
+        }
+      );
+
     return lista;
 }
 function listaCarteiras (id){
@@ -66,18 +61,15 @@ module.exports = {
                 }
             )
 
+            //Lança na tabela de movimento
+            const retornoMov = await Mov.insereMovimento(id, carteira, 0, receita.id, 2, valor, data);
+            
             const receitas = await lista(id);
 
             res.render('crud-receitas/receitalist', {receitas})
         }
         else {
-            //Carteiras do Usuário
-            const carteiras = await listaCarteiras(id);
-
-            //Tipo de Receitas do Usuário
-            const tipodereceitas = await listaTiposDeReceita(id);
-
-            res.render('crud-receitas/receita',{tipodereceitas, carteiras, erros:listaDeErros.errors});
+            res.status(404).send("Campos obrigatórios não preenchidos!");
         }
         
     },
@@ -165,11 +157,16 @@ module.exports = {
                 { where: {id} }
             )
 
+            //Lança na tabela de movimento
+            const retornoMov = await Mov.alteraMovimento(usuario_id, 0, id, valor, data);
+            
             const receitas = await lista(usuario_id);
 
             res.render('crud-receitas/receitalist', {receitas})
         }
         else {
+
+            return res.status(404).send("Campos obrigatórios não preenchidos!");
             const receita = await Receita.findOne({
                 attributes: [
                 'id', 
@@ -204,6 +201,9 @@ module.exports = {
             {where: {id}}
         )
 
+        //Lança na tabela de movimento
+        const retornoMov = await Mov.excluiMovimento(usuario_id, 0, id);
+        
         const receitas = await lista(usuario_id);
 
         res.render('crud-receitas/receitalist', {receitas})
@@ -225,5 +225,23 @@ module.exports = {
           );
 
         res.send(carteiras);
+    },
+    async listatiposreceita (req, res) {
+
+        let { id } = JSON.parse(req.session.usuario);
+
+        const tipodereceitas = await con.query(
+            "Select c.id, c.nome " +
+            "from tiporeceitas c where " +
+            "c.usuario_id=:id",
+            {
+              replacements: {
+                id,
+              },
+              type: Sequelize.QueryTypes.SELECT,
+            }
+          );
+
+        res.send(tipodereceitas);
     }
 }

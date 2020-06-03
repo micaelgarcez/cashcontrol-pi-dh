@@ -1,0 +1,61 @@
+<%- include('../parts/head',{title:'CASH CONTROL - Lista de Movimentos'}); %>
+<main>
+	<div class="container-button">
+		<a class="btn blue popup" href="#transferenciaCreate">Nova Transferência</a>
+	</div>
+	<section class="container">
+		<div id="list-movimento">
+			<div class="item head">
+				<div class="datas">
+                    <div class="name"><p>Tipo</p></div>
+                    <div class="name"><p> + - </p></div>
+                    <div class="name"><p>Origem</p></div>
+                </div>
+                <div class="datas">
+                    <div class="name"><p>Data</p></div>
+                    <div class="name"><p>Valor</p></div>
+                    <div class="name"><p>Destino</p></div>
+                </div>
+                <div class="buttons">
+					<a href="#transferenciaEdit">
+						<%- include('../../public/img/icons/edit.svg'); %>
+					</a>
+					<a href="#transferenciaDelete">
+						<%- include('../../public/img/icons/delete.svg'); %>
+					</a>
+				</div>
+			</div>
+			<% for(let mov of movimentos ) { %>
+				<div class="item">
+					<div class="datas">
+                        <div class="name"><p><%= mov.origem %></p></div>
+                        <div class="name"><p><%= mov.tipo %></p></div>
+                        <div class="name"><p><%= mov.carteira %></p></div>
+                    </div>
+                    <div class="datas">
+                        <div class="name"><p><%= mov.data_mov %></p></div>
+                        <div class="name"><p><%= mov.valor_mov %></p></div>
+                        <div class="name"><p><%= mov.transferencia %></p></div>
+                    </div>
+                    <% if (mov.id_transf>0) {%>
+                        <div class="buttons">
+                            <a class="popup" href="#transferenciaEdit" data-id="<%= mov.id %>" 
+                                data-date="<%= mov.data_mov2 %>" data-valor="<%= mov.valor_mov %>" 
+                                data-carteiraid="<%= mov.carteira_id %>" data-carteiraid-transf="<%= mov.carteira_id_transf %>">
+                                <%- include('../../public/img/icons/edit.svg'); %>
+                            </a>
+                            <a class="notification" href="#transferenciaDelete" data-id="<%= mov.id %>">
+                                <%- include('../../public/img/icons/delete.svg'); %>
+                                <form class="cd-<%= mov.id %>" method="POST" action="/transferencias/<%= mov.id %>/delete?_method=DELETE">
+                                    <button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+                                </form>
+                            </a>
+                        </div>
+                    <%}%>
+				</div>
+			<% } %>
+		</div>
+	</section>
+</main>
+<%- include('../parts/foot'); %>
+

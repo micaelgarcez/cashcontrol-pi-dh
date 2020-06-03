@@ -10,6 +10,10 @@
 					<div class="name"><p>Nome Exemplo</p></div>
 					<div class="type"><p>Tipo Exemplo</p></div>
 				</div>
+				<div class="datas">
+					<div class="cor"><p>Cor Exemplo</p></div>
+					<div class="icone"><p>Icone Exemplo</p></div>
+				</div>
 				<div class="buttons">
 					<a href="#carteiraEdit">
 						<%- include('../../public/img/icons/edit.svg'); %>
@@ -25,8 +29,12 @@
 						<div class="name"><p><%= carteira.nome %></p></div>
 						<div class="type"><p><%= carteira.tipo %></p></div>
 					</div>
+					<div class="datas">
+						<div class="cor"><p><%= carteira.cor %></p></div>
+						<div class="icone"><p><%= carteira.icone %></p></div>
+					</div>
 					<div class="buttons">
-						<a class="popup" href="#carteiraEdit" data-id="<%= carteira.id %>" data-name="<%= carteira.nome %>" data-type="<%= carteira.tipo %>">
+						<a class="popup" href="#carteiraEdit" data-id="<%= carteira.id %>" data-name="<%= carteira.nome %>" data-type="<%= carteira.tipo %>" data-color="<%= carteira.cor %>" data-ico="<%= carteira.icone %>">
 							<%- include('../../public/img/icons/edit.svg'); %>
 						</a>
 						<a class="notification" href="#carteiraDelete" data-id="<%= carteira.id %>">

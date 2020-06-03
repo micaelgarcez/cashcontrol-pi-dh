@@ -5,6 +5,8 @@ class Carteira extends Model {
         super.init({
             nome: DataTypes.STRING,
             tipo: DataTypes.SMALLINT,
+            cor: DataTypes.STRING,
+            icone: DataTypes.STRING
         }, {
             sequelize: connection,
         })

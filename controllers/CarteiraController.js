@@ -3,6 +3,14 @@ const Carteira = require("../models/Carteiras");
 const { check, validationResult, body } = require('express-validator');
 const Sequelize = require('sequelize');
 
+function listarCarteiras(id){
+    const listarCarteiras = Carteira.findAll({
+        attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Conta Bancária' WHEN 2 THEN 'Carteira Pessoal' WHEN 3 THEN 'Cartão de Débito' ELSE 'Cartão de Crédito' END`), 'tipo'], 'cor', 'icone'],
+        where: { usuario_id : id }
+    });
+    return listarCarteiras;
+}
+
 module.exports = {
     async store (req, res) {
 
@@ -13,18 +21,18 @@ module.exports = {
             let { id } = JSON.parse(req.session.usuario);
 
             //Campo do Formulário
-            let { nome, tipo} = req.body;
+            let { nome, tipo, cor, icone} = req.body;
 
             const carteira = await Carteira.create(
-                {nome, tipo, usuario_id: id}
+                {nome, tipo, usuario_id: id, cor, icone}
                 )
-
-            //const carteiras = await Carteira.findAll({ where: { usuario_id : id } });
-
-            const carteiras = await Carteira.findAll({
-                attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Conta Bancária' WHEN 2 THEN 'Carteira Pessoal' WHEN 3 THEN 'Cartão de Débito' ELSE 'Cartão de Crédito' END`), 'tipo']],
+            
+            const carteiras = await listarCarteiras(id);
+            
+            /*const carteiras = await Carteira.findAll({
+                attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Conta Bancária' WHEN 2 THEN 'Carteira Pessoal' WHEN 3 THEN 'Cartão de Débito' ELSE 'Cartão de Crédito' END`), 'tipo'], 'cor', 'icone'],
                 where: { usuario_id : id }
-            });
+            });*/
 
             res.render('crud-carteiras/carteiralist', {carteiras})
         }
@@ -40,10 +48,7 @@ module.exports = {
 
         let { id } = JSON.parse(req.session.usuario);
 
-        const carteiras = await Carteira.findAll({
-            attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Conta Bancária' WHEN 2 THEN 'Carteira Pessoal' WHEN 3 THEN 'Cartão de Débito' ELSE 'Cartão de Crédito' END`), 'tipo']],
-            where: { usuario_id : id }
-        });
+        const carteiras = await listarCarteiras(id);
         
         res.render('crud-carteiras/carteiralist', {carteiras})
     },
@@ -65,17 +70,14 @@ module.exports = {
             let { id: usuario_id } = JSON.parse(req.session.usuario);
 
             //Campo do Formulário
-            let { nome, tipo} = req.body;
+            let { nome, tipo, cor, icone} = req.body;
 
             const carteira = await Carteira.update(
-                {nome, tipo},
+                {nome, tipo, cor, icone},
                 {where: {id}}
             )
 
-            const carteiras = await Carteira.findAll({
-                attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Conta Bancária' WHEN 2 THEN 'Carteira Pessoal' WHEN 3 THEN 'Cartão de Débito' ELSE 'Cartão de Crédito' END`), 'tipo']],
-                where: { usuario_id }
-            });
+            const carteiras = await listarCarteiras(usuario_id);
 
             res.render('crud-carteiras/carteiralist', {carteiras})
         }
@@ -98,10 +100,7 @@ module.exports = {
             {where: {id}}
         )
 
-        const carteiras = await Carteira.findAll({
-            attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Conta Bancária' WHEN 2 THEN 'Carteira Pessoal' WHEN 3 THEN 'Cartão de Débito' ELSE 'Cartão de Crédito' END`), 'tipo']],
-            where: { usuario_id }
-        });
+        const carteiras = await listarCarteiras(usuario_id);
 
         res.render('crud-carteiras/carteiralist', {carteiras})
     }

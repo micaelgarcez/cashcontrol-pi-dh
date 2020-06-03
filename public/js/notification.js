@@ -9,7 +9,8 @@ function notificationDeactivated() {
 const notifications = {
     "carteiraDelete": "Tem certeza que quer deletar a Carteira?",
     "tiporeceitaDelete": "Tem certeza que quer deletar o Tipo de Receita?",
-    "receitaDelete": "Tem certeza que quer deletar a Receita?"
+    "receitaDelete": "Tem certeza que quer deletar a Receita?",
+    "transferenciaDelete": "Tem certeza que quer deletar a Transferência?"
 }
 
 

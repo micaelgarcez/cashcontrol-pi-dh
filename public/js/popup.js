@@ -1,3 +1,4 @@
+
 function popupActive(arrayItems) {
     arrayItems.forEach(item => {
         if(!$(item).classList.contains('active')){
@@ -77,6 +78,14 @@ const popups = {
             </select>
             </div>
 
+            <div class="container-field">
+            <input type="text" name="cor" id="cor" placeholder="Hexa da Cor">
+            </div>
+
+            <div class="container-field">
+            <input type="text" name="icone" id="icone" placeholder="Nome do Icone">
+            </div>
+
             <button class="btn green" type="submit">Salvar</button>
         </form>
     `,
@@ -95,6 +104,14 @@ const popups = {
                 <option value="3">Cartão de Débito</option>
                 <option value="4">Cartão de Crédito</option>
             </select>
+            </div>
+
+            <div class="container-field">
+            <input type="text" name="cor" id="cor" value="cateiraEdit_color" placeholder="Hexa da Cor">
+            </div>
+
+            <div class="container-field">
+            <input type="text" name="icone" id="icone" value="cateiraEdit_ico" placeholder="Nome do Icone">
             </div>
 
             <button class="btn green" type="submit">Salvar</button>
@@ -127,7 +144,7 @@ const popups = {
             <span class="title"> Nova Receita </span>
 
             <div class="container-field">
-            <input type="date" name="data" id="data" placeholder="" required>
+            <input type="date" name="data" id="data" value="receitaCreate_data" placeholder="" required>
             </div>
 
             <div class="container-field">
@@ -136,12 +153,103 @@ const popups = {
 
             <div class="container-field">
             <select name="carteira" id="carteira-create" required>
-                <option selected disabled>Selecione</option>
+                <option selected disabled>Selecione a Carteira</option>
+            </select>
+            </div>
+
+            <div class="container-field">
+            <select name="tiporeceita" id="tiporeceita-create" required>
+                <option selected disabled>Selecione Tipo de Receita</option>
             </select>
             </div>
 
             <div class="container-field">
             <input type="text" name="obs" id="obs" placeholder="Observação">
+            </div>
+
+            <button class="btn green" type="submit">Salvar</button>
+        </form>
+    `,
+    "receitaEdit": `
+        <form method="POST" action="/receitas/receitaEdit_id/update?_method=PUT">
+            <span class="title"> Editar Receita </span>
+
+            <div class="container-field" id="divReceitaDataEdit">
+                <input type="date" name="data" id="data" value="receitaEdit_data" placeholder="" required>
+            </div>
+
+            <div class="container-field">
+            <input type="number" step="0.01" name="valor" id="valor" value="receitaEdit_valor" placeholder="Valor da Receita" required>
+            </div>
+
+            <div class="container-field">
+            <select name="carteira" id="carteira-create" required>
+                <option selected disabled>Selecione a Carteira</option>
+            </select>
+            </div>
+
+            <div class="container-field">
+            <select name="tiporeceita" id="tiporeceita-create" required>
+                <option selected disabled>Selecione Tipo de Receita</option>
+            </select>
+            </div>
+
+            <div class="container-field">
+            <input type="text" name="obs" id="obs" value="receitaEdit_obs" placeholder="Observação">
+            </div>
+
+            <button class="btn green" type="submit">Salvar</button>
+        </form>
+    `,
+    "transferenciaCreate": `
+        <form method="POST" action="/transferencias/store">
+            <span class="title"> Nova Transferência </span>
+
+            <div class="container-field">
+            <input type="date" name="data" id="data" value="transferenciaCreate_data" placeholder="" required>
+            </div>
+
+            <div class="container-field">
+            <select name="carteira" id="carteiraOrigem-create" required>
+                <option selected disabled>Selecione a Carteira de Origem</option>
+            </select>
+            </div>
+
+            <div class="container-field">
+            <input type="number" step="0.01" name="valor" id="valor" placeholder="Valor da Transferência" required>
+            </div>
+
+            <div class="container-field">
+            <select name="carteiradestino" id="carteiraDestino-create" required>
+                <option selected disabled>Selecione a Carteira de Destino</option>
+            </select>
+            </div>
+
+            <button class="btn green" type="submit">Salvar</button>
+        </form>
+    `,
+    "transferenciaEdit": `
+        <form method="POST" action="/transferencias/transferenciaEdit_id/update?_method=PUT">
+            <span class="title"> Nova Transferência </span>
+
+            <div class="container-field">
+            <input type="date" name="data" id="data" value="transferenciaEdit_data" placeholder="" required>
+            </div>
+
+            <div class="container-field">
+            <select name="carteira" id="carteiraOrigem-edit">
+                <option selected disabled>Selecione a Carteira de Origem</option>
+            </select>
+            </div>
+
+            <div class="container-field">
+            <input type="number" step="0.01" name="valor" id="valor" value="transferenciaEdit_valor" placeholder="Valor da Transferência" required>
+            </div>
+
+            <div class="container-field">
+            <select name="carteiradestino" id="carteiraDestino-edit">
+                <option selected disabled>Selecione a Carteira de Destino</option>
+            </select>
             </div>
 
             <button class="btn green" type="submit">Salvar</button>
@@ -161,9 +269,13 @@ function activePopup(e){
         let id = e.target.getAttribute('data-id');
         let name = e.target.getAttribute('data-name');
         let type = e.target.getAttribute('data-type');
+        let color = e.target.getAttribute('data-color');
+        let ico = e.target.getAttribute('data-ico');
         let newForm = popups[popupOpen]
             .replace('cateiraEdit_id', id)
             .replace('cateiraEdit_name', name)
+            .replace('cateiraEdit_color', color)
+            .replace('cateiraEdit_ico', ico)
             .replace(`>${type}`, `selected>${type}`);
         $('#popup .popup-body').innerHTML = newForm;
         popupActive(classPopup);
@@ -176,8 +288,12 @@ function activePopup(e){
             .replace('tiporeceitaEdit_name', name);
         $('#popup .popup-body').innerHTML = newForm;
         popupActive(classPopup);
-    } else if(popupOpen == 'receitaCreate') {
-        let newForm = popups[popupOpen];
+    } 
+    else if(popupOpen == 'receitaCreate') {
+        var data = new Date();
+        var dataReceita = data.getFullYear() + '-' + ("0" + (data.getMonth()+1)).slice(-2) + '-' + ("0" + data.getDate()).slice(-2);
+        let newForm = popups[popupOpen]
+            .replace('receitaCreate_data', dataReceita);
         $('#popup .popup-body').innerHTML = newForm;
         var ajax = new XMLHttpRequest();
         ajax.open("GET", "/listacarteirasreceita", true);
@@ -190,6 +306,148 @@ function activePopup(e){
                     option.innerHTML = carteira.nome;
                     option.setAttribute('value', carteira.id);
                     $('#carteira-create').appendChild(option);
+                })
+                popupActive(classPopup);
+            }
+        }
+
+        var ajax2 = new XMLHttpRequest();
+        ajax2.open("GET", "/listatiposreceita", true);
+        ajax2.send();
+        ajax2.onreadystatechange = function() {
+            if (ajax2.readyState == 4 && (ajax2.status == 200 || ajax2.status == 304) ) {
+                var data2 = JSON.parse(ajax2.responseText);
+                data2.forEach(tiporeceita => {
+                    let option2 = document.createElement("option");
+                    option2.innerHTML = tiporeceita.nome;
+                    option2.setAttribute('value', tiporeceita.id);
+                    $('#tiporeceita-create').appendChild(option2);
+                })
+                popupActive(classPopup);
+            }
+        }
+    }
+    else if(popupOpen == 'receitaEdit') {
+        let receitaId = e.target.getAttribute('data-id');
+        let receitaData = e.target.getAttribute('data-date');
+
+        let receitaValor = e.target.getAttribute('data-valor');
+        let receitaCarteiraId = e.target.getAttribute('data-carteiraid');
+        let receitaTipoCarteiraId = e.target.getAttribute('data-tiporeceitaid');
+        let receitaObs = e.target.getAttribute('data-obs');
+        
+        let newForm = popups[popupOpen]
+            .replace('receitaEdit_id', receitaId)
+            .replace('receitaEdit_data', receitaData)
+            .replace('receitaEdit_valor', receitaValor)
+            .replace('receitaEdit_obs', receitaObs);
+        $('#popup .popup-body').innerHTML = newForm;
+               
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET", "/listacarteirasreceita", true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
+                var data = JSON.parse(ajax.responseText);
+                data.forEach(carteira => {
+                    let option = document.createElement("option");
+                    option.innerHTML = carteira.nome;
+                    option.setAttribute('value', carteira.id);
+                    if (carteira.id == receitaCarteiraId){
+                        option.setAttribute('selected','selected');
+                    }
+                    $('#carteira-create').appendChild(option);
+                })
+                popupActive(classPopup);
+            }
+        }
+
+        var ajax2 = new XMLHttpRequest();
+        ajax2.open("GET", "/listatiposreceita", true);
+        ajax2.send();
+        ajax2.onreadystatechange = function() {
+            if (ajax2.readyState == 4 && (ajax2.status == 200 || ajax2.status == 304) ) {
+                var data2 = JSON.parse(ajax2.responseText);
+                data2.forEach(tiporeceita => {
+                    let option2 = document.createElement("option");
+                    option2.innerHTML = tiporeceita.nome;
+                    option2.setAttribute('value', tiporeceita.id);
+                    if (tiporeceita.id == receitaTipoCarteiraId){
+                        option2.setAttribute('selected', 'selected');
+                    }
+                    $('#tiporeceita-create').appendChild(option2);
+                })
+                popupActive(classPopup);
+            }
+        }
+    }
+    else if(popupOpen == 'transferenciaCreate') {
+        var data = new Date();
+        var dataReceita = data.getFullYear() + '-' + ("0" + (data.getMonth()+1)).slice(-2) + '-' + ("0" + data.getDate()).slice(-2);
+        let newForm = popups[popupOpen]
+            .replace('transferenciaCreate_data', dataReceita);
+        $('#popup .popup-body').innerHTML = newForm;
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET", "/listacarteirasreceita", true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
+                var data = JSON.parse(ajax.responseText);
+                data.forEach(carteira => {
+                    let option = document.createElement("option");
+                    option.innerHTML = carteira.nome;
+                    option.setAttribute('value', carteira.id);
+                    $('#carteiraOrigem-create').appendChild(option);
+                    
+                    let option2 = document.createElement("option");
+                    option2.innerHTML = carteira.nome;
+                    option2.setAttribute('value', carteira.id);
+                    $('#carteiraDestino-create').appendChild(option2);
+                })
+                popupActive(classPopup);
+            }
+        }
+    }
+    else if(popupOpen == 'transferenciaEdit') {
+        let tId = e.target.getAttribute('data-id');
+        let tData = e.target.getAttribute('data-date');
+        let tValor = e.target.getAttribute('data-valor');
+        let tCarteiraId = e.target.getAttribute('data-carteiraid');
+        let tCarteiraId_transf = e.target.getAttribute('data-carteiraid-transf');
+
+        let newForm = popups[popupOpen]
+            .replace('transferenciaEdit_id', tId)
+            .replace('transferenciaEdit_data', tData)
+            .replace('transferenciaEdit_valor', tValor);
+        $('#popup .popup-body').innerHTML = newForm;
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET", "/listacarteirasreceita", true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
+                var data = JSON.parse(ajax.responseText);
+                data.forEach(carteira => {
+                    let option = document.createElement("option");
+                    option.innerHTML = carteira.nome;
+                    option.setAttribute('value', carteira.id);
+                    if (carteira.id == tCarteiraId){
+                        option.setAttribute('selected','selected');
+                    }
+                    else {
+                        option.setAttribute('disabled','disabled');
+                    }
+                    $('#carteiraOrigem-edit').appendChild(option);
+                                        
+                    let option2 = document.createElement("option");
+                    option2.innerHTML = carteira.nome;
+                    option2.setAttribute('value', carteira.id);
+                    if (carteira.id == tCarteiraId_transf){
+                        option2.setAttribute('selected','selected');
+                    }
+                    else {
+                        option2.setAttribute('disabled','disabled');
+                    }
+                    $('#carteiraDestino-edit').appendChild(option2);
                 })
                 popupActive(classPopup);
             }

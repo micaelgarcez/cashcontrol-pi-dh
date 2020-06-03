@@ -3,6 +3,7 @@ const Carteira = require("../models/Carteiras");
 const Categoria = require("../models/Categorias");
 const { check, validationResult, body } = require('express-validator');
 const Sequelize = require('sequelize');
+const Mov = require("../controllers/MovimentoController");
 
 module.exports = {
     async store (req, res) {
@@ -28,6 +29,12 @@ module.exports = {
                     usuario_id: id
                 }
             )
+
+            //Lança na tabela de movimento
+            const carteiraLocal = await Carteira.findByPk(carteira);
+            if (carteiraLocal.tipo!=4) {
+                const retornoMov = await Mov.insereMovimento(id, carteira, despesa.id, 0, 1, valor, data);
+            }
 
             const despesas = await Despesa.findAll({
                 attributes: [
@@ -162,6 +169,12 @@ module.exports = {
                 { where: {id} }
             )
 
+            //Lança na tabela de movimento
+            const carteiraLocal = await Carteira.findByPk(carteira);
+            if (carteiraLocal.tipo!=4) {
+                const retornoMov = await Mov.alteraMovimento(usuario_id,id, 0, valor, data);
+            }
+
             const despesas = await Despesa.findAll({
                 attributes: [
                     'id', 
@@ -219,9 +232,17 @@ module.exports = {
         
         id = Number(id);
 
+        const despesa = await Despesa.findByPk(id);
+
 		await Despesa.destroy(
             {where: {id}}
         )
+
+        //Lança na tabela de movimento
+        const carteiraLocal = await Carteira.findByPk(despesa.carteira_id);
+        if (carteiraLocal.tipo!=4) {
+            const retornoMov = await Mov.excluiMovimento(usuario_id, id, 0);
+        }
 
         const despesas = await Despesa.findAll({
             attributes: [

@@ -38,7 +38,32 @@ module.exports = {
         type: Sequelize.QueryTypes.SELECT,
       }
     );
+
+    const resumo = await con.query(
+      "Select sum(credito) credito, sum(debito) debito, sum(despesas) despesas, sum(cartao) cartao from ( " +
+        "Select IFNULL(sum(m.valor_mov),0) credito, 0 debito, 0 despesas, 0 cartao from movimentos m " +
+        "WHERE m.usuario_id=:usuariofiltro AND m.tipo_mov=2 AND YEAR(m.data_mov)=:anofiltro AND MONTH(m.data_mov)=:mesfiltro " +
+        "UNION " +
+        "Select 0 credito, IFNULL(sum(m.valor_mov),0) debito, 0 despesas, 0 cartao from movimentos m " +
+        "WHERE m.usuario_id=:usuariofiltro AND m.tipo_mov=1 AND YEAR(m.data_mov)=:anofiltro AND MONTH(m.data_mov)=:mesfiltro " +
+        "UNION " +
+        "Select 0 credito, 0 debito, IFNULL(sum(d.valor),0) despesas, 0 cartao from despesas d " +
+        "WHERE d.usuario_id=:usuariofiltro AND YEAR(d.data_despesa)=:anofiltro AND MONTH(d.data_despesa)=:mesfiltro " +
+        "UNION " +
+        "Select 0 credito, 0 debito, 0 despesas, IFNULL(sum(d.valor),0) cartao from despesas d INNER JOIN carteiras c ON d.carteira_id=c.id AND c.TIPO=4 " +
+        "WHERE d.usuario_id=:usuariofiltro AND c.TIPO=4 AND YEAR(d.data_despesa)=:anofiltro AND MONTH(d.data_despesa)=:mesfiltro) x ",
+      {
+        replacements: {
+          anofiltro, mesfiltro, usuariofiltro,
+        },
+        type: Sequelize.QueryTypes.SELECT,
+      }
+    );
+
+    //return res.send(resumo);
+
+    //console.log(resumo);
 				
-    res.render('dashboard',{resultado});
+    res.render('dashboard',{resultado, resumo});
   }
 }
