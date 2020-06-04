@@ -132,6 +132,45 @@ table {
   border-spacing: 0;
 }
 
+.bg-blue {
+  background-color: #3924B3;
+}
+
+.bg-green {
+  background-color: #32B32D;
+}
+
+.bg-red {
+  background-color: #B33924;
+}
+
+.bg-purple {
+  background-color: #674CFF;
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+
 a {
   font-size: 16px;
   color: #48475c;
@@ -242,13 +281,14 @@ a {
 
 .btn.red,
 .btn-circle.red {
-  background-color: #fff;
+  background-color: #B33924;
   border: 1px solid #B33924;
+  color: #fff;
 }
 
 .btn.red svg,
 .btn-circle.red svg {
-  fill: #B33924;
+  fill: #fff;
 }
 
 .btn.red:hover,
@@ -272,13 +312,14 @@ a {
 
 .btn.blue,
 .btn-circle.blue {
-  background-color: #fff;
+  background-color: #3924B3;
   border: 1px solid #3924B3;
+  color: #fff;
 }
 
 .btn.blue svg,
 .btn-circle.blue svg {
-  fill: #3924B3;
+  fill: #fff;
 }
 
 .btn.blue:hover,
@@ -343,13 +384,11 @@ a {
 .arrow-up {
   display: flex;
   justify-content: center;
-  transform: rotate(90deg);
 }
 
 .arrow-down {
   display: flex;
   justify-content: center;
-  transform: rotate(-90deg);
 }
 
 form {
@@ -461,5 +500,27 @@ form .btn.gray {
 #popup .popup-body {
   max-width: 300px;
   width: 100%;
+}
+
+@media (min-width: 1280px) {
+  .md-hide {
+    display: none !important;
+  }
+
+  header {
+    height: 100%;
+    width: 90px;
+    position: relative;
+  }
+
+  header.active {
+    width: 180px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .xs-hide {
+    display: none !important;
+  }
 }
 

@@ -4,18 +4,13 @@
 		<a class="btn blue popup" href="#transferenciaCreate">Nova Transferência</a>
 	</div>
 	<section class="container">
-		<div id="list-movimento">
+		<div id="list">
 			<div class="item head">
-				<div class="datas">
-                    <div class="name"><p>Tipo</p></div>
-                    <div class="name"><p> + - </p></div>
-                    <div class="name"><p>Origem</p></div>
-                </div>
-                <div class="datas">
-                    <div class="name"><p>Data</p></div>
-                    <div class="name"><p>Valor</p></div>
-                    <div class="name"><p>Destino</p></div>
-                </div>
+                <div class="name"><p>Origem</p></div>
+                <div class="name"><p>Tipo</p></div>
+                <div class="name"><p>Data</p></div>
+                <div class="name"><p>Valor</p></div>
+                <div class="name"><p>Destino</p></div>
                 <div class="buttons">
 					<a href="#transferenciaEdit">
 						<%- include('../../public/img/icons/edit.svg'); %>
@@ -27,16 +22,12 @@
 			</div>
 			<% for(let mov of movimentos ) { %>
 				<div class="item">
-					<div class="datas">
-                        <div class="name"><p><%= mov.origem %></p></div>
-                        <div class="name"><p><%= mov.tipo %></p></div>
-                        <div class="name"><p><%= mov.carteira %></p></div>
-                    </div>
-                    <div class="datas">
-                        <div class="name"><p><%= mov.data_mov %></p></div>
-                        <div class="name"><p><%= mov.valor_mov %></p></div>
-                        <div class="name"><p><%= mov.transferencia %></p></div>
-                    </div>
+                    <div class="name"><p><%= mov.origem %></p></div>
+                    <div class="name"><p><%= mov.tipo %></p></div>
+                    <div class="name"><p><%= mov.data_mov %></p></div>
+                    <div class="name"><p><%= mov.valor_mov %></p></div>
+                    <div class="name"><p><%= mov.carteira %></p></div>
+                    <div class="name"><p><%= mov.transferencia %></p></div>
                     <% if (mov.id_transf>0) {%>
                         <div class="buttons">
                             <a class="popup" href="#transferenciaEdit" data-id="<%= mov.id %>" 

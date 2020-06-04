@@ -4,24 +4,26 @@
 		<a class="btn white" href="/categorias/create">Adicionar nova Categoria</a>
 	</div>
 	<section class="container">
-		<div class="list-categorias">
-			<h1>Categorias:</h1>
+		<div id="list">
 			<div class="item head">
 				<div class="name"><p>Nome:</p></div>
 				<div class="type"><p>Tipo:</p></div>
-				<div class="buttons"></div>
+				<div class="buttons"><p>Ações</p></div>
 			</div>
 			<% for(let categoria of categorias ) { %>
 				<div class="item">
-					<div class="name"><%= categoria.nome %></div>
-					<div class="type"><%= categoria.tipo %></div>
+					<div class="name"><p><%= categoria.nome %></p></div>
+					<div class="type"><p><%= categoria.tipo %></p></div>
 					<div class="buttons">
 						<a href="/categorias/<%= categoria.id %>/edit">
-							<img src="/img/icons/edit-tools.svg" alt="Icone de editar">
+							<span class="material-icons-outlined">edit</span>
 						</a>
-						<form method="POST" action="/categorias/<%= categoria.id %>/delete?_method=DELETE">
-							<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
-						</form>
+						<a class="notification" href="#categoriaDelete" data-id="<%= categoria.id %>">
+							<span class="material-icons-outlined">delete</span>
+							<form method="POST" action="/categorias/<%= categoria.id %>/delete?_method=DELETE">
+								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+							</form>
+						</a>
 					</div>
 				</div>
 			<% } %>
