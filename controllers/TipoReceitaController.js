@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
 
 function lista (id){
     const lista = TipoReceita.findAll({
-        attributes: ['id', 'nome'],
+        attributes: ['id', 'nome', 'cor', 'icone'],
         where: { usuario_id : id },
         order: [
             ['nome', 'ASC'],
@@ -24,10 +24,10 @@ module.exports = {
             let { id } = JSON.parse(req.session.usuario);
 
             //Campo do Formulário
-            let { nome} = req.body;
+            let { nome, cor, icone } = req.body;
 
             const tiporeceita = await TipoReceita.create(
-                {nome, usuario_id: id}
+                {nome, usuario_id: id, cor, icone}
                 )
 
             const tiporeceitas = await lista(id);
@@ -68,10 +68,10 @@ module.exports = {
             let { id: usuario_id } = JSON.parse(req.session.usuario);
 
             //Campo do Formulário
-            let { nome} = req.body;
+            let { nome, cor, icone } = req.body;
 
             const tiporeceita = await TipoReceita.update(
-                {nome},
+                {nome, cor, icone},
                 {where: {id}}
             )
 

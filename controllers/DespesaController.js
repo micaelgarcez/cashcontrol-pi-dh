@@ -172,7 +172,7 @@ module.exports = {
             //Lança na tabela de movimento
             const carteiraLocal = await Carteira.findByPk(carteira);
             if (carteiraLocal.tipo!=4) {
-                const retornoMov = await Mov.alteraMovimento(usuario_id,id, 0, valor, data);
+                const retornoMov = await Mov.alteraMovimento(usuario_id, id, 0, carteira, valor, data);
             }
 
             const despesas = await Despesa.findAll({

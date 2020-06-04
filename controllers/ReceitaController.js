@@ -158,7 +158,7 @@ module.exports = {
             )
 
             //Lança na tabela de movimento
-            const retornoMov = await Mov.alteraMovimento(usuario_id, 0, id, valor, data);
+            const retornoMov = await Mov.alteraMovimento(usuario_id, 0, id, carteira, valor, data);
             
             const receitas = await lista(usuario_id);
 

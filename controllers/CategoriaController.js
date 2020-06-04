@@ -3,6 +3,14 @@ const Categoria = require("../models/Categorias");
 const { check, validationResult, body } = require('express-validator');
 const Sequelize = require('sequelize');
 
+function listar(id){
+    const listar = Categoria.findAll({
+        attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Fixa' ELSE 'Variável' END`), 'tipo'], 'cor', 'icone'],
+        where: { usuario_id : id }
+    });
+    return listar;
+}
+
 module.exports = {
     async store (req, res) {
 
@@ -13,16 +21,13 @@ module.exports = {
             let { id } = JSON.parse(req.session.usuario);
 
             //Campo do Formulário
-            let { nome, tipo} = req.body;
+            let { nome, tipo, cor, icone} = req.body;
 
             const categoria = await Categoria.create(
-                {nome, tipo, usuario_id: id}
+                {nome, tipo, usuario_id: id, cor, icone}
                 )
 
-            const categorias = await Categoria.findAll({
-                attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Fixa' ELSE 'Variável' END`), 'tipo']],
-                where: { usuario_id : id }
-            });
+            const categorias = await listar(id);
 
             res.render('crud-categorias/categorialist', {categorias})
         }
@@ -38,10 +43,7 @@ module.exports = {
 
         let { id } = JSON.parse(req.session.usuario);
         
-        const categorias = await Categoria.findAll({
-            attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Fixa' ELSE 'Variável' END`), 'tipo']],
-            where: { usuario_id : id }
-        });
+        const categorias = await listar(id);
 
         res.render('crud-categorias/categorialist', {categorias})
     },
@@ -70,10 +72,7 @@ module.exports = {
                 {where: {id}}
             )
 
-            const categorias = await Categoria.findAll({
-                attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Fixa' ELSE 'Variável' END`), 'tipo']],
-                where: { usuario_id }
-            });
+            const categorias = await listar(usuario_id);
 
             res.render('crud-categorias/categorialist', {categorias})
         }
@@ -96,11 +95,17 @@ module.exports = {
             {where: {id}}
         )
 
-        const categorias = await Categoria.findAll({
-            attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Fixa' ELSE 'Variável' END`), 'tipo']],
-            where: { usuario_id }
-        });
+        const categorias = await listar(usuario_id);
 
         res.render('crud-categorias/categorialist', {categorias})
+    }
+    ,
+    async listaCategoriasMetas (req, res) {
+
+        let { id } = JSON.parse(req.session.usuario);
+
+        const categorias = await listar(id);
+
+        res.send(categorias);
     }
 }

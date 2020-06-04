@@ -1,5 +1,29 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Metas'}); %>
 <main>
+	<form method="POST" action="/metas/seek">
+		<%if (typeof(erros) != "undefined") { %>
+			<p style="color: red"> ERRO </p>
+			<ul>
+			<% erros.forEach((erro) => { %>
+				<li><%= erro.msg %></li>
+			<% }) %>
+			</ul>
+		<% } %>
+
+		<div>
+			<label>
+				Ano:
+				<input type="number" name="ano" id="ano" value="<%= Periodo.Ano %>" placeholder="ano da meta">
+			</label>
+			
+			<label>
+				Mês:
+				<input type="number" name="mes" id="mes" value="<%= Periodo.Mes %>" placeholder="mês da meta">
+			</label>
+		
+		</div>
+		<button type="submit">Buscar</button>
+	</form>
 	<section class="container">
 		<div id="list">
 			<div class="item head">
@@ -50,30 +74,6 @@
 				</div>
 			</table>
 		</div>
-		<form method="POST" action="/metas/seek">
-				<%if (typeof(erros) != "undefined") { %>
-					<p style="color: red"> ERRO </p>
-					<ul>
-					<% erros.forEach((erro) => { %>
-						<li><%= erro.msg %></li>
-					<% }) %>
-					</ul>
-				<% } %>
-
-				<div>
-					<label>
-						Ano:
-						<input type="number" name="ano" id="ano" value="<%= Periodo.Ano %>" placeholder="ano da meta">
-					</label>
-					
-					<label>
-						Mês:
-						<input type="number" name="mes" id="mes" value="<%= Periodo.Mes %>" placeholder="mês da meta">
-					</label>
-				
-				</div>
-				<button type="submit">Buscar</button>
-			</form>
 	</section>
 </main>
 <%- include('../parts/foot'); %>
