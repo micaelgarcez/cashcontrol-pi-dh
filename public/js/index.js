@@ -12,12 +12,10 @@ function toggleActive(arrayItems) {
 }
 
 const classToggleButtons = [
-  '.sob-buttons', 
   '.container-buttons'
 ];
 if(elExists('.btn-circle.add') == true){
   $('.btn-circle.add').onclick = () => { toggleActive(classToggleButtons) };
-  $('.sob-buttons').onclick = () => { toggleActive(classToggleButtons) };
 }
 
 const classToggleMenu = [

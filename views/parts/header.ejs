@@ -12,64 +12,68 @@
   <div class="container-navigation">
     <nav>
       <ul>
+        <li><a href="/">
+          <img class="logo" src="img/logo.svg" alt="Logo Cash Control">
+        </a></li>
+        <li>
+          <div class="container-buttons">
+            <button class="btn-circle add">
+              <span class="add"></span>
+            </button>
+            <button class="btn-circle green">
+              <span class="arrow-up">
+                <%- include('../../public/img/icons/arrow.svg'); %>
+              </span>
+            </button>
+            <button class="btn-circle red">
+              <span class="arrow-down">
+                <%- include('../../public/img/icons/arrow.svg'); %>
+              </span>
+            </button>
+            <button class="btn-circle blue">
+              <span>
+                <%- include('../../public/img/icons/expenses.svg'); %>
+              </span>
+            </button>
+          </div>
+        </li>
         <li><a href="/dashboard"> 
-          <%- include('../../public/img/icons/dashboard.svg'); %>
-          <span>DashBoard</span>
+          <span class="material-icons-outlined">assessment</span>
+          <span class="text-link">DashBoard</span>
         </a></li>
         <li><a href="/carteiras">
           <%- include('../../public/img/icons/wallet.svg'); %>
-          <span>Carteiras</span>
+          <span class="text-link">Carteiras</span>
         </a></li>
         <li><a href="/categorias">
           <%- include('../../public/img/icons/categories.svg'); %>
-          <span>Categorias</span>
+          <span class="text-link">Categorias</span>
         </a></li>
         <li><a href="/metas">
           <%- include('../../public/img/icons/goals.svg'); %>
-          <span>Metas</span>
+          <span class="text-link">Metas</span>
         </a></li>
         <li><a href="/despesas">
           <%- include('../../public/img/icons/expenses.svg'); %>
-          <span>Despesas</span>
+          <span class="text-link">Despesas</span>
         </a></li>
         <li><a href="/tiporeceitas">
           <%- include('../../public/img/icons/categories.svg'); %>
-          <span>Tipos Receita</span>
+          <span class="text-link">Tipos Receita</span>
         </a></li>
         <li><a href="/receitas">
           <%- include('../../public/img/icons/categories.svg'); %>
-          <span>Receitas</span>
+          <span class="text-link">Receitas</span>
         </a></li>
         <li><a href="/movimentos">
           <%- include('../../public/img/icons/categories.svg'); %>
-          <span>Transações</span>
+          <span class="text-link">Transações</span>
         </a></li>
         <li><a href="/minha-conta">
           <%- include('../../public/img/icons/account.svg'); %>
-          <span>Minha Conta</span>
+          <span class="text-link">Minha Conta</span>
         </a></li>
       </ul>
     </nav>
   </div>
 </header>
-<div class="sob-buttons"></div>
-<div class="container-buttons">
-  <button class="btn-circle add">
-    <span class="add"></span>
-  </button>
-  <button class="btn-circle green">
-    <span class="arrow-up">
-      <%- include('../../public/img/icons/arrow.svg'); %>
-    </span>
-  </button>
-  <button class="btn-circle red">
-    <span class="arrow-down">
-      <%- include('../../public/img/icons/arrow.svg'); %>
-    </span>
-  </button>
-  <button class="btn-circle blue">
-    <span>
-      <%- include('../../public/img/icons/expenses.svg'); %>
-    </span>
-  </button>
-</div>
