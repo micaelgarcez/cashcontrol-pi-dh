@@ -381,7 +381,7 @@ const popups = {
         <button class="btn green" type="submit">Salvar</button>
     </form>
     `,
-     "metaCreate": `
+    "metaCreate": `
         <form method="POST" action="/metas/store">
             <span class="title"> Nova Meta </span>
 
@@ -659,6 +659,7 @@ function activePopup(e){
         $('#popup .popup-body').innerHTML = newForm;
         popupActive(classPopup);
     }     
+    
     else if(popupOpen == 'metaCreate') {
         let tAno = e.target.getAttribute('data-ano');
         let tMes = e.target.getAttribute('data-mes');
