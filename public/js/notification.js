@@ -11,7 +11,8 @@ const notifications = {
     "tiporeceitaDelete": "Tem certeza que quer deletar o Tipo de Receita?",
     "receitaDelete": "Tem certeza que quer deletar a Receita?",
     "transferenciaDelete": "Tem certeza que quer deletar a Transferência?",
-    "categoriaDelete": "Tem certeza que quer deletar a Categoria?"
+    "categoriaDelete": "Tem certeza que quer deletar a Categoria?",
+    "despesaDelete": "Tem certeza que quer deletar a Despesa?"
 }
 
 

@@ -254,8 +254,7 @@ const popups = {
 
             <button class="btn green" type="submit">Salvar</button>
         </form>
-    `,
-    
+    `,    
     "categoriasCreate": `
     <form method="POST" action="/categorias/store">
     <span class="title"> Nova Categoria </span>
@@ -275,13 +274,11 @@ const popups = {
   </form>
     `,
     "categoriaEdit": `
-        <form method="POST" action="/categorias/categoriaEdit_id/update?_method=PUT">
-            <span class="title"> Editar Cartegoria </span>
-            
-            <div class="container-field">
-            <input type="text" name="nome" id="nome" value="categoriaEdit_name" placeholder="Digite o nome da categoria" required>
-          </div>
-      
+    <form method="POST" action="/categorias/categoriaEdit_id/update?_method=PUT">
+    <span class="title"> Editar Cartegoria </span>
+    <div class="container-field">
+        <input type="text" name="nome" id="nome" value="categoriaEdit_name" placeholder="Digite o nome da categoria" required>
+    </div> 
             <div class="container-field">
               <select name="tipo" id="tipo" required>
                 <option selected disabled>Selecione</option>
@@ -290,8 +287,86 @@ const popups = {
               </select>
             </div>
           <button class="btn green" type="submit">Salvar</button>
-        </form>
+    </form>
     `,
+    "despesasCreate": `
+    <form method="POST" action="/despesas/store">
+        <span class="title"> Nova Despesa </span>
+
+        <div class="container-field">
+            <input type="date" name="data" id="data" placeholder="">
+        </div>
+
+        <div class="container-field">
+            <input type="number" step="0.01" name="valor" id="valor" placeholder="Valor da Despesa">
+        </div>
+    
+        <div class="container-field">
+            <select name="categoria" id="categoria">
+                <option selected disabled>Selecione</option>
+                <% categorias.forEach((categoria) => { %>
+              <option value=<%= categoria.id %>> <%= categoria.nome %></option>
+                <% }) %> 
+            </select>
+        </div>
+
+        <div class="container-field">
+            <select name="carteira" id="carteira">
+                <option selected disabled>Selecione</option>
+                <% carteiras.forEach((carteira) => { %>
+                <option value=<%= carteira.id %>> <%= carteira.nome %></option>
+                <% }) %> 
+            </select>
+        </div>
+
+        <div class="container-field">
+            <input type="text" name="obs" id="obs" placeholder="Obs">
+        </div>
+    
+    
+        <button class="btn green" type="submit">Salvar</button>
+    </form>
+    `,
+    "despesaEdit": `
+    <form method="POST" action="/despesas/despesaEdit_id/update?_method=PUT">
+    <span class="title"> Editar Despesa</span>
+    
+        <div class="container-field">
+            <input type="date" name="data" id="data" value="despesaEdit_name" placeholder="">
+        </div>
+
+        <div class="container-field">
+            <input type="number" step="0.01" name="valor" id="valor" placeholder="Valor da Despesa">
+        </div>
+    
+        <div class="container-field">
+            <select name="categoria" id="categoria">
+                <option selected disabled>Selecione</option>
+                <% categorias.forEach((categoria) => { %>
+              <option value=<%= categoria.id %>> <%= categoria.nome %></option>
+                <% }) %> 
+            </select>
+        </div>
+
+        <div class="container-field">
+            <select name="carteira" id="carteira">
+                <option selected disabled>Selecione</option>
+                <% carteiras.forEach((carteira) => { %>
+                <option value=<%= carteira.id %>> <%= carteira.nome %></option>
+                <% }) %> 
+            </select>
+        </div>
+
+        <div class="container-field">
+            <input type="text" name="obs" id="obs" placeholder="Obs">
+        </div>
+    
+    
+        <button class="btn green" type="submit">Salvar</button>
+    </form>
+    `,
+
+    
 }
 
 const classPopup = [
@@ -502,7 +577,20 @@ function activePopup(e){
             .replace(`>${type}`, `selected>${type}`);
         $('#popup .popup-body').innerHTML = newForm;
         popupActive(classPopup);
-    } 
+    }
+    else if(popupOpen == 'despesaEdit'){
+        let id = e.target.getAttribute('data-id');
+        let value = e.target.getAttribute('data-value');
+        let type = e.target.getAttribute('data-type');
+        let wallet = e.target.getAttribute('data-wallet');
+        let note = e.target.getAttribute('data-note');
+        let newForm = popups[popupOpen]
+            .replace('categoriaEdit_id', id)
+            .replace('categoriaEdit_name', name)
+            .replace(`>${type}`, `selected>${type}`);
+        $('#popup .popup-body').innerHTML = newForm;
+        popupActive(classPopup);
+    }     
     
     else {
         $('#popup .popup-body').innerHTML = popups[popupOpen];

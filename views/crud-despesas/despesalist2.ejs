@@ -5,15 +5,23 @@
 	</div>
 	<section class="container">
 		<div class="list-despesas">
-			<h1>Despesas:</h1>
+			<!-- <h1>Despesas:</h1> -->
 			<div class="item head">
-				<div class="datas"></div>
-					<div class="category"><p>Categoria</p></div>
-					<div class="value"><p>Valor</p></div>
-					<div class="wallet"><p>Carteira</p></div>
-					<div class="date"><p>Data</p></div>
-					<div class="note">Obs</div>
-				</div>
+                <div class="datas">
+				    <div class="category"><p>Categoria</p></div>
+				    <div class="value"><p>Valor</p></div>
+				    <div class="wallet"><p>Carteira</p></div>
+				    <div class="date"><p>Data</p></div>
+                    <div class="note">Obs</div>
+                </div>
+                <div class="buttons">
+                    <a href="#categoriaEdit">
+						<%- include('../../public/img/icons/edit.svg'); %>
+					</a>
+					<a href="#categoriaDelete">
+						<%- include('../../public/img/icons/delete.svg'); %>
+					</a>                    
+                </div> 
 			</div>
 			<% for(let despesa of despesas ) { %>
 				<div class="item">
@@ -22,9 +30,9 @@
 					<div class="wallet"><p><%= despesa.carteira.nome %></p></div>
 					<div class="date"><p><%= despesa.data_despesa %></p></div>
 					<div class="note"><p><%= despesa.obs %></p></div>
-
 					<div class="buttons">
-						<a class="popup" href="#despesaEdit" data-id="<%= despesa.id %>" data-category="<%= despesa.categoria.nome %>" data-value="<%= despesa.valor.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %>" data-wallet="<%= despesa.carteira.nome %>" data-date="<%= despesa.data_despesa %>" data-note="<%= despesa.obs %>">
+
+                        <a class="popup" href="#despesaEdit" data-id="<%= despesa.id %>" data-category="<%= despesa.categoria.nome %>" data-value="<%= despesa.valor.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %>" data-wallet="<%= despesa.carteira.nome %>" data-date="<%= despesa.data_despesa %>" data-note="<%= despesa.obs %>">
 							<%- include('../../public/img/icons/edit.svg'); %>
 						</a>
 						<a class="notification" href="#despesaDelete" data-id="<%= despesa.id %>">
