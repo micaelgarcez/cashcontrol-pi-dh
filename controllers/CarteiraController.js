@@ -29,11 +29,6 @@ module.exports = {
             
             const carteiras = await listarCarteiras(id);
             
-            /*const carteiras = await Carteira.findAll({
-                attributes: ['id', 'nome', [Sequelize.literal(`CASE tipo WHEN 1 THEN 'Conta Bancária' WHEN 2 THEN 'Carteira Pessoal' WHEN 3 THEN 'Cartão de Débito' ELSE 'Cartão de Crédito' END`), 'tipo'], 'cor', 'icone'],
-                where: { usuario_id : id }
-            });*/
-
             res.render('crud-carteiras/carteiralist', {carteiras})
         }
         else {
