@@ -1,49 +1,9 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Categorias'}); %>
 <main>
 	<div class="container-button">	
-		<a class="btn blue popup" href="#categoriasCreate">Adicionar nova Categoria</a>
+		<a class="btn blue popup" href="/categorias/create">Adicionar nova Categoria</a>
 	</div>
 	<section class="container">
-<<<<<<< HEAD
-		<div class="list-categorias">
-
-            <!-- lista modelo -->
-            <div class="item head">
-                <div class="datas">
-				    <div class="name"><p>Nome Exemplo</p></div>
-                    <div class="type"><p>Tipo Exemplo</p></div>
-                </div>
-
-				<div class="buttons">
-                    <a href="#categoriaEdit">
-						<%- include('../../public/img/icons/edit.svg'); %>
-					</a>
-					<a href="#categoriaDelete">
-						<%- include('../../public/img/icons/delete.svg'); %>
-					</a>                    
-                </div>                
-            </div>
-        <!-- -->
-            
-			<% for(let categoria of categorias ) { %>
-                <div class="item">
-					<div class="datas">
-						<div class="name"><p><%= categoria.nome %></p></div>
-						<div class="type"><p><%= categoria.tipo %></p></div>
-					</div>
-					<div class="datas">
-						<div class="cor"><p><%= categoria.cor %></p></div>
-						<div class="icone"><p><%= categoria.icone %></p></div>
-                    </div>
-                    
-					<div class="buttons">
-						<a class="popup" href="#categoriaEdit" data-id="<%= categoria.id %>" data-name="<%= categoria.nome %>" data-type="<%= categoria.tipo %>" data-color="<%= categoria.cor %>" data-ico="<%= categoria.icone %>">
-							<%- include('../../public/img/icons/edit.svg'); %>
-						</a>
-						<a class="notification" href="#categoriaDelete" data-id="<%= categoria.id %>">
-							<%- include('../../public/img/icons/delete.svg'); %>
-							<form class="cd-<%= categoria.id %>" method="POST" action="/categorias/<%= categoria.id %>/delete?_method=DELETE">
-=======
 		<div id="list">
 			<div class="item head">
 				<div class="name"><p>Nome:</p></div>
@@ -61,7 +21,6 @@
 						<a class="notification" href="#categoriaDelete" data-id="<%= categoria.id %>">
 							<span class="material-icons-outlined">delete</span>
 							<form method="POST" action="/categorias/<%= categoria.id %>/delete?_method=DELETE">
->>>>>>> 4ba4da20c39317956c98f7d500589340349af081
 								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
 							</form>
 						</a>
