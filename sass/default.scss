@@ -1,6 +1,44 @@
 @import 'reset';
 @import 'Variables/all';
 
+.bg-blue{
+  background-color: $blue-color;
+}
+.bg-green{
+  background-color: $green-color;
+}
+.bg-red{
+  background-color: $red-color;
+}
+.bg-purple{
+  background-color: $purple-light-color;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
 a{
   font-size: 16px;
   color: $text-color;
@@ -86,10 +124,11 @@ a{
     }
   }
   &.red{
-    background-color: $white;
+    background-color:  $red-color;
     border: 1px solid $red-color;
+    color: $white;
     svg{
-      fill: $red-color;
+      fill: $white;
     }
     &:hover, &:active, &:focus{
       background-color: $red-color;
@@ -100,10 +139,11 @@ a{
     }
   }
   &.blue{
-    background-color: $white;
+    background-color: $blue-color;
     border: 1px solid $blue-color;
+    color: $white;
     svg{
-      fill: $blue-color;
+      fill: $white;
     }
     &:hover, &:active, &:focus{
       background-color: $blue-color;
@@ -142,12 +182,10 @@ a{
 .arrow-up{
   display: flex;
   justify-content: center;
-  transform: rotate(90deg);
 }
 .arrow-down{
   display: flex;
   justify-content: center;
-  transform: rotate(-90deg);
 }
 
 form{
@@ -248,5 +286,26 @@ form{
   .popup-body{
     max-width: 300px;
     width: 100%;
+  }
+}
+
+@media (min-width: $md){
+  .md-hide{
+    display: none !important;
+  }
+
+  header{
+    height: 100%;
+    width: 90px;
+    position: relative;
+    &.active{
+      width: 180px;
+    }
+  }
+}
+
+@media (max-width: $md){
+  .xs-hide{
+    display: none !important;
   }
 }
