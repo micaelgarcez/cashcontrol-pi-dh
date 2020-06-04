@@ -8,6 +8,8 @@
 			<div class="item head">
 				<div class="datas">
 					<div class="name"><p>Nome Exemplo</p></div>
+					<div class="name"><p>Cor Exemplo</p></div>
+					<div class="name"><p>Icone Exemplo</p></div>
 				</div>
 				<div class="buttons">
 					<a href="#tiporeceitaEdit">
@@ -22,9 +24,11 @@
 				<div class="item">
 					<div class="datas">
 						<div class="name"><p><%= tiporeceita.nome %></p></div>
+						<div class="name"><p><%= tiporeceita.cor %></p></div>
+						<div class="name"><p><%= tiporeceita.icone %></p></div>
 					</div>
 					<div class="buttons">
-						<a class="popup" href="#tiporeceitaEdit" data-id="<%= tiporeceita.id %>" data-name="<%= tiporeceita.nome %>">
+						<a class="popup" href="#tiporeceitaEdit" data-id="<%= tiporeceita.id %>" data-name="<%= tiporeceita.nome %>" data-color="<%= tiporeceita.cor %>" data-ico="<%= tiporeceita.icone %>">
 							<%- include('../../public/img/icons/edit.svg'); %>
 						</a>
 						<a class="notification" href="#tiporeceitaDelete" data-id="<%= tiporeceita.id %>">

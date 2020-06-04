@@ -1,79 +1,64 @@
-<%- include('../parts/head',{title:'CASH CONTROL - Lista de Metas'}); %>
+<%- include('../parts/head',{title:'CASH CONTROL - Metas'}); %>
 <main>
-	<section class="container">
-		<div id="list">
-			<div class="item head">
-				<div class="name"><p>Categoria:</p></div>
-				<div class="type"><p>Valor Previsto:</p></div>
-				<div class="type"><p>Valor Gasto:</p></div>
-				<div class="type"><p>(%) Gasto:</p></div>
-				<div class="buttons"><p>Ações</p></div>
-			</div>
-			<%
-				var totalprevisto = 0;
-				var totalgasto = 0;
-			%>
-			<% for(let categoria of categorias ) {%>
-			
-			<div class="item">
-				<%
-					totalprevisto = totalprevisto + Number(categoria.valorprevisto);
-					totalgasto = totalgasto + Number(categoria.valorgasto);
-				%>
-				<div><%= categoria.nome %></div>
-				<div><%= categoria.valorprevisto.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></div>
-				<div><%= categoria.valorgasto.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></div>
-				<div><%= categoria.percentualgasto %></div>
-				<div>
-					<%if(!categoria.meta_id) {%>
-						<form method="GET" action="/metas/<%= categoria.id %>/create">
-							<button type="submit">Criar</button>
-						</form>
-					<%}
-					else {
-					%>
-						<form method="POST" action="/metas/<%= categoria.meta_id %>/delete?_method=DELETE">
-							<button type="submit">Remover</button>
-						</form>
-						<a href="/metas/<%= categoria.meta_id %>/edit">Editar</button>
-					<%}%>
-				</div>
-			</div>
-			<% } %>
-				<div class="item">
-					<div>Totais:</div>
-					<div><%= totalprevisto %></div>
-					<div><%= totalgasto %></div>
-					<div><%= totalprevisto>0 ? Math.round((totalgasto/totalprevisto)*100,2): 0 %></div>
-					<div>
-					</div>
-				</div>
-			</table>
-		</div>
-		<form method="POST" action="/metas/seek">
-				<%if (typeof(erros) != "undefined") { %>
-					<p style="color: red"> ERRO </p>
-					<ul>
-					<% erros.forEach((erro) => { %>
-						<li><%= erro.msg %></li>
-					<% }) %>
-					</ul>
-				<% } %>
+    <div class="container-button">
+		<a class="btn blue popup" href="">Copiar para Mês Seguinte</a>
+	</div>
 
-				<div>
-					<label>
-						Ano:
-						<input type="number" name="ano" id="ano" value="<%= Periodo.Ano %>" placeholder="ano da meta">
-					</label>
-					
-					<label>
-						Mês:
-						<input type="number" name="mes" id="mes" value="<%= Periodo.Mes %>" placeholder="mês da meta">
-					</label>
-				
+	<section class="container">
+		<div id="list-metas">
+			<div class="item head">
+				<div class="datas">
+                    <div class="name"><p>Categoria</p></div>
+                    <div class="name"><p>Valor Previsto</p></div>
+                </div>
+                <div class="datas">
+                    <div class="name"><p>Valor Gasto</p></div>
+                    <div class="name"><p>(%) Gasto</p></div>
+                </div>
+                <div class="buttons">
+					<a href="#metaEdit">
+						<%- include('../../public/img/icons/edit.svg'); %>
+					</a>
+					<a href="#metaDelete">
+						<%- include('../../public/img/icons/delete.svg'); %>
+					</a>
 				</div>
-				<button type="submit">Buscar</button>
-			</form>
+			</div>
+			<% for(let categoria of categorias ) { %>
+				<div class="item">
+					<div class="datas">
+                        <div class="name"><p><%= categoria.nome %></p></div>
+                        <div class="name"><p><%= categoria.valorprevisto.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></p></div>
+                    </div>
+                    <div class="datas">
+                        <div class="name"><p><%= categoria.valorgasto.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></p></div>
+                        <div class="name"><p><%= categoria.percentualgasto %></p></div>
+                    </div>
+                    <%if(!categoria.meta_id) {%>
+                        <div class="container-button">
+							<a class="btn blue popup" href="#metaCreate" data-ano="<%= Periodo.Ano %>" data-mes="<%= Periodo.Mes %>" data-categoriaid="<%= categoria.id %>">Criar</a>
+						</div>
+                    <%}
+                    else {
+                    %>
+                        <div class="buttons">
+                            <a class="popup" href="#metaEdit" data-id="<%= categoria.meta_id %>" data-ano="<%= Periodo.Ano %>"
+                                data-mes="<%= Periodo.Mes %>" data-valor="<%= categoria.valorprevisto %>" 
+                                data-categoriaid="<%= categoria.id %>">
+                                <%- include('../../public/img/icons/edit.svg'); %>
+                            </a>
+                            <a class="notification" href="#metaDelete" data-id="<%= categoria.meta_id %>">
+                                <%- include('../../public/img/icons/delete.svg'); %>
+                                <form class="cd-<%= categoria.meta_id %>" method="POST" action="/metas/<%= categoria.meta_id %>/delete?_method=DELETE">
+                                    <button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+                                </form>
+                            </a>
+                        </div>
+                    <%}%>
+				</div>
+			<% } %>
+		</div>
 	</section>
 </main>
 <%- include('../parts/foot'); %>
+

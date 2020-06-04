@@ -3,7 +3,9 @@ const { Model, DataTypes } = require('sequelize');
 class tiporeceitas extends Model {
     static init(connection) {
         super.init({
-            nome: DataTypes.STRING
+            nome: DataTypes.STRING,
+            cor: DataTypes.STRING,
+            icone: DataTypes.STRING
         }, {
             sequelize: connection,
         })

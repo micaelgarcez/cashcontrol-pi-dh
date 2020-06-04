@@ -4,7 +4,6 @@
 		<a class="btn blue popup" href="#categoriasCreate">Adicionar nova Categoria</a>
 	</div>
 	<section class="container">
-<<<<<<< HEAD
 		<div class="list-categorias">
 
             <!-- lista modelo -->
@@ -43,25 +42,6 @@
 						<a class="notification" href="#categoriaDelete" data-id="<%= categoria.id %>">
 							<%- include('../../public/img/icons/delete.svg'); %>
 							<form class="cd-<%= categoria.id %>" method="POST" action="/categorias/<%= categoria.id %>/delete?_method=DELETE">
-=======
-		<div id="list">
-			<div class="item head">
-				<div class="name"><p>Nome:</p></div>
-				<div class="type"><p>Tipo:</p></div>
-				<div class="buttons"><p>Ações</p></div>
-			</div>
-			<% for(let categoria of categorias ) { %>
-				<div class="item">
-					<div class="name"><p><%= categoria.nome %></p></div>
-					<div class="type"><p><%= categoria.tipo %></p></div>
-					<div class="buttons">
-						<a href="/categorias/<%= categoria.id %>/edit">
-							<span class="material-icons-outlined">edit</span>
-						</a>
-						<a class="notification" href="#categoriaDelete" data-id="<%= categoria.id %>">
-							<span class="material-icons-outlined">delete</span>
-							<form method="POST" action="/categorias/<%= categoria.id %>/delete?_method=DELETE">
->>>>>>> 4ba4da20c39317956c98f7d500589340349af081
 								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
 							</form>
 						</a>

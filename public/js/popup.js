@@ -125,6 +125,14 @@ const popups = {
             <input type="text" name="nome" id="nome" placeholder="Digite o nome do Tipo de Receita" required>
             </div>
 
+            <div class="container-field">
+            <input type="text" name="cor" id="cor" placeholder="Hexa da Cor">
+            </div>
+
+            <div class="container-field">
+            <input type="text" name="icone" id="icone" placeholder="Nome do Icone">
+            </div>
+
             <button class="btn green" type="submit">Salvar</button>
         </form>
     `,
@@ -134,6 +142,14 @@ const popups = {
 
             <div class="container-field">
             <input type="text" name="nome" id="nome" value="tiporeceitaEdit_name" placeholder="Digite o nome do Tipo de Receita" required>
+            </div>
+
+            <div class="container-field">
+            <input type="text" name="cor" id="cor" value="tiporeceitaEdit_color" placeholder="Hexa da Cor">
+            </div>
+
+            <div class="container-field">
+            <input type="text" name="icone" id="icone" value="tiporeceitaEdit_ico" placeholder="Nome do Icone">
             </div>
 
             <button class="btn green" type="submit">Salvar</button>
@@ -365,8 +381,56 @@ const popups = {
         <button class="btn green" type="submit">Salvar</button>
     </form>
     `,
+     "metaCreate": `
+        <form method="POST" action="/metas/store">
+            <span class="title"> Nova Meta </span>
 
-    
+            <div class="container-field">
+            <input type="number" name="ano" id="ano" value="metaCreate_ano" placeholder="" required>
+            </div>
+
+            <div class="container-field">
+            <input type="number" name="mes" id="mes" value="metaCreate_mes" placeholder="" required>
+            </div>
+
+            <div class="container-field">
+            <select name="categoria" id="categoria-create" required>
+                <option selected disabled>Selecione a Categoria</option>
+            </select>
+            </div>
+
+            <div class="container-field">
+            <input type="number" step="0.01" name="valorprevisto" id="valorprevisto" placeholder="Valor Previsto" required>
+            </div>
+
+            <button class="btn green" type="submit">Salvar</button>
+        </form>
+    `,
+    "metaEdit": `
+        <form method="POST" action="/metas/metaEdit_id/update?_method=PUT">
+            <span class="title"> Alterar Meta </span>
+
+            <div class="container-field">
+            <input type="number" name="ano" id="ano" value="metaEdit_ano" readonly required>
+            </div>
+
+            <div class="container-field">
+            <input type="number" name="mes" id="mes" value="metaEdit_mes" readonly required>
+            </div>
+
+            <div class="container-field">
+            <select name="categoria" id="categoria-edit" required>
+                <option selected disabled>Selecione a Categoria</option>
+            </select>
+            </div>
+
+            <div class="container-field">
+            <input type="number" step="0.01" name="valorprevisto" id="valorprevisto" value="valorprevistoEdit" placeholder="Valor Previsto" required>
+            </div>
+
+            <button class="btn green" type="submit">Salvar</button>
+        </form>
+    `
 }
 
 const classPopup = [
@@ -395,9 +459,13 @@ function activePopup(e){
     else if(popupOpen == 'tiporeceitaEdit'){
         let id = e.target.getAttribute('data-id');
         let name = e.target.getAttribute('data-name');
+        let color = e.target.getAttribute('data-color');
+        let ico = e.target.getAttribute('data-ico');
         let newForm = popups[popupOpen]
             .replace('tiporeceitaEdit_id', id)
-            .replace('tiporeceitaEdit_name', name);
+            .replace('tiporeceitaEdit_name', name)
+            .replace('tiporeceitaEdit_color', color)
+            .replace('tiporeceitaEdit_ico', ico);
         $('#popup .popup-body').innerHTML = newForm;
         popupActive(classPopup);
     } 
@@ -591,7 +659,66 @@ function activePopup(e){
         $('#popup .popup-body').innerHTML = newForm;
         popupActive(classPopup);
     }     
-    
+    else if(popupOpen == 'metaCreate') {
+        let tAno = e.target.getAttribute('data-ano');
+        let tMes = e.target.getAttribute('data-mes');
+        let tCategoriaId = e.target.getAttribute('data-categoriaid');
+        //categoria-create
+        let newForm = popups[popupOpen]
+            .replace('metaCreate_ano', tAno)
+            .replace('metaCreate_mes', tMes);
+        $('#popup .popup-body').innerHTML = newForm;
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET", "/listaCategoriasMetas", true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
+                var data = JSON.parse(ajax.responseText);
+                data.forEach(categoria => {
+                    if (categoria.id == tCategoriaId){
+                        let option = document.createElement("option");
+                        option.setAttribute('selected','selected');
+                        option.innerHTML = categoria.nome;
+                        option.setAttribute('value', categoria.id);
+                        $('#categoria-create').appendChild(option);
+                    }
+                })
+                popupActive(classPopup);
+            }
+        }
+    }
+    else if(popupOpen == 'metaEdit') {
+        let tId = e.target.getAttribute('data-id');
+        let tAno = e.target.getAttribute('data-ano');
+        let tMes = e.target.getAttribute('data-mes');
+        let tCategoriaId = e.target.getAttribute('data-categoriaid');
+        let tvalorprevisto = e.target.getAttribute('data-valor');
+        //categoria-create
+        let newForm = popups[popupOpen]
+            .replace('metaEdit_id', tId)
+            .replace('metaEdit_ano', tAno)
+            .replace('metaEdit_mes', tMes)
+            .replace('valorprevistoEdit', tvalorprevisto);
+        $('#popup .popup-body').innerHTML = newForm;
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET", "/listaCategoriasMetas", true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
+                var data = JSON.parse(ajax.responseText);
+                data.forEach(categoria => {
+                    if (categoria.id == tCategoriaId){
+                        let option = document.createElement("option");
+                        option.setAttribute('selected','selected');
+                        option.innerHTML = categoria.nome;
+                        option.setAttribute('value', categoria.id);
+                        $('#categoria-edit').appendChild(option);
+                    }
+                })
+                popupActive(classPopup);
+            }
+        }
+    }
     else {
         $('#popup .popup-body').innerHTML = popups[popupOpen];
         popupActive(classPopup);
