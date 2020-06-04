@@ -4,25 +4,41 @@
         <br>
     </div>
     <section class="container">
-        <div id="Saldos">
-			<div class="item head">
-				<div class="datas">
-                    <div class="name"><p>Saldo em Contas</p></div>
-                    <div class="name"><p> <%= (resumo[0].credito - resumo[0].debito).toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %> </p></div>
+        <div id="saldos">
+			<div class="item-saldo">
+				<div class="dados">
+                    <div class="name"><p>Saldo Atual</p></div>
+                    <div class="value"><p> <%= (resumo[0].credito - resumo[0].debito).toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %> </p></div>
                 </div>
-                <div class="datas">
-                    <div class="name"><p>Receitas</p></div>
-                    <div class="name"><p> <%= (Number(resumo[0].credito)).toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %> </p></div>
+                <div class="icon bg-blue">
+                    <span class="material-icons-outlined">account_balance</span>
                 </div>
             </div>
-            <div class="item">
-                <div class="datas">
-                    <div class="name"><p>Despesas</p></div>
-                    <div class="name"><p> <%= (Number(resumo[0].despesas)).toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %> </p></div>
+            <div class="item-saldo">
+                <div class="dados">
+                    <div class="name"><p>Receitas</p></div>
+                    <div class="value"><p> <%= (Number(resumo[0].credito)).toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %> </p></div>
                 </div>
-                <div class="datas">
+                <div class="icon bg-green">
+                    <span class="material-icons-outlined">arrow_upward</span>
+                </div>
+            </div>
+            <div class="item-saldo">
+                <div class="dados">
+                    <div class="name"><p>Despesas</p></div>
+                    <div class="value"><p> <%= (Number(resumo[0].despesas)).toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %> </p></div>
+                </div>
+                <div class="icon bg-red">
+                    <span class="material-icons-outlined">arrow_downward</span>
+                </div>
+            </div>
+            <div class="item-saldo">
+                <div class="dados">
                     <div class="name"><p>Cartões</p></div>
-                    <div class="name"><p> <%= (Number(resumo[0].cartao)).toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %> </p></div>
+                    <div class="value"><p> <%= (Number(resumo[0].cartao)).toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %> </p></div>
+                </div>
+                <div class="icon bg-purple">
+                    <span class="material-icons-outlined">credit_card</span>
                 </div>
             </div>
         </div>  

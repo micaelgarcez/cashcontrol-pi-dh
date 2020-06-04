@@ -1,14 +1,15 @@
 <header>
   <div class="header">
     <div id="hamburger">
-      <span></span>
+      <span class="material-icons-outlined icon-menu xs-hide">keyboard_arrow_right</span>
+      <span class="hamburguer"></span>
     </div>
-    <div class="logo">
+    <div class="logo md-hide">
       <%- include('../../public/img/logo.svg'); %>
       <span>Cash Control</span>
     </div>
   </div>
-  <div class="sob-menu"></div>
+  <div class="sob-menu md-hide"></div>
   <div class="container-navigation">
     <nav>
       <ul>
@@ -20,21 +21,21 @@
             <button class="btn-circle add">
               <span class="add"></span>
             </button>
-            <button class="btn-circle green">
+            <a class="btn-circle popup green" href="#receitaCreate">
               <span class="arrow-up">
-                <%- include('../../public/img/icons/arrow.svg'); %>
+                <span class="material-icons-outlined">arrow_upward</span>
               </span>
-            </button>
-            <button class="btn-circle red">
+            </a>
+            <a class="btn-circle popup red" href="#despesaCreate">
               <span class="arrow-down">
-                <%- include('../../public/img/icons/arrow.svg'); %>
+                <span class="material-icons-outlined">arrow_downward</span>
               </span>
-            </button>
-            <button class="btn-circle blue">
+            </a>
+            <a class="btn-circle popup blue" href="#transferenciaCreate">
               <span>
-                <%- include('../../public/img/icons/expenses.svg'); %>
+                <span class="material-icons-outlined">repeat</span>
               </span>
-            </button>
+            </a>
           </div>
         </li>
         <li><a href="/dashboard"> 
@@ -42,36 +43,28 @@
           <span class="text-link">DashBoard</span>
         </a></li>
         <li><a href="/carteiras">
-          <%- include('../../public/img/icons/wallet.svg'); %>
+          <span class="material-icons-outlined">account_balance</span>
           <span class="text-link">Carteiras</span>
         </a></li>
         <li><a href="/categorias">
-          <%- include('../../public/img/icons/categories.svg'); %>
+          <span class="material-icons-outlined">flag</span>
           <span class="text-link">Categorias</span>
         </a></li>
         <li><a href="/metas">
-          <%- include('../../public/img/icons/goals.svg'); %>
+          <span class="material-icons-outlined">insights</span>
           <span class="text-link">Metas</span>
         </a></li>
         <li><a href="/despesas">
-          <%- include('../../public/img/icons/expenses.svg'); %>
+          <span class="material-icons-outlined">arrow_downward</span>
           <span class="text-link">Despesas</span>
         </a></li>
-        <li><a href="/tiporeceitas">
-          <%- include('../../public/img/icons/categories.svg'); %>
-          <span class="text-link">Tipos Receita</span>
-        </a></li>
         <li><a href="/receitas">
-          <%- include('../../public/img/icons/categories.svg'); %>
+          <span class="material-icons-outlined">arrow_upward</span>
           <span class="text-link">Receitas</span>
         </a></li>
         <li><a href="/movimentos">
-          <%- include('../../public/img/icons/categories.svg'); %>
+          <span class="material-icons-outlined">repeat</span>
           <span class="text-link">Transações</span>
-        </a></li>
-        <li><a href="/minha-conta">
-          <%- include('../../public/img/icons/account.svg'); %>
-          <span class="text-link">Minha Conta</span>
         </a></li>
       </ul>
     </nav>

@@ -5,8 +5,15 @@
   height: 60px;
   padding: 10px;
   background-color: $text-color;
+  transition: .3s;
   @media (min-width: $md){
-    display: none;
+    position: absolute;
+    top: 100px;
+    right: -15px;
+    z-index: 4;
+    padding: 0;
+    background: transparent;
+    height: auto;
   }
 }
 #hamburger{
@@ -14,7 +21,7 @@
   height: 40px;
   width: 40px;
   position: relative;
-  span{
+  .hamburguer{
     display: block;
     position: absolute;
     left: 50%;
@@ -43,11 +50,30 @@
       top: 12px;
     }
   }
+  @media (min-width: $md){
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px 0 #000;
+    .hamburguer{
+      display: none;
+    }
+    .icon-menu{
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
 }
 
 .logo{
   display: flex;
   align-items: center;
+  max-width: 70px;
+  margin: 0 auto;
   svg{
     width: 40px;
     height: 40px;
@@ -75,9 +101,20 @@
   }
   &.active{
     left: 0;
+    @media (min-width: $md){
+      width: 180px;
+      a{
+        justify-content: flex-start;
+        .text-link{
+          display: block;
+          margin-left: 10px;
+        }
+      }
+    }
   }
   nav{
     height: 100%;
+    box-shadow: 1px 0px 5px 0 #000;
   }
   ul{
     display: flex;
@@ -91,19 +128,22 @@
       padding: 0;
       li{
         flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
   a{
     display: flex;
     align-items: flex-end;
+    width: 100%;
     border-bottom: 1px solid;
     padding: 10px 15px;
     color: $white;
     font-size: 14px;
     @media (min-width: $md){
-      flex-direction: column;
-      align-items: center;
+      justify-content: center;
       border: none;
     }
     svg{
@@ -153,10 +193,11 @@
   z-index: 2;
   @media (min-width: $md){
     position: relative;
-    left: 50%;
     bottom: auto;
     right: auto;
     z-index: 3;
+    width: 40px;
+    height: 40px;
   }
   .btn-circle{
     position: absolute;
@@ -166,9 +207,12 @@
     visibility: hidden;
     opacity: 0;
     transition: .3s;
-    svg{
-      width: 20px;
-      height: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span{
+      pointer-events: none;
     }
     &.add{
       visibility: visible;
@@ -180,8 +224,8 @@
       top: auto;
       bottom: 50px;
       @media (min-width: $md){
-        left: 80px;
-        top: 30px;
+        left: 125px;
+        top: 20px;
         bottom: auto;
       }
     }
@@ -190,8 +234,8 @@
       left: -50px;
       bottom: 30px;
       @media (min-width: $md){
-        top: 30px;
-        left: -80px;
+        left: 125px;
+        top: 70px;
         bottom: auto;
       }
     }
@@ -200,8 +244,8 @@
       left: -100px;
       bottom: 10px;
       @media (min-width: $md){
-        top: 60px;
-        left: 50%;
+        left: 125px;
+        top: 120px;
         bottom: auto;
       }
     }
@@ -226,50 +270,7 @@ main{
   padding: 15px;
   @media(min-width: $md){
     padding-left: 90px;
-  }
-}
-#list-carteiras{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.item{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 275px;
-  height: 80px;
-  padding: 5px;
-  border-radius: 10px;
-  background-color: #cccccc;
-  margin-bottom: 20px;
-  @media (min-width: $xs){
-    margin-right: 20px;
-  }
-  &.head{
-    background: #d00;
-    color: #fff;
-    svg{
-      fill: #fff;
-    }
-  }
-  .datas p{
-    padding: 5px 0;
-  }
-  .buttons{
-    display: flex;
-    flex-direction: column;
-    a{
-      padding: 5px 0;
-      text-align: right;
-      display: flex;
-    }
-  }
-  svg{
-    pointer-events: none;
-  }
-  form{
-    display: none;
+    background-color: #f3f3f3;
   }
 }
 
@@ -298,5 +299,97 @@ main{
   }
   .positive{
     margin-right: 10px;
+  }
+}
+
+/* == SECTION SALDOS == */
+
+#saldos{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  .item-saldo{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 275px;
+    height: 80px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+    align-items: stretch;
+  }
+  .dados{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-around;
+    .value{
+      font-weight: 600;
+    }
+  }
+  .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    color: #fff;
+    margin-top: 5px;
+  }
+}
+
+/* == LISTA PADRÃO == */
+
+#list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+  .item{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    background-color: #fff;
+    &.head{
+      background: #d00;
+      color: #fff;
+      svg{
+        fill: #fff;
+      }
+    }
+    > div{
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+    .cor span{
+      display: block;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+    .buttons{
+      display: flex;
+      a{
+        padding: 5px 0;
+        text-align: right;
+        display: flex;
+      }
+    }
+    .material-icons-outlined{
+      pointer-events: none;
+    }
+    form{
+      display: none;
+    }
   }
 }

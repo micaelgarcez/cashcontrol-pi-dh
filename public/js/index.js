@@ -20,7 +20,8 @@ if(elExists('.btn-circle.add') == true){
 
 const classToggleMenu = [
   '.container-navigation',
-  '.sob-menu'
+  '.sob-menu',
+  'header'
 ];
 if(elExists('#hamburger') == true){
   $('#hamburger').onclick = () => { toggleActive(classToggleMenu) };
