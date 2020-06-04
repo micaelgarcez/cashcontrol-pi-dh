@@ -490,6 +490,20 @@ function activePopup(e){
             }
         }
     }
+    else if(popupOpen == 'categoriaEdit'){
+        let id = e.target.getAttribute('data-id');
+        let name = e.target.getAttribute('data-name');
+        let type = e.target.getAttribute('data-type');
+        let color = e.target.getAttribute('data-color');
+        let ico = e.target.getAttribute('data-ico');
+        let newForm = popups[popupOpen]
+            .replace('categoriaEdit_id', id)
+            .replace('categoriaEdit_name', name)
+            .replace(`>${type}`, `selected>${type}`);
+        $('#popup .popup-body').innerHTML = newForm;
+        popupActive(classPopup);
+    } 
+    
     else {
         $('#popup .popup-body').innerHTML = popups[popupOpen];
         popupActive(classPopup);
