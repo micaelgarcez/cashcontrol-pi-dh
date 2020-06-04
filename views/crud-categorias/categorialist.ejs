@@ -1,27 +1,49 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Categorias'}); %>
 <main>
 	<div class="container-button">	
-		<a class="btn white" href="/categorias/create">Adicionar nova Categoria</a>
+		<a class="btn blue popup" href="#categoriasCreate">Adicionar nova Categoria</a>
 	</div>
 	<section class="container">
 		<div class="list-categorias">
-			<h1>Categorias:</h1>
-			<div class="item head">
-				<div class="name"><p>Nome:</p></div>
-				<div class="type"><p>Tipo:</p></div>
-				<div class="buttons"></div>
-			</div>
+            			
+            <!-- lista modelo
+            <div class="item head">
+                <div class="datas">
+				    <div class="name"><p>Nome Exemplo</p></div>
+                    <div class="type"><p>Tipo Exemplo</p></div>
+                </div>
+
+				<div class="buttons">
+                    <a href="#categoriaEdit">
+						<%- include('../../public/img/icons/edit.svg'); %>
+					</a>
+					<a href="#categoriaDelete">
+						<%- include('../../public/img/icons/delete.svg'); %>
+					</a>                    
+                </div>                
+            </div>
+        -->
+            
 			<% for(let categoria of categorias ) { %>
-				<div class="item">
-					<div class="name"><%= categoria.nome %></div>
-					<div class="type"><%= categoria.tipo %></div>
+                <div class="item">
+					<div class="datas">
+						<div class="name"><p><%= categoria.nome %></p></div>
+						<div class="type"><p><%= categoria.tipo %></p></div>
+					</div>
+					<div class="datas">
+						<div class="cor"><p><%= categoria.cor %></p></div>
+						<div class="icone"><p><%= categoria.icone %></p></div>
+					</div>
 					<div class="buttons">
-						<a href="/categorias/<%= categoria.id %>/edit">
-							<img src="/img/icons/edit-tools.svg" alt="Icone de editar">
+						<a class="popup" href="#categoriaEdit" data-id="<%= categoria.id %>" data-name="<%= categoria.nome %>" data-type="<%= categoria.tipo %>" data-color="<%= categoria.cor %>" data-ico="<%= categoria.icone %>">
+							<%- include('../../public/img/icons/edit.svg'); %>
 						</a>
-						<form method="POST" action="/categorias/<%= categoria.id %>/delete?_method=DELETE">
-							<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
-						</form>
+						<a class="notification" href="#categoriaDelete" data-id="<%= categoria.id %>">
+							<%- include('../../public/img/icons/delete.svg'); %>
+							<form class="cd-<%= categoria.id %>" method="POST" action="/categorias/<%= categoria.id %>/delete?_method=DELETE">
+								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+							</form>
+						</a>
 					</div>
 				</div>
 			<% } %>

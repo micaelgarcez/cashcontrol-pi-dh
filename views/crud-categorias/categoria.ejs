@@ -1,8 +1,13 @@
 <%- include('../parts/head',{title:'CASH - Criando Categoria'}); %>
 <main>
-
   <form method="POST" action="/categorias/store">
     <span class="title"> Nova Categoria </span>
+
+    <div class="container-field">
+      <input type="text" name="nome" id="nome" placeholder="Digite o nome da categoria">
+    </div>
+
+    <!-- 
     <% if (typeof(erros) != "undefined") { %>
         <p style="color: red"> ERRO </p>
         <ul>
@@ -11,6 +16,7 @@
           <% }) %>
         </ul>
     <% } %>
+     
 
     <label>
       Nome:
@@ -19,13 +25,17 @@
 
     <label>
       Tipo:
-      <select name="tipo" id="tipo">
+      -->
+
+      <div class="container-field">
+        <select name="tipo" id="tipo">
           <option selected disabled>Selecione</option>
           <option value="1">Fixa</option>
           <option value="2">Variável</option>
-      </select>
-    </label>
-    <button type="submit">Salvar</button>
+        </select>
+      </div>
+    <!-- </label> -->
+    <button class="btn green" type="submit">Salvar</button>
   </form>
   
 </main>

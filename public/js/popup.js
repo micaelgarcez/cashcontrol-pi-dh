@@ -254,7 +254,44 @@ const popups = {
 
             <button class="btn green" type="submit">Salvar</button>
         </form>
-    `
+    `,
+    
+    "categoriasCreate": `
+    <form method="POST" action="/categorias/store">
+    <span class="title"> Nova Categoria </span>
+
+    <div class="container-field">
+      <input type="text" name="nome" id="nome" placeholder="Digite o nome da categoria" required>
+    </div>
+
+      <div class="container-field">
+        <select name="tipo" id="tipo" required>
+          <option selected disabled>Selecione</option>
+          <option value="1">Fixa</option>
+          <option value="2">Variável</option>
+        </select>
+      </div>
+    <button class="btn green" type="submit">Salvar</button>
+  </form>
+    `,
+    "categoriaEdit": `
+        <form method="POST" action="/categorias/categoriaEdit_id/update?_method=PUT">
+            <span class="title"> Editar Cartegoria </span>
+            
+            <div class="container-field">
+            <input type="text" name="nome" id="nome" value="categoriaEdit_name" placeholder="Digite o nome da categoria" required>
+          </div>
+      
+            <div class="container-field">
+              <select name="tipo" id="tipo" required>
+                <option selected disabled>Selecione</option>
+                <option value="1">Fixa</option>
+                <option value="2">Variável</option>
+              </select>
+            </div>
+          <button class="btn green" type="submit">Salvar</button>
+        </form>
+    `,
 }
 
 const classPopup = [
