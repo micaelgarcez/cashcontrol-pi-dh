@@ -65,10 +65,10 @@ module.exports = {
             let { id: usuario_id } = JSON.parse(req.session.usuario);
 
             //Campo do Formulário
-            let { nome, tipo} = req.body;
+            let { nome, tipo, cor, icone} = req.body;
 
             const categoria = await Categoria.update(
-                {nome, tipo},
+                {nome, tipo, cor, icone},
                 {where: {id}}
             )
 

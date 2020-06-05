@@ -4,6 +4,7 @@ const VerificaSeEstaLogado = require('../middlewares/VerificaSeEstaLogado');
 const DespesaController = require('../controllers/DespesaController');
 const { check, validationResult, body } = require('express-validator');
 
+router.get('/despesas/:id/buscadadosedit', VerificaSeEstaLogado, DespesaController.buscadadosedit);
 router.get('/despesas', VerificaSeEstaLogado, DespesaController.list);
 router.get('/despesas/create', VerificaSeEstaLogado, DespesaController.create);
 router.post('/despesas/store', VerificaSeEstaLogado, [

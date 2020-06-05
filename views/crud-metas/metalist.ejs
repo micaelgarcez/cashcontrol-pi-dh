@@ -15,7 +15,7 @@
 				Ano:
 				<input type="number" name="ano" id="ano" value="<%= Periodo.Ano %>" placeholder="ano da meta">
 			</label>
-			
+			<br>
 			<label>
 				Mês:
 				<input type="number" name="mes" id="mes" value="<%= Periodo.Mes %>" placeholder="mês da meta">
@@ -50,16 +50,27 @@
 				<div><%= categoria.percentualgasto %></div>
 				<div>
 					<%if(!categoria.meta_id) {%>
-						<form method="GET" action="/metas/<%= categoria.id %>/create">
-							<button type="submit">Criar</button>
-						</form>
+						<div class="buttons">
+							<a class="popup" href="#metaCreate" data-categoriaid="<%= categoria.id %>" data-ano="<%= Periodo.Ano %>" data-mes="<%= Periodo.Mes %>">
+								<span class="material-icons-outlined">create</span>
+							</a>
+						</div>
 					<%}
 					else {
 					%>
-						<form method="POST" action="/metas/<%= categoria.meta_id %>/delete?_method=DELETE">
-							<button type="submit">Remover</button>
-						</form>
-						<a href="/metas/<%= categoria.meta_id %>/edit">Editar</button>
+						<div class="buttons">
+							<a class="popup" href="#metaEdit" data-id="<%= categoria.meta_id %>" data-ano="<%= Periodo.Ano %>"
+								data-mes="<%= Periodo.Mes %>" data-valor="<%= categoria.valorprevisto %>" 
+								data-categoriaid="<%= categoria.id %>">
+								<span class="material-icons-outlined">edit</span>
+							</a>
+							<a class="notification" href="#metaDelete" data-id="<%= categoria.meta_id %>">
+								<span class="material-icons-outlined">delete</span>
+								<form class="cd-<%= categoria.meta_id %>" method="POST" action="/metas/<%= categoria.meta_id %>/delete?_method=DELETE">
+									<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+								</form>
+							</a>
+						</div>
 					<%}%>
 				</div>
 			</div>

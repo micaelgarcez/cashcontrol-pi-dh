@@ -4,6 +4,7 @@ const VerificaSeEstaLogado = require('../middlewares/VerificaSeEstaLogado');
 const TipoReceitaController = require('../controllers/TipoReceitaController');
 const { check, validationResult, body } = require('express-validator');
 
+router.get('/listatiposreceita', VerificaSeEstaLogado, TipoReceitaController.listatiposreceita);
 router.get('/tiporeceitas', VerificaSeEstaLogado, TipoReceitaController.list);
 router.get('/tiporeceitas/create', VerificaSeEstaLogado, TipoReceitaController.create);
 router.post('/tiporeceitas/store', VerificaSeEstaLogado, [

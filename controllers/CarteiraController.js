@@ -1,7 +1,9 @@
 const Carteira = require("../models/Carteiras");
 
 const { check, validationResult, body } = require('express-validator');
+const dbConfig = require('../config/database');
 const Sequelize = require('sequelize');
+const con = new Sequelize(dbConfig);
 
 function listarCarteiras(id){
     const listarCarteiras = Carteira.findAll({
@@ -98,5 +100,41 @@ module.exports = {
         const carteiras = await listarCarteiras(usuario_id);
 
         res.render('crud-carteiras/carteiralist', {carteiras})
+    },
+    async listaCarteirasReceita (req, res) {
+
+        let { id } = JSON.parse(req.session.usuario);
+
+        const carteiras = await con.query(
+            "Select c.id, c.nome " +
+            "from carteiras c where c.tipo in (1,2) and " +
+            "c.usuario_id=:id",
+            {
+              replacements: {
+                id,
+              },
+              type: Sequelize.QueryTypes.SELECT,
+            }
+          );
+
+        res.send(carteiras);
+    },
+    async listaCarteiras (req, res) {
+
+        let { id } = JSON.parse(req.session.usuario);
+
+        const carteiras = await con.query(
+            "Select c.id, c.nome " +
+            "from carteiras c where " +
+            "c.usuario_id=:id",
+            {
+              replacements: {
+                id,
+              },
+              type: Sequelize.QueryTypes.SELECT,
+            }
+          );
+
+        res.send(carteiras);
     }
 }

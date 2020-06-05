@@ -271,7 +271,7 @@ const popups = {
             <button class="btn green" type="submit">Salvar</button>
         </form>
     `,    
-    "categoriasCreate": `
+    "categoriaCreate": `
     <form method="POST" action="/categorias/store">
     <span class="title"> Nova Categoria </span>
 
@@ -279,38 +279,56 @@ const popups = {
       <input type="text" name="nome" id="nome" placeholder="Digite o nome da categoria" required>
     </div>
 
-      <div class="container-field">
-        <select name="tipo" id="tipo" required>
-          <option selected disabled>Selecione</option>
-          <option value="1">Fixa</option>
-          <option value="2">Variável</option>
-        </select>
-      </div>
+    <div class="container-field">
+    <select name="tipo" id="tipo" required>
+        <option selected disabled>Selecione</option>
+        <option value="1">Fixa</option>
+        <option value="2">Variável</option>
+    </select>
+    </div>
+
+    <div class="container-field">
+        <input type="text" name="cor" id="cor" placeholder="Hexa da Cor">
+    </div>
+
+    <div class="container-field">
+        <input type="text" name="icone" id="icone" placeholder="Nome do Icone">
+    </div>
+
     <button class="btn green" type="submit">Salvar</button>
   </form>
     `,
     "categoriaEdit": `
     <form method="POST" action="/categorias/categoriaEdit_id/update?_method=PUT">
-    <span class="title"> Editar Cartegoria </span>
-    <div class="container-field">
-        <input type="text" name="nome" id="nome" value="categoriaEdit_name" placeholder="Digite o nome da categoria" required>
-    </div> 
-            <div class="container-field">
-              <select name="tipo" id="tipo" required>
-                <option selected disabled>Selecione</option>
-                <option value="1">Fixa</option>
-                <option value="2">Variável</option>
-              </select>
+        <span class="title"> Editar Cartegoria </span>
+        <div class="container-field">
+            <input type="text" name="nome" id="nome" value="categoriaEdit_name" placeholder="Digite o nome da categoria" required>
+        </div> 
+        <div class="container-field">
+            <select name="tipo" id="tipo" required>
+            <option selected disabled>Selecione</option>
+            <option value="1">Fixa</option>
+            <option value="2">Variável</option>
+            </select>
+        </div>
+
+        <div class="container-field">
+            <input type="text" name="cor" id="cor" value="categoriaEdit_color" placeholder="Hexa da Cor">
             </div>
-          <button class="btn green" type="submit">Salvar</button>
+
+            <div class="container-field">
+            <input type="text" name="icone" id="icone" value="categoriaEdit_ico" placeholder="Nome do Icone">
+        </div>
+
+        <button class="btn green" type="submit">Salvar</button>
     </form>
     `,
-    "despesasCreate": `
+    "despesaCreate": `
     <form method="POST" action="/despesas/store">
         <span class="title"> Nova Despesa </span>
 
         <div class="container-field">
-            <input type="date" name="data" id="data" placeholder="">
+            <input type="date" name="data" id="data" value="despesaCreate_data" placeholder="">
         </div>
 
         <div class="container-field">
@@ -318,20 +336,14 @@ const popups = {
         </div>
     
         <div class="container-field">
-            <select name="categoria" id="categoria">
-                <option selected disabled>Selecione</option>
-                <% categorias.forEach((categoria) => { %>
-              <option value=<%= categoria.id %>> <%= categoria.nome %></option>
-                <% }) %> 
+            <select name="categoria" id="despesaCategoria-create">
+                <option selected disabled>Selecione a Categoria</option>
             </select>
         </div>
 
         <div class="container-field">
-            <select name="carteira" id="carteira">
-                <option selected disabled>Selecione</option>
-                <% carteiras.forEach((carteira) => { %>
-                <option value=<%= carteira.id %>> <%= carteira.nome %></option>
-                <% }) %> 
+            <select name="carteira" id="despesaCarteira-create">
+                <option selected disabled>Selecione a Carteira</option>
             </select>
         </div>
 
@@ -348,33 +360,27 @@ const popups = {
     <span class="title"> Editar Despesa</span>
     
         <div class="container-field">
-            <input type="date" name="data" id="data" value="despesaEdit_name" placeholder="">
+            <input type="date" name="data" id="data" value="despesaEdit_data" placeholder="">
         </div>
 
         <div class="container-field">
-            <input type="number" step="0.01" name="valor" id="valor" placeholder="Valor da Despesa">
+            <input type="number" step="0.01" name="valor" id="valor" value="despesaEdit_valor" placeholder="Valor da Despesa">
         </div>
     
         <div class="container-field">
-            <select name="categoria" id="categoria">
-                <option selected disabled>Selecione</option>
-                <% categorias.forEach((categoria) => { %>
-              <option value=<%= categoria.id %>> <%= categoria.nome %></option>
-                <% }) %> 
+            <select name="categoria" id="despesaCategoria-edit">
+                <option selected disabled>Selecione a Categoria</option>
             </select>
         </div>
 
         <div class="container-field">
-            <select name="carteira" id="carteira">
-                <option selected disabled>Selecione</option>
-                <% carteiras.forEach((carteira) => { %>
-                <option value=<%= carteira.id %>> <%= carteira.nome %></option>
-                <% }) %> 
+            <select name="carteira" id="despesaCarteira-edit">
+                <option selected disabled>Selecione a Carteira</option>
             </select>
         </div>
 
         <div class="container-field">
-            <input type="text" name="obs" id="obs" placeholder="Obs">
+            <input type="text" name="obs" id="obs" value="despesaEdit_obs" placeholder="Obs">
         </div>
     
     
@@ -487,7 +493,7 @@ function activePopup(e){
                     option.setAttribute('value', carteira.id);
                     $('#carteira-create').appendChild(option);
                 })
-                popupActive(classPopup);
+                
             }
         }
 
@@ -503,9 +509,11 @@ function activePopup(e){
                     option2.setAttribute('value', tiporeceita.id);
                     $('#tiporeceita-create').appendChild(option2);
                 })
-                popupActive(classPopup);
+                
             }
         }
+
+        popupActive(classPopup);
     }
     else if(popupOpen == 'receitaEdit') {
         let receitaId = e.target.getAttribute('data-id');
@@ -538,7 +546,7 @@ function activePopup(e){
                     }
                     $('#carteira-create').appendChild(option);
                 })
-                popupActive(classPopup);
+                
             }
         }
 
@@ -557,9 +565,11 @@ function activePopup(e){
                     }
                     $('#tiporeceita-create').appendChild(option2);
                 })
-                popupActive(classPopup);
+                
             }
         }
+
+        popupActive(classPopup);
     }
     else if(popupOpen == 'transferenciaCreate') {
         var data = new Date();
@@ -642,22 +652,68 @@ function activePopup(e){
         let newForm = popups[popupOpen]
             .replace('categoriaEdit_id', id)
             .replace('categoriaEdit_name', name)
+            .replace('categoriaEdit_color', color)
+            .replace('categoriaEdit_ico', ico)
             .replace(`>${type}`, `selected>${type}`);
         $('#popup .popup-body').innerHTML = newForm;
         popupActive(classPopup);
     }
     else if(popupOpen == 'despesaEdit'){
-        let id = e.target.getAttribute('data-id');
-        let value = e.target.getAttribute('data-value');
-        let type = e.target.getAttribute('data-type');
-        let wallet = e.target.getAttribute('data-wallet');
-        let note = e.target.getAttribute('data-note');
+        let dId = e.target.getAttribute('data-id');
+        let dData = e.target.getAttribute('data-date');
+        let dValor = e.target.getAttribute('data-valor');
+        let dCarteiraId = e.target.getAttribute('data-carteiraid');
+        let dCategoriaId = e.target.getAttribute('data-categoriaid');
+        let dObs = e.target.getAttribute('data-obs');
+        
         let newForm = popups[popupOpen]
-            .replace('categoriaEdit_id', id)
-            .replace('categoriaEdit_name', name)
-            .replace(`>${type}`, `selected>${type}`);
+            .replace('despesaEdit_id', dId)
+            .replace('despesaEdit_data', dData)
+            .replace('despesaEdit_valor', dValor)
+            .replace('despesaEdit_obs', dObs);
         $('#popup .popup-body').innerHTML = newForm;
+
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET", "/listacarteiras", true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
+                var data = JSON.parse(ajax.responseText);
+                data.forEach(carteira => {
+                    let option = document.createElement("option");
+                    option.innerHTML = carteira.nome;
+                    option.setAttribute('value', carteira.id);
+                    if (carteira.id == dCarteiraId){
+                        option.setAttribute('selected','selected');
+                    }
+
+                    $('#despesaCarteira-edit').appendChild(option);
+                })
+                
+            }
+        }
+
+        var ajax2 = new XMLHttpRequest();
+        ajax2.open("GET", "/listaCategoriasMetas", true);
+        ajax2.send();
+        ajax2.onreadystatechange = function() {
+            if (ajax2.readyState == 4 && (ajax2.status == 200 || ajax2.status == 304) ) {
+                var data2 = JSON.parse(ajax2.responseText);
+                data2.forEach(categoria => {
+                    let option2 = document.createElement("option");
+                    option2.innerHTML = categoria.nome;
+                    option2.setAttribute('value', categoria.id);
+                    if (categoria.id == dCategoriaId){
+                        option2.setAttribute('selected','selected');
+                    }
+                    $('#despesaCategoria-edit').appendChild(option2);
+                })
+                
+            }
+        }
+
         popupActive(classPopup);
+
     }     
     
     else if(popupOpen == 'metaCreate') {
@@ -719,6 +775,46 @@ function activePopup(e){
                 popupActive(classPopup);
             }
         }
+    }
+    else if(popupOpen == 'despesaCreate') {
+        var data = new Date();
+        var dataDespesa = data.getFullYear() + '-' + ("0" + (data.getMonth()+1)).slice(-2) + '-' + ("0" + data.getDate()).slice(-2);
+        let newForm = popups[popupOpen]
+            .replace('despesaCreate_data', dataDespesa);
+        $('#popup .popup-body').innerHTML = newForm;
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET", "/listacarteiras", true);
+        ajax.send();
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
+                var data = JSON.parse(ajax.responseText);
+                data.forEach(carteira => {
+                    let option = document.createElement("option");
+                    option.innerHTML = carteira.nome;
+                    option.setAttribute('value', carteira.id);
+                    $('#despesaCarteira-create').appendChild(option);
+                })
+                
+            }
+        }
+
+        var ajax2 = new XMLHttpRequest();
+        ajax2.open("GET", "/listaCategoriasMetas", true);
+        ajax2.send();
+        ajax2.onreadystatechange = function() {
+            if (ajax2.readyState == 4 && (ajax2.status == 200 || ajax2.status == 304) ) {
+                var data2 = JSON.parse(ajax2.responseText);
+                data2.forEach(categoria => {
+                    let option2 = document.createElement("option");
+                    option2.innerHTML = categoria.nome;
+                    option2.setAttribute('value', categoria.id);
+                    $('#despesaCategoria-create').appendChild(option2);
+                })
+                
+            }
+        }
+
+        popupActive(classPopup);
     }
     else {
         $('#popup .popup-body').innerHTML = popups[popupOpen];
