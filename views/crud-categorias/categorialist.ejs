@@ -15,7 +15,7 @@
 					<div class="name"><p><%= categoria.nome %></p></div>
 					<div class="type"><p><%= categoria.tipo %></p></div>
 					<div class="buttons">
-						<a href="/categorias/<%= categoria.id %>/edit">
+						<a class="popup" href="/categorias/<%= categoria.id %>/edit">
 							<span class="material-icons-outlined">edit</span>
 						</a>
 						<a class="notification" href="#categoriaDelete" data-id="<%= categoria.id %>">

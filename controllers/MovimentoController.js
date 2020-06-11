@@ -52,7 +52,7 @@ module.exports = {
 
         return mov.id;
     },
-    async alteraMovimento (usuario, despesa, receita, valor, data) {
+    async alteraMovimento (usuario, despesa, receita, carteira, valor, data) {
         //Id do Usuário
         let usuario_id = usuario;
 
@@ -62,14 +62,14 @@ module.exports = {
         
         if (movDespesa){
             const mov = await Movimentos.update({
-                data_mov: data, valor_mov: valor },
+                data_mov: data, valor_mov: valor, carteira_id: carteira},
                 { where: {id : movDespesa.id} }
             )
             return movDespesa.id;
         }
         else if (movReceita){
             const mov = await Movimentos.update({
-                data_mov: data, valor_mov: valor },
+                data_mov: data, valor_mov: valor, carteira_id: carteira },
                 { where: {id : movReceita.id} }
             )
             return movReceita.id;

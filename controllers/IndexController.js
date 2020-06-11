@@ -1,5 +1,5 @@
 const Usuario = require("../models/Usuarios");
-const users = require("../database/Users.json");
+//const users = require("../database/Users.json");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
 

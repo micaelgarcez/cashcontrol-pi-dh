@@ -4,7 +4,9 @@ class Categorias extends Model {
     static init(connection) {
         super.init({
             nome: DataTypes.STRING,
-            tipo: DataTypes.SMALLINT
+            tipo: DataTypes.SMALLINT,
+            cor: DataTypes.STRING,
+            icone: DataTypes.STRING
         }, {
             sequelize: connection,
         })

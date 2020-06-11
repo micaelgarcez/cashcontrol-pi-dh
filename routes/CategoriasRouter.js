@@ -4,6 +4,7 @@ const VerificaSeEstaLogado = require('../middlewares/VerificaSeEstaLogado');
 const CategoriaController = require('../controllers/CategoriaController');
 const { check, validationResult, body } = require('express-validator');
 
+router.get('/listaCategoriasMetas', VerificaSeEstaLogado, CategoriaController.listaCategoriasMetas);
 router.get('/categorias', VerificaSeEstaLogado, CategoriaController.list);
 router.get('/categorias/create', VerificaSeEstaLogado, CategoriaController.create);
 router.post('/categorias/store', VerificaSeEstaLogado, [
