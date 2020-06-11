@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="246.462" height="246.462" viewBox="0 0 246.462 246.462">
+  <defs>
+    <filter id="Retângulo_51" x="0" y="0" width="246.462" height="246.462" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="15" result="blur"/>
+      <feFlood flood-opacity="0.078"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Grupo_133" data-name="Grupo 133" transform="translate(45 45)">
+    <g transform="matrix(1, 0, 0, 1, -45, -45)" filter="url(#Retângulo_51)">
+      <rect id="Retângulo_51-2" data-name="Retângulo 51" width="156.462" height="156.462" rx="25" transform="translate(45 45)" fill="#fff"/>
+    </g>
+    <g id="puzzle" transform="translate(33.639 33.639)">
+      <g id="Grupo_113" data-name="Grupo 113" transform="translate(0 14.836)">
+        <g id="Grupo_112" data-name="Grupo 112">
+          <path id="Caminho_324" data-name="Caminho 324" d="M61.275,115.607a1.484,1.484,0,0,0-1.484,1.484,6.578,6.578,0,1,1-13.157,0v0a1.484,1.484,0,0,0-1.484-1.484H38.575v-5.362a9.7,9.7,0,0,0,0-19.176V81.484A1.484,1.484,0,0,0,37.091,80H1.484A1.484,1.484,0,0,0,0,81.484V152.7a1.484,1.484,0,0,0,1.484,1.484H72.7a1.484,1.484,0,0,0,1.484-1.484V115.607ZM2.967,82.967h32.64V92.44a1.484,1.484,0,0,0,1.484,1.484,6.734,6.734,0,0,1,0,13.467,1.484,1.484,0,0,0-1.484,1.484v6.733H30.246a9.7,9.7,0,0,0-19.176,0h-8.1Zm32.64,68.248H2.967v-32.64H12.44a1.484,1.484,0,0,0,1.484-1.484,6.736,6.736,0,0,1,13.467,0,1.484,1.484,0,0,0,1.484,1.484h6.733v5.206a9.525,9.525,0,0,0,0,18.869Zm35.608,0H38.575v-9.94a1.484,1.484,0,0,0-1.484-1.484,6.578,6.578,0,0,1,0-13.157,1.484,1.484,0,0,0,1.484-1.484v-6.576h5.209a9.547,9.547,0,0,0,18.863,0h8.568Z" transform="translate(0 -80)" fill="#ff7657"/>
+        </g>
+      </g>
+      <g id="Grupo_115" data-name="Grupo 115" transform="translate(50.444)">
+        <g id="Grupo_114" data-name="Grupo 114">
+          <path id="Caminho_325" data-name="Caminho 325" d="M309.091,0H273.484A1.484,1.484,0,0,0,272,1.484V12.44a1.484,1.484,0,0,0,1.484,1.484,6.736,6.736,0,0,1,0,13.467A1.484,1.484,0,0,0,272,28.875v8.216a1.484,1.484,0,0,0,1.484,1.484h6.69a9.525,9.525,0,0,0,18.869,0h10.049a1.484,1.484,0,0,0,1.484-1.484V1.484A1.484,1.484,0,0,0,309.091,0Zm-1.484,35.608h-9.94a1.484,1.484,0,0,0-1.484,1.484,6.58,6.58,0,0,1-13.157.279q0-.14,0-.279a1.484,1.484,0,0,0-1.484-1.484h-6.576V30.241a9.727,9.727,0,0,0,0-19.167V2.967h32.64Z" transform="translate(-272)" fill="#ff7657"/>
+        </g>
+      </g>
+      <g id="Grupo_117" data-name="Grupo 117" transform="translate(7.418 20.771)">
+        <g id="Grupo_116" data-name="Grupo 116">
+          <rect id="Retângulo_43" data-name="Retângulo 43" width="11.869" height="2.967" fill="#48475c"/>
+        </g>
+      </g>
+      <g id="Grupo_119" data-name="Grupo 119" transform="translate(7.418 26.706)">
+        <g id="Grupo_118" data-name="Grupo 118">
+          <rect id="Retângulo_44" data-name="Retângulo 44" width="11.869" height="2.967" fill="#48475c"/>
+        </g>
+      </g>
+      <g id="Grupo_121" data-name="Grupo 121" transform="translate(7.418 32.64)">
+        <g id="Grupo_120" data-name="Grupo 120">
+          <rect id="Retângulo_45" data-name="Retângulo 45" width="5.935" height="2.967" fill="#48475c"/>
+        </g>
+      </g>
+      <g id="Grupo_123" data-name="Grupo 123" transform="translate(47.477 66.764)">
+        <g id="Grupo_122" data-name="Grupo 122">
+          <rect id="Retângulo_46" data-name="Retângulo 46" width="13.353" height="2.967" fill="#48475c"/>
+        </g>
+      </g>
+      <g id="Grupo_125" data-name="Grupo 125" transform="translate(47.477 72.699)">
+        <g id="Grupo_124" data-name="Grupo 124">
+          <rect id="Retângulo_47" data-name="Retângulo 47" width="13.353" height="2.967" fill="#48475c"/>
+        </g>
+      </g>
+      <g id="Grupo_127" data-name="Grupo 127" transform="translate(47.477 78.633)">
+        <g id="Grupo_126" data-name="Grupo 126">
+          <rect id="Retângulo_48" data-name="Retângulo 48" width="7.418" height="2.967" fill="#48475c"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
