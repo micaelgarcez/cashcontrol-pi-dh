@@ -584,13 +584,40 @@ h2{
     
 }
 
+.form-group{
+  width: 400px;
+
+}
+
+
+
+.form-control{
+  width: 400px;
+  border-radius: 10px;
+  height: 40px;
+  padding: 5px;
+  border-color: #ff7657;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.form-control-message{
+  width: 400px;
+  border-radius: 10px;
+  height: 80px;
+  padding: 5px;
+  border-color: #ff7657;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .container-contact{    
     /* flex-direction: row; */
     margin-left: 400px;
-    margin-right: 400px;    
+    margin-right: 400px;
+    mat    
     /* align-items: center; */
     /* justify-content: space-between;   */
     margin-bottom: 30px;
+    margin-bottom: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -600,19 +627,40 @@ h2{
 
 
 .img-small{
-    width: 80px;
+    width: 200px;
     align-items: center;
     justify-content: center;  
     margin: 10px;
     /* padding: 10px ; */
     
 }
+.img-small-coders{
+  width: 100px;
+  align-items: center;
+  justify-content: center;  
+  margin: 10px;
+  /* padding: 10px ; */
+  
+}
+
+.img-small-team{
+  width: 100px;
+  align-items: center;
+  justify-content: center;  
+  margin: 10px;
+  border-radius: 50px;
+  /* padding: 10px ; */
+  
+}
+
 
 .cards{
     text-align: center;
     padding-left: 40px;  
     padding-right: 40px;
+    /* width: 700px; */
 }
+
 
 h5 {
     text-align: center;
