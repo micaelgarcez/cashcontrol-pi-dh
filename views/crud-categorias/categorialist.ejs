@@ -1,26 +1,30 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Categorias'}); %>
 <main>
 	<div class="container-button">	
-		<a class="btn blue popup" href="/categorias/create">Adicionar nova Categoria</a>
+		<a class="btn blue popup" href="#categoriaCreate">Adicionar nova Categoria</a>
 	</div>
 	<section class="container">
 		<div id="list">
 			<div class="item head">
 				<div class="name"><p>Nome:</p></div>
 				<div class="type"><p>Tipo:</p></div>
+				<div class="cor"><p>Cor</p></div>
+				<div class="icone"><p>Icone</p></div>
 				<div class="buttons"><p>Ações</p></div>
 			</div>
-			<% for(let categoria of categorias ) { %>
+			<% for(let c of categorias ) { %>
 				<div class="item">
-					<div class="name"><p><%= categoria.nome %></p></div>
-					<div class="type"><p><%= categoria.tipo %></p></div>
+					<div class="name"><p><%= c.nome %></p></div>
+					<div class="type"><p><%= c.tipo %></p></div>
+					<div class="cor"><span style="background-color:<%= c.cor %>;"></span></div>
+					<div class="icone"><span class="material-icons-outlined"><%= c.icone %></span></div>
 					<div class="buttons">
-						<a class="popup" href="/categorias/<%= categoria.id %>/edit">
+						<a class="popup" href="#categoriaEdit" data-id="<%= c.id %>" data-name="<%= c.nome %>" data-type="<%= c.tipo %>" data-color="<%= c.cor %>" data-ico="<%= c.icone %>">
 							<span class="material-icons-outlined">edit</span>
 						</a>
-						<a class="notification" href="#categoriaDelete" data-id="<%= categoria.id %>">
+						<a class="notification" href="#categoriaDelete" data-id="<%= c.id %>">
 							<span class="material-icons-outlined">delete</span>
-							<form method="POST" action="/categorias/<%= categoria.id %>/delete?_method=DELETE">
+							<form class="cd-<%= c.id %>" method="POST" action="/categorias/<%= c.id %>/delete?_method=DELETE">
 								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
 							</form>
 						</a>

@@ -12,14 +12,15 @@ function listaMovimentos (id){
         "Select CASE WHEN IFNULL(m.receita_id,0)>0 THEN 'Receita' WHEN IFNULL(m.despesa_id,0)>0 THEN 'Despesa' " +
         "ELSE 'Transferência' END origem, CASE WHEN m.tipo_mov=1 THEN 'Débito' ELSE 'Crédito' END tipo, c.nome carteira, " +
         "DATE_FORMAT (m.data_mov,'%d/%m/%Y') AS data_mov, DATE_FORMAT (m.data_mov,'%Y-%m-%d') AS data_mov2, m.valor_mov, " +
-        "IFNULL(t.nome,'') transferencia, m.id, IFNULL(m.id_transf,0) id_transf, m.carteira_id, m.carteira_id_transf " +
+        "IFNULL(t.nome,'') transferencia, m.id, IFNULL(m.id_transf,0) id_transf, m.carteira_id, m.carteira_id_transf, " +
+        "m.despesa_id, m.receita_id " +
         "from movimentos m " +
             "INNER JOIN carteiras c ON m.carteira_id=c.id " +
             " LEFT  JOIN carteiras t ON m.carteira_id_transf=t.id " +
             " LEFT  JOIN despesas d ON m.despesa_id=d.id " +
             " LEFT  JOIN receitas r ON m.receita_id=r.id " +
         "WHERE m.usuario_id=:id AND YEAR(m.data_mov)=2020 AND MONTH(m.data_mov)=6 " +
-        "ORDER BY m.data_mov, c.nome, m.id ",
+        "ORDER BY m.data_mov desc, m.id desc",
         {
           replacements: {
             id,

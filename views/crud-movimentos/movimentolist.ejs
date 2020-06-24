@@ -10,7 +10,7 @@
                 <div class="name"><p>Tipo</p></div>
                 <div class="name"><p>Data</p></div>
                 <div class="name"><p>Valor</p></div>
-                <div class="name"><p>Destino</p></div>
+                <div class="name"><p>Carteira</p></div>
                 <div class="buttons">
 					<a href="#transferenciaEdit">
 						<%- include('../../public/img/icons/edit.svg'); %>
@@ -27,19 +27,28 @@
                     <div class="name"><p><%= mov.data_mov %></p></div>
                     <div class="name"><p><%= mov.valor_mov %></p></div>
                     <div class="name"><p><%= mov.carteira %></p></div>
-                    <div class="name"><p><%= mov.transferencia %></p></div>
-                    <% if (mov.id_transf>0) {%>
+                    <% if (mov.origem=='Transferência') {%>
                         <div class="buttons">
                             <a class="popup" href="#transferenciaEdit" data-id="<%= mov.id %>" 
                                 data-date="<%= mov.data_mov2 %>" data-valor="<%= mov.valor_mov %>" 
                                 data-carteiraid="<%= mov.carteira_id %>" data-carteiraid-transf="<%= mov.carteira_id_transf %>">
-                                <%- include('../../public/img/icons/edit.svg'); %>
+                                <span class="material-icons-outlined">edit</span>
                             </a>
                             <a class="notification" href="#transferenciaDelete" data-id="<%= mov.id %>">
-                                <%- include('../../public/img/icons/delete.svg'); %>
+                                <span class="material-icons-outlined">delete</span>
                                 <form class="cd-<%= mov.id %>" method="POST" action="/transferencias/<%= mov.id %>/delete?_method=DELETE">
                                     <button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
                                 </form>
+                            </a>
+                        </div>
+                    <%}
+                    else {%>
+                        <div class="buttons">
+                            <a>
+                                <%- include('../../public/img/icons/edit.svg'); %>
+                            </a>
+                            <a>
+                                <%- include('../../public/img/icons/delete.svg'); %>
                             </a>
                         </div>
                     <%}%>

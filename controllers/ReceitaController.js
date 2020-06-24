@@ -208,40 +208,23 @@ module.exports = {
 
         res.render('crud-receitas/receitalist', {receitas})
     },
-    async listaCarteirasReceita (req, res) {
+    async buscadadosedit (req, res) {
+        let { id: usuario_id } = JSON.parse(req.session.usuario);
 
-        let { id } = JSON.parse(req.session.usuario);
+		const id = req.params.id;
+        
+        const receita = await Receita.findOne({
+            attributes: [
+            'id', 
+            'valor', 
+            'obs', 
+            'tiporeceita_id', 
+            'carteira_id', 
+            [Sequelize.fn('date_format', Sequelize.col('data_receita'), '%Y-%m-%d'), 'data_receita2']
+        ],
+            where: { id : id, usuario_id}
+        });
 
-        const carteiras = await con.query(
-            "Select c.id, c.nome " +
-            "from carteiras c where c.tipo in (1,2) and " +
-            "c.usuario_id=:id",
-            {
-              replacements: {
-                id,
-              },
-              type: Sequelize.QueryTypes.SELECT,
-            }
-          );
-
-        res.send(carteiras);
-    },
-    async listatiposreceita (req, res) {
-
-        let { id } = JSON.parse(req.session.usuario);
-
-        const tipodereceitas = await con.query(
-            "Select c.id, c.nome " +
-            "from tiporeceitas c where " +
-            "c.usuario_id=:id",
-            {
-              replacements: {
-                id,
-              },
-              type: Sequelize.QueryTypes.SELECT,
-            }
-          );
-
-        res.send(tipodereceitas);
+        res.send(receita);
     }
 }

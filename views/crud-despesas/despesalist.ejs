@@ -1,7 +1,7 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Despesas'}); %>
 <main>
 	<div class="container-button">	
-		<a class="btn blue popup" href="#despesasCreate">Adicionar nova Despesa</a>
+		<a class="btn blue popup" href="#despesaCreate">Adicionar nova Despesa</a>
 		
 	</div>
 	<section class="container">
@@ -12,21 +12,28 @@
 				<div class="value"><p>Valor</p></div>
 				<div class="wallet"><p>Carteira</p></div>
 				<div class="date"><p>Data</p></div>
+				<div class="note"><p>Obs</p></div>
 				<div class="note">Ações</div>
 			</div>
 			<% for(let despesa of despesas ) { %>
 				<div class="item">
-					<div class="category"><p><%= despesa.categoria.nome %></p></div>
+					<div class="category"><p><%= despesa.categoria %></p></div>
 					<div class="value"><p><%= despesa.valor.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></p></div>
-					<div class="wallet"><p><%= despesa.carteira.nome %></p></div>
+					<div class="wallet"><p><%= despesa.carteira %></p></div>
 					<div class="date"><p><%= despesa.data_despesa %></p></div>
+					<div class="date"><p><%= despesa.obs %></p></div>
 					<div class="buttons">
-						<a href="/despesas/<%= despesa.id %>/edit">
+						<a class="popup" href="#despesaEdit" data-id="<%= despesa.id %>" data-obs="<%= despesa.obs %>"
+							data-date="<%= despesa.data_despesa2 %>" data-valor="<%= despesa.valor %>" 
+							data-carteiraid="<%= despesa.carteira_id %>" data-categoriaid="<%= despesa.categoria_id %>">
 							<span class="material-icons-outlined">edit</span>
 						</a>
-						<form method="POST" action="/despesas/<%= despesa.id %>/delete?_method=DELETE">
-							<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
-						</form>
+						<a class="notification" href="#despesaDelete" data-id="<%= despesa.id %>">
+							<span class="material-icons-outlined">delete</span>
+							<form class="cd-<%= despesa.id %>" method="POST" action="/despesas/<%= despesa.id %>/delete?_method=DELETE">
+								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+							</form>
+						</a>
 					</div>
 				</div>
 				<% } %>

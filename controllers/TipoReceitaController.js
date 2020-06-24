@@ -1,7 +1,9 @@
 const TipoReceita = require("../models/TipoReceitas");
 
 const { check, validationResult, body } = require('express-validator');
+const dbConfig = require('../config/database');
 const Sequelize = require('sequelize');
+const con = new Sequelize(dbConfig);
 
 function lista (id){
     const lista = TipoReceita.findAll({
@@ -101,5 +103,23 @@ module.exports = {
         const tiporeceitas = await lista(usuario_id);
 
         res.render('crud-tiporeceitas/tiporeceitalist', {tiporeceitas})
+    },
+    async listatiposreceita (req, res) {
+
+        let { id } = JSON.parse(req.session.usuario);
+
+        const tipodereceitas = await con.query(
+            "Select c.id, c.nome " +
+            "from tiporeceitas c where " +
+            "c.usuario_id=:id",
+            {
+              replacements: {
+                id,
+              },
+              type: Sequelize.QueryTypes.SELECT,
+            }
+          );
+
+        res.send(tipodereceitas);
     }
 }

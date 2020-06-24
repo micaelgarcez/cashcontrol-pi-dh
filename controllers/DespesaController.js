@@ -2,8 +2,27 @@ const Despesa = require("../models/Despesas");
 const Carteira = require("../models/Carteiras");
 const Categoria = require("../models/Categorias");
 const { check, validationResult, body } = require('express-validator');
+const dbConfig = require('../config/database');
 const Sequelize = require('sequelize');
+const con = new Sequelize(dbConfig);
 const Mov = require("../controllers/MovimentoController");
+
+function lista (id){
+    const lista = con.query(
+        "Select c.id, c.valor, c.obs, c.carteira_id, c.categoria_id, t.nome carteira, s.nome categoria, " +
+        "DATE_FORMAT (c.data_despesa,'%d/%m/%Y') AS data_despesa, DATE_FORMAT (c.data_despesa,'%Y-%m-%d') AS data_despesa2 " +
+        "from despesas c INNER JOIN carteiras t ON c.carteira_id=t.id INNER JOIN categorias s ON c.categoria_id=s.id " +
+        "where c.usuario_id=:id order by c.data_despesa desc, c.id desc",
+        {
+          replacements: {
+            id,
+          },
+          type: Sequelize.QueryTypes.SELECT,
+        }
+      );
+
+    return lista;
+}
 
 module.exports = {
     async store (req, res) {
@@ -35,26 +54,8 @@ module.exports = {
             if (carteiraLocal.tipo!=4) {
                 const retornoMov = await Mov.insereMovimento(id, carteira, despesa.id, 0, 1, valor, data);
             }
-
-            const despesas = await Despesa.findAll({
-                attributes: [
-                    'id', 
-                    'valor', 
-                    'obs', 
-                    [Sequelize.fn('date_format', Sequelize.col('data_despesa'), '%d/%m/%Y'), 'data_despesa']
-                ],
-                where: { usuario_id : id },
-                include: [{
-                    model: Carteira,
-                    as: 'carteira',
-                    attributes: ['nome']
-                },
-                {
-                    model: Categoria,
-                    as: 'categoria',
-                    attributes: ['nome']
-                }]
-            });
+            
+            const despesas = await lista(id);
 
             res.render('crud-despesas/despesalist', {despesas})
         }
@@ -95,25 +96,7 @@ module.exports = {
 
         let { id } = JSON.parse(req.session.usuario);
 
-        const despesas = await Despesa.findAll({
-            attributes: [
-                'id', 
-                'valor', 
-                'obs', 
-                [Sequelize.fn('date_format', Sequelize.col('data_despesa'), '%d/%m/%Y'), 'data_despesa']
-            ],
-            where: { usuario_id : id },
-            include: [{
-                model: Carteira,
-                as: 'carteira',
-                attributes: ['nome']
-            },
-            {
-                model: Categoria,
-                as: 'categoria',
-                attributes: ['nome']
-            }]
-        });
+        const despesas = await lista(id);
                 
         res.render('crud-despesas/despesalist', {despesas})
     },
@@ -175,25 +158,7 @@ module.exports = {
                 const retornoMov = await Mov.alteraMovimento(usuario_id, id, 0, carteira, valor, data);
             }
 
-            const despesas = await Despesa.findAll({
-                attributes: [
-                    'id', 
-                    'valor', 
-                    'obs', 
-                    [Sequelize.fn('date_format', Sequelize.col('data_despesa'), '%d/%m/%Y'), 'data_despesa']
-                ],
-                where: { usuario_id : id },
-                include: [{
-                    model: Carteira,
-                    as: 'carteira',
-                    attributes: ['nome']
-                },
-                {
-                    model: Categoria,
-                    as: 'categoria',
-                    attributes: ['nome']
-                }]
-            });
+            const despesas = await lista(usuario_id);
 
             res.render('crud-despesas/despesalist', {despesas})
         }
@@ -244,26 +209,27 @@ module.exports = {
             const retornoMov = await Mov.excluiMovimento(usuario_id, id, 0);
         }
 
-        const despesas = await Despesa.findAll({
-            attributes: [
-                'id', 
-                'valor', 
-                'obs', 
-                [Sequelize.fn('date_format', Sequelize.col('data_despesa'), '%d/%m/%Y'), 'data_despesa']
-            ],
-            where: { usuario_id : usuario_id },
-            include: [{
-                model: Carteira,
-                as: 'carteira',
-                attributes: ['nome']
-            },
-            {
-                model: Categoria,
-                as: 'categoria',
-                attributes: ['nome']
-            }]
-        });
+        const despesas = await lista(usuario_id);
 
         res.render('crud-despesas/despesalist', {despesas})
+    },
+    async buscadadosedit (req, res) {
+        let { id: usuario_id } = JSON.parse(req.session.usuario);
+
+		const id = req.params.id;
+        
+        const despesa = await Despesa.findOne({
+            attributes: [
+            'id', 
+            'valor', 
+            'obs', 
+            'categoria_id', 
+            'carteira_id', 
+            [Sequelize.fn('date_format', Sequelize.col('data_despesa'), '%Y-%m-%d'), 'data_despesa2']
+        ],
+            where: { id : id, usuario_id }
+        });
+
+        res.send(despesa);
     }
 }
