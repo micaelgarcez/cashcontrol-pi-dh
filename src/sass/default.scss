@@ -1,24 +1,28 @@
-@import 'reset';
-@import 'Variables/all';
+@import "reset";
+@import "Variables/all";
 
-.bg-blue{
+.bg-blue {
   background-color: $blue-color;
 }
-.bg-green{
+.bg-green {
   background-color: $green-color;
 }
-.bg-red{
+.bg-red {
   background-color: $red-color;
 }
-.bg-purple{
+.bg-purple {
   background-color: $purple-light-color;
 }
 
+.hidden{
+  display: none;
+}
+
 .material-icons {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -36,10 +40,10 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Support for IE. */
-  font-feature-settings: 'liga';
+  font-feature-settings: "liga";
 }
 
-a{
+a {
   font-size: 16px;
   color: $text-color;
   text-transform: uppercase;
@@ -47,38 +51,38 @@ a{
   font-weight: 600;
 }
 
-.container-button{
+.container-button {
   text-align: center;
   margin: 10px 0;
 }
 
-.btn{
+.btn {
   display: inline-block;
   padding: 10px 25px;
   border-radius: 50px;
   cursor: pointer;
   box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
-  transition: .3s;
+  transition: 0.3s;
 }
 
-.btn-circle{
+.btn-circle {
   display: block;
   height: 40px;
   width: 40px;
   border-radius: 50%;
   border: none;
-  box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  transition: .3s;
-  &.add{
+  transition: 0.3s;
+  &.add {
     background-color: $blue-color;
-    span{
+    span {
       display: block;
       height: 100%;
       width: 100%;
       color: #fff;
       &:before,
-      &:after{
+      &:after {
         content: "";
         display: block;
         height: 2px;
@@ -88,72 +92,80 @@ a{
         position: absolute;
         left: 50%;
         top: 50%;
-        transition: .3s;
+        transition: 0.3s;
       }
-      &:before{
+      &:before {
         transform: translate(-50%, -50%);
       }
-      &:after{
+      &:after {
         transform: translate(-50%, -50%) rotate(90deg);
       }
     }
   }
 }
-.btn, 
-.btn-circle{
-  &.green{
+.btn,
+.btn-circle {
+  &.green {
     background-color: $green-color;
     color: $white;
     border: none;
-    svg{
+    svg {
       fill: $white;
     }
-    &:hover, &:active, &:focus{
-      opacity: .97;
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 0.97;
     }
   }
-  &.gray{
+  &.gray {
     background-color: $orange-color;
     color: $white;
     border: none;
-    svg{
+    svg {
       fill: $white;
     }
-    &:hover, &:active, &:focus{
-      opacity: .97;
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 0.97;
     }
   }
-  &.red{
-    background-color:  $red-color;
+  &.red {
+    background-color: $red-color;
     border: 1px solid $red-color;
     color: $white;
-    svg{
+    svg {
       fill: $white;
     }
-    &:hover, &:active, &:focus{
+    &:hover,
+    &:active,
+    &:focus {
       background-color: $red-color;
       color: $white;
-      svg{
+      svg {
         fill: $white;
       }
     }
   }
-  &.blue{
+  &.blue {
     background-color: $blue-color;
     border: 1px solid $blue-color;
     color: $white;
-    svg{
+    svg {
       fill: $white;
     }
-    &:hover, &:active, &:focus{
+    &:hover,
+    &:active,
+    &:focus {
       background-color: $blue-color;
       color: $white;
-      svg{
+      svg {
         fill: $white;
       }
     }
   }
-  &.facebook{
+  &.facebook {
     margin-bottom: 20px;
     background-color: #1877f2;
     border: none;
@@ -161,34 +173,38 @@ a{
     color: #fff;
     font-size: 16px;
     font-weight: 600;
-    &:hover, &:active, &:focus{
+    &:hover,
+    &:active,
+    &:focus {
       transform: scale(0.9);
     }
   }
-  &.google{
+  &.google {
     margin-bottom: 20px;
-    background-color: #DB4437;
+    background-color: #db4437;
     border: none;
     width: 100%;
     color: #fff;
     font-size: 16px;
     font-weight: 600;
-    &:hover, &:active, &:focus{
+    &:hover,
+    &:active,
+    &:focus {
       transform: scale(0.9);
     }
   }
 }
 
-.arrow-up{
+.arrow-up {
   display: flex;
   justify-content: center;
 }
-.arrow-down{
+.arrow-down {
   display: flex;
   justify-content: center;
 }
 
-form{
+#popup form {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -196,7 +212,7 @@ form{
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  .title{
+  .title {
     display: block;
     text-align: center;
     width: 100%;
@@ -205,40 +221,126 @@ form{
     text-transform: uppercase;
     margin-bottom: 20px;
   }
-  .container-field{
-    display: block;
-    width: 100%;
-    margin-bottom: 20px;
-    input, select{
-      display: block;
-      width: 100%;
-      border: 1px solid $text-color;
-      font-size: 16px;
-      padding: 5px 15px;
-      height: 38px;
-      border-radius: 50px;
-      box-sizing: border-box;
+  .btn.green {
+    margin-left: auto;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .btn.gray {
+    margin-left: auto;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .container-more-options{
+    display: flex;
+    button{
+      display: inline-flex;
+      background-color: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      height: 30px;
+      width: 30px;
+      border: none;
+      border-radius: 50%;
+      margin: 0 5px 5px;
+      outline: none;
+      position: relative;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      padding: 0 0 1px 1px;
+      &.selected{
+        color: #0f0;
+        &:not(.material-icons):before{
+          content: '';
+          background-image: url('../../public/img/icons/checked.svg');
+          background-size: cover;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          display: block;
+          width: 20px;
+          height: 20px;
+          transform: translate(-50%, -50%);
+        }
+      }
     }
-  }
-  .btn.green{
-    margin-left: auto;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-  .btn.gray{
-    margin-left: auto;
-    text-transform: uppercase;
-    font-weight: 600;
+    .mais-opcoes{
+      display: inline-flex;
+      height: 30px;
+      border: none;
+      margin: 0 5px 5px;
+      outline: none;
+      position: relative;
+      cursor: pointer;
+      width: auto;
+      border-radius: 20px;
+      align-items: center;
+      background-color: #fff;
+      color: #000;
+      padding: 0 12px;
+      font-size: 12px;
+    }
+    .container-opcoes{
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.8);
+      height: 100%;
+      width: 100%;
+      left: 0px;
+      top: 0px;
+      border-radius: 15px;
+      visibility: hidden;
+      opacity: 0;
+      transition: .3s;
+    }
+    .todas-opcoes{
+      position: absolute;
+      background-color: #48475c;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      visibility: hidden;
+      opacity: 0;
+      transition: .3s;
+    }
+    &.active {
+      .container-opcoes,
+      .todas-opcoes{
+        visibility: visible;
+        opacity: 1;
+      }
+    }
   }
 }
 
-.last-link{
+.container-field {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  input,
+  select {
+    display: block;
+    width: 100%;
+    border: 1px solid $text-color;
+    font-size: 16px;
+    padding: 5px 15px;
+    height: 38px;
+    border-radius: 50px;
+    box-sizing: border-box;
+  }
+}
+
+.last-link {
   display: block;
   width: 100%;
   text-align: center;
   margin-top: 20px;
   font-size: 14px;
-  a{
+  a {
     text-decoration: underline;
     font-size: 14px;
     font-weight: normal;
@@ -246,24 +348,23 @@ form{
   }
 }
 
-
-.sob-popup{
+.sob-popup {
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255, 255, 255, 0.8);
   opacity: 0;
   visibility: hidden;
   z-index: 4;
-  transition: .3s;
-  &.active{
+  transition: 0.3s;
+  &.active {
     visibility: visible;
     opacity: 1;
   }
 }
-#popup{
+#popup {
   display: flex;
   justify-content: center;
   padding: 25px;
@@ -279,33 +380,24 @@ form{
   opacity: 0;
   visibility: hidden;
   z-index: 4;
-  &.active{
+  &.active {
     visibility: visible;
     opacity: 1;
   }
-  .popup-body{
+  .popup-body {
     max-width: 300px;
     width: 100%;
   }
 }
 
-@media (min-width: $md){
-  .md-hide{
+@media (min-width: $md) {
+  .md-hide {
     display: none !important;
-  }
-
-  header{
-    height: 100%;
-    width: 90px;
-    position: relative;
-    &.active{
-      width: 180px;
-    }
   }
 }
 
-@media (max-width: $md){
-  .xs-hide{
+@media (max-width: $md) {
+  .xs-hide {
     display: none !important;
   }
 }

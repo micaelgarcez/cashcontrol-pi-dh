@@ -1,90 +1,108 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Metas'}); %>
-<main>
-	<form method="POST" action="/metas/seek">
-		<%if (typeof(erros) != "undefined") { %>
-			<p style="color: red"> ERRO </p>
-			<ul>
-			<% erros.forEach((erro) => { %>
-				<li><%= erro.msg %></li>
-			<% }) %>
-			</ul>
-		<% } %>
-
-		<div>
-			<label>
-				Ano:
-				<input type="number" name="ano" id="ano" value="<%= Periodo.Ano %>" placeholder="ano da meta">
-			</label>
-			<br>
-			<label>
-				Mês:
-				<input type="number" name="mes" id="mes" value="<%= Periodo.Mes %>" placeholder="mês da meta">
-			</label>
-		
-		</div>
-		<button type="submit">Buscar</button>
-	</form>
-	<section class="container">
-		<div id="list">
-			<div class="item head">
-				<div class="name"><p>Categoria:</p></div>
-				<div class="type"><p>Valor Previsto:</p></div>
-				<div class="type"><p>Valor Gasto:</p></div>
-				<div class="type"><p>(%) Gasto:</p></div>
-				<div class="buttons"><p>Ações</p></div>
+<body>
+	<div class="app">
+		<%- include('../parts/header'); %>
+		<main>
+			<div class="container-erros">
+				<%if (typeof(erros) != "undefined") { %>
+					<p style="color: red"> ERRO </p>
+					<ul>
+					<% erros.forEach((erro) => { %>
+						<li><%= erro.msg %></li>
+					<% }) %>
+					</ul>
+				<% } %>
 			</div>
-			<%
-				var totalprevisto = 0;
-				var totalgasto = 0;
-			%>
-			<% for(let categoria of categorias ) {%>
-			
-			<div class="item">
-				<%
-					totalprevisto = totalprevisto + Number(categoria.valorprevisto);
-					totalgasto = totalgasto + Number(categoria.valorgasto);
-				%>
-				<div><%= categoria.nome %></div>
-				<div><%= categoria.valorprevisto.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></div>
-				<div><%= categoria.valorgasto.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></div>
-				<div><%= categoria.percentualgasto %></div>
+			<div class="container-mes">
+				<div class="prev">
+					<span class="material-icons">navigate_before</span>
+				</div>
+				<div class="mes">
+					<% let meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'] %>
+					<%= meses[parseInt(Periodo.Mes)-1] %> - <%= Periodo.Ano %>
+				</div>
+				<div class="next">
+					<span class="material-icons">keyboard_arrow_right</span>
+				</div>
+			</div>
+			<form class="hidden" id="formMesFilter" method="POST" action="/metas/seek">
 				<div>
-					<%if(!categoria.meta_id) {%>
-						<div class="buttons">
-							<a class="popup" href="#metaCreate" data-categoriaid="<%= categoria.id %>" data-ano="<%= Periodo.Ano %>" data-mes="<%= Periodo.Mes %>">
-								<span class="material-icons-outlined">create</span>
-							</a>
-						</div>
-					<%}
-					else {
-					%>
-						<div class="buttons">
-							<a class="popup" href="#metaEdit" data-id="<%= categoria.meta_id %>" data-ano="<%= Periodo.Ano %>"
-								data-mes="<%= Periodo.Mes %>" data-valor="<%= categoria.valorprevisto %>" 
-								data-categoriaid="<%= categoria.id %>">
-								<span class="material-icons-outlined">edit</span>
-							</a>
-							<a class="notification" href="#metaDelete" data-id="<%= categoria.meta_id %>">
-								<span class="material-icons-outlined">delete</span>
-								<form class="cd-<%= categoria.meta_id %>" method="POST" action="/metas/<%= categoria.meta_id %>/delete?_method=DELETE">
-									<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
-								</form>
-							</a>
-						</div>
-					<%}%>
+					<label>
+						Ano:
+						<input type="number" name="ano" id="ano" value="<%= Periodo.Ano %>" placeholder="ano da meta">
+					</label>
+					<br>
+					<label>
+						Mês:
+						<input type="number" name="mes" id="mes" value="<%= Periodo.Mes %>" placeholder="mês da meta">
+					</label>
+				
 				</div>
-			</div>
-			<% } %>
-				<div class="item">
-					<div>Totais:</div>
-					<div><%= totalprevisto %></div>
-					<div><%= totalgasto %></div>
-					<div><%= totalprevisto>0 ? Math.round((totalgasto/totalprevisto)*100,2): 0 %></div>
-					<div>
+				<button type="submit">Buscar</button>
+			</form>
+			<section class="container">
+				<div id="list">
+					<div class="item head">
+						<div class="name"><p>Categoria:</p></div>
+						<div class="type"><p>Valor Previsto:</p></div>
+						<div class="type"><p>Valor Gasto:</p></div>
+						<div class="type"><p>(%) Gasto:</p></div>
+						<div class="buttons"><p>Ações</p></div>
 					</div>
+					<%
+						var totalprevisto = 0;
+						var totalgasto = 0;
+					%>
+					<% for(let categoria of categorias ) {%>
+					
+					<div class="item">
+						<%
+							totalprevisto = totalprevisto + Number(categoria.valorprevisto);
+							totalgasto = totalgasto + Number(categoria.valorgasto);
+						%>
+						<div><%= categoria.nome %></div>
+						<div><%= `R$ ${(categoria.valorprevisto).replace('.', ',')}` %></div>
+						<div><%= `R$ ${(categoria.valorgasto).replace('.', ',')}` %></div>
+						<div><%= `${parseInt(categoria.percentualgasto)}%` %></div>
+						<div>
+							<%if(!categoria.meta_id) {%>
+								<div class="buttons">
+									<a class="popup" href="#metaCreate" data-categoriaid="<%= categoria.id %>" data-ano="<%= Periodo.Ano %>" data-mes="<%= Periodo.Mes %>">
+										<span class="material-icons-outlined">create</span>
+									</a>
+								</div>
+							<%}
+							else {
+							%>
+								<div class="buttons">
+									<a class="popup" href="#metaEdit" data-id="<%= categoria.meta_id %>" data-ano="<%= Periodo.Ano %>"
+										data-mes="<%= Periodo.Mes %>" data-valor="<%= categoria.valorprevisto %>" 
+										data-categoriaid="<%= categoria.id %>">
+										<span class="material-icons-outlined">edit</span>
+									</a>
+									<a class="notification" href="#metaDelete" data-id="<%= categoria.meta_id %>">
+										<span class="material-icons-outlined">delete</span>
+										<form class="cd-<%= categoria.meta_id %>" method="POST" action="/metas/<%= categoria.meta_id %>/delete?_method=DELETE">
+											<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+										</form>
+									</a>
+								</div>
+							<%}%>
+						</div>
+					</div>
+					<% } %>
+						<div class="item">
+							<div>Totais:</div>
+							<div><%= `R$ ${(totalprevisto).toFixed(2).replace('.', ',')}` %></div>
+							<div><%= `R$ ${(totalgasto).toFixed(2).replace('.', ',')}` %></div>
+							<div><%= `${totalprevisto>0 ? Math.round((totalgasto/totalprevisto)*100,2): 0}%` %></div>
+							<div>
+							</div>
+						</div>
+					</table>
 				</div>
-			</table>
-		</div>
-	</section>
-</main>
+			</section>
+		</main>
+	</div>
+	<script src="/js/metas.js"></script>
 <%- include('../parts/foot'); %>

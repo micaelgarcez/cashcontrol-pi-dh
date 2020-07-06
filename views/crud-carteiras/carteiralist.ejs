@@ -1,38 +1,42 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Carteiras'}); %>
-<main>
-	<div class="container-button">
-		<a class="btn blue popup" href="#carteiraCreate">Adicionar nova Carteira</a>
-	</div>
-	<section class="container">
-		<div id="list">
-			<div class="item head">
-				<div class="name"><p>Nome</p></div>
-				<div class="type"><p>Tipo</p></div>
-				<div class="cor"><p>Cor</p></div>
-				<div class="icone"><p>Icone</p></div>
-				<div class="buttons"><p>Ações</p></div>
-			</div>
-			<% for(let carteira of carteiras ) { %>
-				<div class="item">
-					<div class="name"><p><%= carteira.nome %></p></div>
-					<div class="type"><p><%= carteira.tipo %></p></div>
-					<div class="cor"><span style="background-color:<%= carteira.cor %>;"></span></div>
-					<div class="icone"><span class="material-icons-outlined"><%= carteira.icone %></span></div>
-					<div class="buttons">
-						<a class="popup" href="#carteiraEdit" data-id="<%= carteira.id %>" data-name="<%= carteira.nome %>" data-type="<%= carteira.tipo %>" data-color="<%= carteira.cor %>" data-ico="<%= carteira.icone %>">
-							<span class="material-icons-outlined">edit</span>
-						</a>
-						<a class="notification" href="#carteiraDelete" data-id="<%= carteira.id %>">
-							<span class="material-icons-outlined">delete</span>
-							<form class="cd-<%= carteira.id %>" method="POST" action="/carteiras/<%= carteira.id %>/delete?_method=DELETE">
-								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
-							</form>
-						</a>
-					</div>
-				</div>
-			<% } %>
-		</div>
-	</section>
-</main>
-<%- include('../parts/foot'); %>
 
+<body>
+	<div class="app">
+		<%- include('../parts/header'); %>
+		<main>
+			<div class="container-button">
+				<a class="btn blue popup" href="#carteiraCreate">Adicionar nova Carteira</a>
+			</div>
+			<section class="container">
+				<div id="list">
+					<div class="item head">
+						<div class="name"><p>Nome</p></div>
+						<div class="type"><p>Tipo</p></div>
+						<div class="cor"><p>Cor/Icone</p></div>
+						<div class="buttons"><p>Ações</p></div>
+					</div>
+					<% for(let carteira of carteiras ) { %>
+						<div class="item">
+							<div class="name"><p><%= carteira.nome %></p></div>
+							<div class="type"><p><%= carteira.tipo %></p></div>
+							<div class="cor icone">
+								<span class="material-icons-outlined" 
+								style="background-color:<%= carteira.cor %>;">
+									<%= carteira.icone %>
+								</span>
+							</div>
+							<div class="buttons">
+								<a class="popup" href="#carteiraEdit" data-id="<%= carteira.id %>" data-name="<%= carteira.nome %>" data-type="<%= carteira.tipo %>" data-color="<%= carteira.cor %>" data-ico="<%= carteira.icone %>">
+									<span class="material-icons-outlined">edit</span>
+								</a>
+								<a class="notification" href="#carteiraDelete" title="Deletar" data-url="/carteiras/<%= carteira.id %>/delete?_method=DELETE">
+									<span class="material-icons-outlined">delete</span>
+								</a>
+							</div>
+						</div>
+					<% } %>
+				</div>
+			</section>
+		</main>
+	</div>
+<%- include('../parts/foot'); %>

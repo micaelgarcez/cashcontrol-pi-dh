@@ -1,37 +1,37 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Categorias'}); %>
-<main>
-	<div class="container-button">	
-		<a class="btn blue popup" href="#categoriaCreate">Adicionar nova Categoria</a>
-	</div>
-	<section class="container">
-		<div id="list">
-			<div class="item head">
-				<div class="name"><p>Nome:</p></div>
-				<div class="type"><p>Tipo:</p></div>
-				<div class="cor"><p>Cor</p></div>
-				<div class="icone"><p>Icone</p></div>
-				<div class="buttons"><p>Ações</p></div>
+
+<body>
+	<div class="app">
+		<%- include('../parts/header'); %>
+		<main>
+			<div class="container-button">	
+				<a class="btn blue popup" href="#categoriaCreate">Adicionar nova Categoria</a>
 			</div>
-			<% for(let c of categorias ) { %>
-				<div class="item">
-					<div class="name"><p><%= c.nome %></p></div>
-					<div class="type"><p><%= c.tipo %></p></div>
-					<div class="cor"><span style="background-color:<%= c.cor %>;"></span></div>
-					<div class="icone"><span class="material-icons-outlined"><%= c.icone %></span></div>
-					<div class="buttons">
-						<a class="popup" href="#categoriaEdit" data-id="<%= c.id %>" data-name="<%= c.nome %>" data-type="<%= c.tipo %>" data-color="<%= c.cor %>" data-ico="<%= c.icone %>">
-							<span class="material-icons-outlined">edit</span>
-						</a>
-						<a class="notification" href="#categoriaDelete" data-id="<%= c.id %>">
-							<span class="material-icons-outlined">delete</span>
-							<form class="cd-<%= c.id %>" method="POST" action="/categorias/<%= c.id %>/delete?_method=DELETE">
-								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
-							</form>
-						</a>
+			<section class="container">
+				<div id="list">
+					<div class="item head">
+						<div class="name"><p>Nome:</p></div>
+						<div class="type"><p>Tipo:</p></div>
+						<div class="cor"><p>Cor/Icone</p></div>
+						<div class="buttons"><p>Ações</p></div>
 					</div>
+					<% for(let c of categorias ) { %>
+						<div class="item">
+							<div class="name"><p><%= c.nome %></p></div>
+							<div class="type"><p><%= c.tipo %></p></div>
+							<div class="cor icone"><span class="material-icons-outlined" style="background-color:<%= c.cor %>;"><%= c.icone %></span></div>
+							<div class="buttons">
+								<a class="popup" href="#categoriaEdit" title="Editar" data-id="<%= c.id %>" data-name="<%= c.nome %>" data-type="<%= c.tipo %>" data-color="<%= c.cor %>" data-ico="<%= c.icone %>">
+									<span class="material-icons-outlined">edit</span>
+								</a>
+								<a class="notification" href="#categoriaDelete" title="Deletar" data-id="<%= c.id %>" data-url="/categorias/<%= c.id %>/delete?_method=DELETE">
+									<span class="material-icons-outlined">delete</span>
+								</a>
+							</div>
+						</div>
+					<% } %>
 				</div>
-			<% } %>
-		</div>
-	</section>
-</main>
+			</section>
+		</main>
+	</div>
 <%- include('../parts/foot'); %>

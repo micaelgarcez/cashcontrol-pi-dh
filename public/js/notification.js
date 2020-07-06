@@ -1,9 +1,45 @@
+// ANIMAÇÃO PARA REMOVER A LINHA
+
+function fadeOut(target, time) {
+    fade(target, time, 100, 0);
+}
+
+function fadeIn(target, time) {
+    fade(target, time, 0, 100);
+}
+
+function fade(target, time, ini, fin) {
+    var alpha = ini;
+    var inc;
+    if (fin >= ini) { 
+        inc = 2; 
+    } else {
+        inc = -2;
+    }
+    timer = (time * 1000) / 50;
+    var i = setInterval(
+        function() {
+            if ((inc > 0 && alpha >= fin) || (inc < 0 && alpha <= fin)) {
+                clearInterval(i);
+            }
+            setAlpha(target, alpha);
+            alpha += inc;
+        }, timer);
+}
+
+function setAlpha(target, alpha) {
+    target.style.filter = "alpha(opacity="+ alpha +")";
+    target.style.opacity = alpha/100;
+}
+
+const notificationContainer = $('.notification-container');
+
 function notificationActive() {
-    $('.notification-container').classList.add('active');
+    notificationContainer.classList.add('active');
 }
 
 function notificationDeactivated() {
-    $('.notification-container').classList.remove('active');
+    notificationContainer.classList.remove('active');
 }
 
 const notifications = {
@@ -17,12 +53,13 @@ const notifications = {
 }
 
 
+
 function showNotification(e) {
     e.preventDefault();
     let show = e.target.getAttribute('href').replace('#', '');
-    let classForm = `cd-${e.target.getAttribute('data-id')}`;
+    let itemUrl = e.target.getAttribute('data-url');
     $('.notification-container p').innerText = notifications[show];
-    $('.notification-container').setAttribute('data-class', classForm);
+    notificationContainer.setAttribute('data-url', itemUrl);
     notificationActive();
 }
 
@@ -33,11 +70,29 @@ window.addEventListener("load", () => {
             showNotification(e);
         }
     })
+
     $('.positive').onclick = () => {
-        let classForm = $('.notification-container').getAttribute('data-class');
-        $(`.${classForm}`).submit();
+        let urlForPost = notificationContainer.getAttribute('data-url');
+        fetch(urlForPost, { method: 'POST' })
+        .then(response =>  response.json())
+        .then(data => {
+            console.log(data);
+            if(data.success){
+                notificationDeactivated();
+                let itemRemoved = $(`.notification[data-url="${urlForPost}"]`).closest('.item');
+                fadeOut(itemRemoved, 0.3);
+                setInterval(() => {
+                    itemRemoved.remove();
+                }, 300);
+            } else {
+                console.log(data);
+            }
+        })
     }
+
     $('.negative').onclick = () => {
+        notificationContainer.setAttribute('data-id', '');
+        notificationContainer.setAttribute('data-url', '');
         notificationDeactivated();
     }
 }, false);

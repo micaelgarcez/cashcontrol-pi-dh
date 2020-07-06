@@ -1,61 +1,59 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Movimentos'}); %>
-<main>
-	<div class="container-button">
-		<a class="btn blue popup" href="#transferenciaCreate">Nova Transferência</a>
+
+<body>
+	<div class="app">
+		<%- include('../parts/header'); %>
+        <main>
+            <div class="container-button">
+                <a class="btn blue popup" href="#transferenciaCreate">Nova Transferência</a>
+            </div>
+            <section class="container">
+                <div id="list">
+                    <div class="item head">
+                        <div class="name"><p>Origem</p></div>
+                        <div class="name"><p>Tipo</p></div>
+                        <div class="name"><p>Data</p></div>
+                        <div class="name"><p>Valor</p></div>
+                        <div class="name"><p>Carteira</p></div>
+                        <div class="buttons"><p>Ações</p></div>
+                    </div>
+                    <% for(let mov of movimentos ) { %>
+                        <div class="item">
+                            <div class="name"><p><%= mov.origem %></p></div>
+                            <div class="name"><p><%= mov.tipo %></p></div>
+                            <div class="name"><p><%= mov.data_mov %></p></div>
+                            <div class="name"><p><%= `R$ ${(mov.valor_mov).replace('.', ',')}` %></p></div>
+                            <div class="name"><p><%= mov.carteira %></p></div>
+                            <% if (mov.origem=='Transferência') {%>
+                                <div class="buttons">
+                                    <a class="popup" href="#transferenciaEdit" data-id="<%= mov.id %>" 
+                                        data-date="<%= mov.data_mov2 %>" data-valor="<%= mov.valor_mov %>" 
+                                        data-carteiraid="<%= mov.carteira_id %>" data-carteiraid-transf="<%= mov.carteira_id_transf %>">
+                                        <span class="material-icons-outlined">edit</span>
+                                    </a>
+                                    <a class="notification" href="#transferenciaDelete" data-id="<%= mov.id %>">
+                                        <span class="material-icons-outlined">delete</span>
+                                        <form class="cd-<%= mov.id %>" method="POST" action="/transferencias/<%= mov.id %>/delete?_method=DELETE">
+                                            <button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+                                        </form>
+                                    </a>
+                                </div>
+                            <%}
+                            else {%>
+                                <div class="buttons">
+                                    <a>
+                                        <span class="material-icons-outlined">edit</span>
+                                    </a>
+                                    <a>
+                                        <span class="material-icons-outlined">delete</span>
+                                    </a>
+                                </div>
+                            <%}%>
+                        </div>
+                    <% } %>
+                </div>
+            </section>
+        </main>
 	</div>
-	<section class="container">
-		<div id="list">
-			<div class="item head">
-                <div class="name"><p>Origem</p></div>
-                <div class="name"><p>Tipo</p></div>
-                <div class="name"><p>Data</p></div>
-                <div class="name"><p>Valor</p></div>
-                <div class="name"><p>Carteira</p></div>
-                <div class="buttons">
-					<a href="#transferenciaEdit">
-						<%- include('../../public/img/icons/edit.svg'); %>
-					</a>
-					<a href="#transferenciaDelete">
-						<%- include('../../public/img/icons/delete.svg'); %>
-					</a>
-				</div>
-			</div>
-			<% for(let mov of movimentos ) { %>
-				<div class="item">
-                    <div class="name"><p><%= mov.origem %></p></div>
-                    <div class="name"><p><%= mov.tipo %></p></div>
-                    <div class="name"><p><%= mov.data_mov %></p></div>
-                    <div class="name"><p><%= mov.valor_mov %></p></div>
-                    <div class="name"><p><%= mov.carteira %></p></div>
-                    <% if (mov.origem=='Transferência') {%>
-                        <div class="buttons">
-                            <a class="popup" href="#transferenciaEdit" data-id="<%= mov.id %>" 
-                                data-date="<%= mov.data_mov2 %>" data-valor="<%= mov.valor_mov %>" 
-                                data-carteiraid="<%= mov.carteira_id %>" data-carteiraid-transf="<%= mov.carteira_id_transf %>">
-                                <span class="material-icons-outlined">edit</span>
-                            </a>
-                            <a class="notification" href="#transferenciaDelete" data-id="<%= mov.id %>">
-                                <span class="material-icons-outlined">delete</span>
-                                <form class="cd-<%= mov.id %>" method="POST" action="/transferencias/<%= mov.id %>/delete?_method=DELETE">
-                                    <button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
-                                </form>
-                            </a>
-                        </div>
-                    <%}
-                    else {%>
-                        <div class="buttons">
-                            <a>
-                                <%- include('../../public/img/icons/edit.svg'); %>
-                            </a>
-                            <a>
-                                <%- include('../../public/img/icons/delete.svg'); %>
-                            </a>
-                        </div>
-                    <%}%>
-				</div>
-			<% } %>
-		</div>
-	</section>
-</main>
 <%- include('../parts/foot'); %>
 

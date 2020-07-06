@@ -1,49 +1,44 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Receitas'}); %>
-<main>
-	<div class="container-button">
-		<a class="btn blue popup" href="#receitaCreate">Adicionar nova Receita</a>
-	</div>
-	<section class="container">
-		<div id="list">
-			<div class="item head">
-				<div class="name"><p>Carteira</p></div>
-				<div class="name"><p>Tipo</p></div>
-				<div class="name"><p>Obs</p></div>
-				<div class="name"><p>Data</p></div>
-				<div class="name"><p>Valor</p></div>
-                <div class="buttons">
-					<a href="#receitaEdit">
-						<%- include('../../public/img/icons/edit.svg'); %>
-					</a>
-					<a href="#receitaDelete">
-						<%- include('../../public/img/icons/delete.svg'); %>
-					</a>
-				</div>
+
+<body>
+	<div class="app">
+		<%- include('../parts/header'); %>
+		<main>
+			<div class="container-button">
+				<a class="btn blue popup" href="#receitaCreate">Adicionar nova Receita</a>
 			</div>
-			<% for(let receita of receitas ) { %>
-				<div class="item">
-					<div class="name"><p><%= receita.carteira %></p></div>
-					<div class="name"><p><%= receita.tiporeceita %></p></div>
-					<div class="name"><p><%= receita.obs %></p></div>
-					<div class="name"><p><%= receita.data_receita %></p></div>
-					<div class="name"><p><%= receita.valor %></p></div>
-					<div class="buttons">
-						<a class="popup" href="#receitaEdit" data-id="<%= receita.id %>" data-obs="<%= receita.obs %>"
-							data-date="<%= receita.data_receita2 %>" data-valor="<%= receita.valor %>" 
-							data-carteiraid="<%= receita.carteira_id %>" data-tiporeceitaid="<%= receita.tiporeceita_id %>">
-							<span class="material-icons-outlined">edit</span>
-						</a>
-						<a class="notification" href="#receitaDelete" data-id="<%= receita.id %>">
-							<span class="material-icons-outlined">delete</span>
-							<form class="cd-<%= receita.id %>" method="POST" action="/receitas/<%= receita.id %>/delete?_method=DELETE">
-								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
-							</form>
-						</a>
+			<section class="container">
+				<div id="list">
+					<div class="item head">
+						<div class="name"><p>Carteira</p></div>
+						<div class="name"><p>Tipo</p></div>
+						<div class="name"><p>Valor</p></div>
+						<div class="name"><p>Data</p></div>
+						<div class="name"><p>Obs</p></div>
+						<div class="buttons">Ações</div>
 					</div>
+					<% for(let receita of receitas ) { %>
+						<div class="item">
+							<div class="name"><p><%= receita.carteira %></p></div>
+							<div class="name"><p><%= receita.tiporeceita %></p></div>
+							<div class="name"><p><%= `R$ ${(receita.valor).replace('.', ',')}` %></p></div>
+							<div class="name"><p><%= receita.data_receita %></p></div>
+							<div class="name"><p><%= receita.obs %></p></div>
+							<div class="buttons">
+								<a class="popup" href="#receitaEdit" data-id="<%= receita.id %>" data-obs="<%= receita.obs %>"
+									data-date="<%= receita.data_receita2 %>" data-valor="<%= receita.valor %>" 
+									data-carteiraid="<%= receita.carteira_id %>" data-tiporeceitaid="<%= receita.tiporeceita_id %>">
+									<span class="material-icons-outlined">edit</span>
+								</a>
+								<a class="notification" href="#receitaDelete" data-id="<%= receita.id %>" data-url="/receitas/<%= receita.id %>/delete?_method=DELETE">
+									<span class="material-icons-outlined">delete</span>
+								</a>
+							</div>
+						</div>
+					<% } %>
 				</div>
-			<% } %>
-		</div>
-	</section>
-</main>
+			</section>
+		</main>
+	</div>
 <%- include('../parts/foot'); %>
 

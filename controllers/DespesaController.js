@@ -57,7 +57,7 @@ module.exports = {
             
             const despesas = await lista(id);
 
-            res.render('crud-despesas/despesalist', {despesas})
+            res.redirect('/despesas');
         }
         else {
             //Carteiras do Usuário
@@ -160,7 +160,7 @@ module.exports = {
 
             const despesas = await lista(usuario_id);
 
-            res.render('crud-despesas/despesalist', {despesas})
+            res.redirect('/despesas');
         }
         else {
             const despesa = await Despesa.findOne({
@@ -209,9 +209,10 @@ module.exports = {
             const retornoMov = await Mov.excluiMovimento(usuario_id, id, 0);
         }
 
-        const despesas = await lista(usuario_id);
-
-        res.render('crud-despesas/despesalist', {despesas})
+        res.status(200).send({
+            success: true,
+            message: 'Despesa removida com sucesso!!!'
+        });
     },
     async buscadadosedit (req, res) {
         let { id: usuario_id } = JSON.parse(req.session.usuario);

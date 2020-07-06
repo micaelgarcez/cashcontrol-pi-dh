@@ -23,13 +23,11 @@ module.exports = {
             //Campo do Formulário
             let { nome, tipo, cor, icone} = req.body;
 
-            const categoria = await Categoria.create(
+            await Categoria.create(
                 {nome, tipo, usuario_id: id, cor, icone}
-                )
+            )
 
-            const categorias = await listar(id);
-
-            res.render('crud-categorias/categorialist', {categorias})
+            res.redirect('/categorias');
         }
         else {
             res.render('crud-categorias/categoria', {erros:listaDeErros.errors})
@@ -72,9 +70,7 @@ module.exports = {
                 {where: {id}}
             )
 
-            const categorias = await listar(usuario_id);
-
-            res.render('crud-categorias/categorialist', {categorias})
+            res.redirect('/categorias');
         }
         else {
             const categoria2 = await Categoria.findByPk(id);
@@ -95,9 +91,10 @@ module.exports = {
             {where: {id}}
         )
 
-        const categorias = await listar(usuario_id);
-
-        res.render('crud-categorias/categorialist', {categorias})
+        res.status(200).send({
+            success: true,
+            message: 'Categoria removida com sucesso!!!'
+        });
     }
     ,
     async listaCategoriasMetas (req, res) {

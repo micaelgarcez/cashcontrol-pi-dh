@@ -1,5 +1,3 @@
-const $ = document.querySelector.bind(document);
-
 function elExists(item){
   let element = $(`${item}`);
   return (element != null)? true : false;
@@ -21,7 +19,8 @@ if(elExists('.btn-circle.add') == true){
 const classToggleMenu = [
   '.container-navigation',
   '.sob-menu',
-  'header'
+  'header',
+  '.container-hamburguer'
 ];
 if(elExists('#hamburger') == true){
   $('#hamburger').onclick = () => { toggleActive(classToggleMenu) };

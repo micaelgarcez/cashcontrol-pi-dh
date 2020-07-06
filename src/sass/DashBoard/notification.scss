@@ -1,0 +1,27 @@
+.notification-container {
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+    min-height: 100px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    padding: 10px;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5);
+    border: 1px solid #d00;
+    transition: 0.3s;
+    right: -500px;
+    top: 100px;
+    &.active {
+        right: 20px;
+    }
+    p {
+        margin-bottom: 10px;
+    }
+    .positive {
+        margin-right: 10px;
+    }
+}

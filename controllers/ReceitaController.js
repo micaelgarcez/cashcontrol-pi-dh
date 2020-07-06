@@ -66,7 +66,7 @@ module.exports = {
             
             const receitas = await lista(id);
 
-            res.render('crud-receitas/receitalist', {receitas})
+            res.redirect('/receitas')
         }
         else {
             res.status(404).send("Campos obrigatórios não preenchidos!");
@@ -162,7 +162,7 @@ module.exports = {
             
             const receitas = await lista(usuario_id);
 
-            res.render('crud-receitas/receitalist', {receitas})
+            res.redirect('/receitas')
         }
         else {
 
@@ -203,10 +203,11 @@ module.exports = {
 
         //Lança na tabela de movimento
         const retornoMov = await Mov.excluiMovimento(usuario_id, 0, id);
-        
-        const receitas = await lista(usuario_id);
 
-        res.render('crud-receitas/receitalist', {receitas})
+        res.status(200).send({
+            success: true,
+            message: 'Receita removida com sucesso!!!'
+        });
     },
     async buscadadosedit (req, res) {
         let { id: usuario_id } = JSON.parse(req.session.usuario);

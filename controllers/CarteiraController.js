@@ -15,7 +15,7 @@ function listarCarteiras(id){
 
 module.exports = {
     async store (req, res) {
-
+        console.log(req.body);
         let listaDeErros = validationResult(req);
 
         if (listaDeErros.isEmpty()){
@@ -25,16 +25,14 @@ module.exports = {
             //Campo do Formulário
             let { nome, tipo, cor, icone} = req.body;
 
-            const carteira = await Carteira.create(
+            await Carteira.create(
                 {nome, tipo, usuario_id: id, cor, icone}
-                )
+            )
             
-            const carteiras = await listarCarteiras(id);
-            
-            res.render('crud-carteiras/carteiralist', {carteiras})
+            res.redirect('/carteiras');
         }
         else {
-            res.render('crud-carteiras/carteira', {erros:listaDeErros.errors})
+            res.status(400).send({res: 'erro', listaDeErros})
         }
         
     },
@@ -54,7 +52,7 @@ module.exports = {
         
         const carteira = await Carteira.findByPk(id);
 
-		res.render('crud-carteiras/carteiraedit', {carteira: carteira});
+		res.status(200).send(carteira);
     },
     async update (req, res) {
         let listaDeErros = validationResult(req);
@@ -63,25 +61,18 @@ module.exports = {
         let id = req.params.id;
 
         if (listaDeErros.isEmpty()){
-            //Id do Usuário
-            let { id: usuario_id } = JSON.parse(req.session.usuario);
-
             //Campo do Formulário
             let { nome, tipo, cor, icone} = req.body;
 
-            const carteira = await Carteira.update(
+            await Carteira.update(
                 {nome, tipo, cor, icone},
                 {where: {id}}
             )
 
-            const carteiras = await listarCarteiras(usuario_id);
-
-            res.render('crud-carteiras/carteiralist', {carteiras})
+            res.redirect('/carteiras');
         }
         else {
-            const carteira2 = await Carteira.findByPk(id);
-
-            res.render('crud-carteiras/carteiraedit', {erros:listaDeErros.errors, carteira: carteira2})
+            res.status(400).send({res: 'erro', listaDeErros});
         }
     },
     async delete (req, res) {
@@ -97,9 +88,10 @@ module.exports = {
             {where: {id}}
         )
 
-        const carteiras = await listarCarteiras(usuario_id);
-
-        res.render('crud-carteiras/carteiralist', {carteiras})
+        res.status(200).send({
+            success: true,
+            message: 'Carteira removida com sucesso!!!'
+        });
     },
     async listaCarteirasReceita (req, res) {
 

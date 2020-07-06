@@ -100,9 +100,10 @@ module.exports = {
             {where: {id}}
         )
 
-        const tiporeceitas = await lista(usuario_id);
-
-        res.render('crud-tiporeceitas/tiporeceitalist', {tiporeceitas})
+        res.status(200).send({
+            success: true,
+            message: 'Tipo de receita removida com sucesso!!!'
+        });
     },
     async listatiposreceita (req, res) {
 

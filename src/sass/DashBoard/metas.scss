@@ -1,0 +1,18 @@
+.container-mes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    .prev, .next{
+        display: flex;
+        cursor: pointer;
+        span{
+            font-size: 40px;
+        }
+    }
+    .mes{
+        font-size: 20px;
+    }
+}
