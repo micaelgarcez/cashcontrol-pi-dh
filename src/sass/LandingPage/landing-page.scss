@@ -1,0 +1,438 @@
+/*
+  ORDER AND NAME ITENS THIS SCSS
+
+  #1 - RESET CSS
+  #2 - VARIABLES
+  #3 - GENERIC
+  #4 - CONTAINERS
+  #5 - HEADER
+  #6 - HERO
+*/
+
+/* RESET CSS */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* END RESET CSS */
+
+/* VARIABLES */
+
+$white: #fff;
+
+/* END VARIABLES */
+
+/* GENERIC */
+
+body,
+button {
+  font-family: "Montserrat", sans-serif;
+  color: #131313;
+}
+a {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+strong {
+  font-weight: bold;
+}
+
+.title {
+  color: #28123e;
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+/* END GENERIC */
+
+/* CONTAINERS */
+
+.container {
+  width: calc(100% - 100px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sub-container {
+  width: calc(100% - 200px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* END CONTAINERS */
+
+/* HEADER */
+
+.header {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container-logo {
+  img {
+    max-height: 80px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+}
+
+.container-navigation {
+  ul {
+    display: flex;
+    li {
+      margin: 0 10px;
+      a {
+        color: $white;
+      }
+    }
+  }
+}
+
+/* END HEADER */
+
+/* HERO */
+
+.hero {
+  background-image: url(../images/background-hero.svg);
+  background-position: center bottom;
+  background-size: calc(100vw + 200px);
+  padding-top: 100px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin-bottom: 100px;
+}
+.container-hero {
+  display: flex;
+  align-items: center;
+  .content {
+    width: 55%;
+    h3 {
+      text-transform: uppercase;
+      color: $white;
+      font-weight: 500;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    h1 {
+      text-transform: uppercase;
+      color: $white;
+      font-weight: 800;
+      font-size: 60px;
+      margin-bottom: 40px;
+    }
+    a {
+      background: #28123e;
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 16px;
+      font-weight: 700;
+      color: $white;
+    }
+  }
+  .image {
+    width: 45%;
+  }
+}
+
+/* END HERO */
+
+/* ABOUT */
+
+.about {
+  margin-bottom: 100px;
+  h3 {
+    color: #ef5181;
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  p {
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.container-about {
+  display: flex;
+  .image {
+    width: 50%;
+  }
+  .content {
+    width: 50%;
+  }
+}
+
+/* END ABOUT */
+
+/* FUNCTIONALITY */
+
+.functionality {
+  margin-bottom: 100px;
+  background-image: url(../images/detail-functionality.svg);
+  background-position: left -50px top -50px;
+  background-repeat: no-repeat;
+  .title {
+    text-align: center;
+  }
+  .container-items {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+  .item {
+    flex: 1 1 17.5%;
+    margin: 0 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    &:nth-child(4n + 1) {
+      margin-left: 0;
+    }
+    &:nth-child(4n + 4) {
+      margin-right: 0;
+      &:after {
+        display: none;
+      }
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      right: -29%;
+      top: 50%;
+      display: block;
+      width: 1px;
+      height: 100px;
+      background-color: #707070;
+      transform: translateY(-50%);
+    }
+    img {
+      width: 72px;
+    }
+    h4 {
+      font-size: 24px;
+      margin-bottom: 1em;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+}
+
+/* END FUNCTIONALITY */
+
+/* CREATORS */
+
+.creators {
+  margin-bottom: 100px;
+  background-image: url(../images/bg-team.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  .title {
+    text-align: center;
+  }
+  .container-items {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .item {
+    width: 100%;
+    max-width: 250px;
+  }
+  .img-perfil {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    color: transparent;
+  }
+  .item:first-child {
+    .img-perfil {
+      background-image: url(../images/marcos.jpg);
+    }
+  }
+  .item:last-child {
+    margin-top: 50px;
+    .img-perfil {
+      background-image: url(../images/micael.jpg);
+    }
+  }
+  .name {
+    font-size: 24px;
+    color: #ef5181;
+    font-weight: 800;
+    text-align: center;
+    margin: 15px;
+  }
+  .title-card {
+    text-align: center;
+    color: #28123e;
+  }
+}
+
+/* END CREATORS */
+
+.thanks {
+  background-image: url(../images/bg-thanks.svg);
+  background-position: left -150px center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  .title {
+    text-align: center;
+  }
+  .container-thanks {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    max-width: 800px;
+  }
+  img {
+    width: 100%;
+    max-width: 300px;
+  }
+  p {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 40px;
+    margin-bottom: 100px;
+  }
+}
