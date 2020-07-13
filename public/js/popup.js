@@ -1,25 +1,23 @@
 function popupActive(arrayItems) {
-    arrayItems.forEach(item => {
-        if(!$(item).classList.contains('active')){
-            $(item).classList.add('active');
-        }
-    });
+  arrayItems.forEach((item) => {
+    if (!$(item).classList.contains("active")) {
+      $(item).classList.add("active");
+    }
+  });
 }
 
 function popupDeactivated(arrayItems) {
-    arrayItems.forEach(item => {
-        if($(item).classList.contains('active')){
-            $(item).classList.remove('active');
-        }
-    });
+  arrayItems.forEach((item) => {
+    if ($(item).classList.contains("active")) {
+      $(item).classList.remove("active");
+    }
+  });
 }
 
 const popups = {
-    "login": `
+  login: `
         <form method="POST" action="/login">
-        <span class="title">Login</span>  
-        <button class="btn facebook" ype="button">Login com Facebook</button>
-        <button class="btn google" type="button">Login com Google</button>
+        <span class="title">Login</span>
 
         <div class="container-field">
             <input type="email" id="email" name="email" placeholder="Informe seu Email">
@@ -39,7 +37,7 @@ const popups = {
         </div>
         </form>
     `,
-    "cadastro": `
+  cadastro: `
         <form id="form-pizza" method="POST" action="/users/store">
             <span class="title">Cadastro</span>
             <div class="container-field">
@@ -59,7 +57,7 @@ const popups = {
             </div>
         </form>
     `,
-    "carteiraCreate": `
+  carteiraCreate: `
         <form method="POST" action="/carteiras/store">
             <span class="title"> Nova Carteira </span>
 
@@ -132,7 +130,7 @@ const popups = {
             <button class="btn green" type="submit">Salvar</button>
         </form>
     `,
-    "carteiraEdit": `
+  carteiraEdit: `
         <form method="POST" action="/carteiras/cateiraEdit_id/update?_method=PUT">
             <span class="title"> Editar Carteira </span>
 
@@ -204,7 +202,7 @@ const popups = {
             <button class="btn green" type="submit">Salvar</button>
         </form>
     `,
-    "tiporeceitaCreate": `
+  tiporeceitaCreate: `
         <form method="POST" action="/tiporeceitas/store">
             <span class="title"> Novo Tipo de Receita </span>
 
@@ -267,7 +265,7 @@ const popups = {
             <button class="btn green" type="submit">Salvar</button>
         </form>
     `,
-    "tiporeceitaEdit": `
+  tiporeceitaEdit: `
         <form method="POST" action="/tiporeceitas/tiporeceitaEdit_id/update?_method=PUT">
             <span class="title"> Editar Tipo de Receita </span>
 
@@ -330,7 +328,7 @@ const popups = {
             <button class="btn green" type="submit">Salvar</button>
         </form>
     `,
-    "receitaCreate": `
+  receitaCreate: `
         <form method="POST" action="/receitas/store">
             <span class="title"> Nova Receita </span>
 
@@ -361,7 +359,7 @@ const popups = {
             <button class="btn green" type="submit">Salvar</button>
         </form>
     `,
-    "receitaEdit": `
+  receitaEdit: `
         <form method="POST" action="/receitas/receitaEdit_id/update?_method=PUT">
             <span class="title"> Editar Receita </span>
 
@@ -392,7 +390,7 @@ const popups = {
             <button class="btn green" type="submit">Salvar</button>
         </form>
     `,
-    "transferenciaCreate": `
+  transferenciaCreate: `
         <form method="POST" action="/transferencias/store">
             <span class="title"> Nova Transferência </span>
 
@@ -419,7 +417,7 @@ const popups = {
             <button class="btn green" type="submit">Salvar</button>
         </form>
     `,
-    "transferenciaEdit": `
+  transferenciaEdit: `
         <form method="POST" action="/transferencias/transferenciaEdit_id/update?_method=PUT">
             <span class="title"> Nova Transferência </span>
 
@@ -445,8 +443,8 @@ const popups = {
 
             <button class="btn green" type="submit">Salvar</button>
         </form>
-    `,    
-    "categoriaCreate": `
+    `,
+  categoriaCreate: `
     <form method="POST" action="/categorias/store">
         <span class="title"> Nova Categoria </span>
 
@@ -517,7 +515,7 @@ const popups = {
         <button class="btn green" type="submit">Salvar</button>
     </form>
     `,
-    "categoriaEdit": `
+  categoriaEdit: `
     <form method="POST" action="/categorias/categoriaEdit_id/update?_method=PUT">
         <span class="title"> Editar Cartegoria </span>
         <div class="container-field">
@@ -586,7 +584,7 @@ const popups = {
         <button class="btn green" type="submit">Salvar</button>
     </form>
     `,
-    "despesaCreate": `
+  despesaCreate: `
     <form method="POST" action="/despesas/store">
         <span class="title"> Nova Despesa </span>
 
@@ -618,7 +616,7 @@ const popups = {
         <button class="btn green" type="submit">Salvar</button>
     </form>
     `,
-    "despesaEdit": `
+  despesaEdit: `
     <form method="POST" action="/despesas/despesaEdit_id/update?_method=PUT">
     <span class="title"> Editar Despesa</span>
     
@@ -650,7 +648,7 @@ const popups = {
         <button class="btn green" type="submit">Salvar</button>
     </form>
     `,
-    "metaCreate": `
+  metaCreate: `
         <form method="POST" action="/metas/store">
             <span class="title"> Nova Meta </span>
 
@@ -675,7 +673,7 @@ const popups = {
             <button class="btn green" type="submit">Salvar</button>
         </form>
     `,
-    "metaEdit": `
+  metaEdit: `
         <form method="POST" action="/metas/metaEdit_id/update?_method=PUT">
             <span class="title"> Alterar Meta </span>
 
@@ -699,484 +697,500 @@ const popups = {
 
             <button class="btn green" type="submit">Salvar</button>
         </form>
-    `
-}
+    `,
+};
 
-const classPopup = [
-    '.sob-popup',
-    '#popup'
-];
+const classPopup = [".sob-popup", "#popup"];
 
-function activePopup(e){
-    e.preventDefault();
-    let popupOpen = e.target.getAttribute('href').replace('#', '');
-    console.log(popupOpen);
-    switch (popupOpen) {
-
-        case 'carteiraEdit':
-            let id = e.target.getAttribute('data-id');
-            fetch(`/carteiras/${id}/edit`).then(response => response.json())
-            .then(data => {
-                let newForm = popups[popupOpen]
-                    .replace('cateiraEdit_id', data.id)
-                    .replace('cateiraEdit_name', data.nome)
-                    .replace(/cateiraEdit_color/g, data.cor)
-                    .replace(/cateiraEdit_ico/g, data.icone)
-                    .replace(`value="${data.tipo}"`, `value="${data.tipo}" selected`);
-                $('#popup .popup-body').innerHTML = newForm;
-                let moreLinks = document.querySelectorAll('.mais-opcoes');
-                moreLinks.forEach(link => {
-                    link.onclick = (e) => {
-                        activeMoreOptions(e);
-                    }
-                })
-                let buttonsVariables = document.querySelectorAll('.container-more-options button');
-                buttonsVariables.forEach(button => {
-                    button.onclick = (e) => {
-                        changeVariable(e);
-                    }
-                })
-                popupActive(classPopup);
-            })
-            break;
-
-        default:
-            $('#popup .popup-body').innerHTML = popups[popupOpen];
-
-            let moreLinks = document.querySelectorAll('.mais-opcoes');
-            moreLinks.forEach(link => {
-                link.onclick = (e) => {
-                    activeMoreOptions(e);
-                }
-            })
-            let buttonsVariables = document.querySelectorAll('.container-more-options button');
-            buttonsVariables.forEach(button => {
-                button.onclick = (e) => {
-                    changeVariable(e);
-                }
-            })
-
-            popupActive(classPopup);
-            break;
-    }
-
-    if(popupOpen == 'tiporeceitaEdit'){
-        let id = e.target.getAttribute('data-id');
-        let name = e.target.getAttribute('data-name');
-        let color = e.target.getAttribute('data-color');
-        let ico = e.target.getAttribute('data-ico');
-        let newForm = popups[popupOpen]
-            .replace('tiporeceitaEdit_id', id)
-            .replace('tiporeceitaEdit_name', name)
-            .replace(/tiporeceitaEdit_color/g, color)
-            .replace(/tiporeceitaEdit_ico/g, ico);
-        $('#popup .popup-body').innerHTML = newForm;
-        let moreLinks = document.querySelectorAll('.mais-opcoes');
-        moreLinks.forEach(link => {
+function activePopup(e) {
+  e.preventDefault();
+  let popupOpen = e.target.getAttribute("href").replace("#", "");
+  console.log(popupOpen);
+  switch (popupOpen) {
+    case "carteiraEdit":
+      let id = e.target.getAttribute("data-id");
+      fetch(`/carteiras/${id}/edit`)
+        .then((response) => response.json())
+        .then((data) => {
+          let newForm = popups[popupOpen]
+            .replace("cateiraEdit_id", data.id)
+            .replace("cateiraEdit_name", data.nome)
+            .replace(/cateiraEdit_color/g, data.cor)
+            .replace(/cateiraEdit_ico/g, data.icone)
+            .replace(`value="${data.tipo}"`, `value="${data.tipo}" selected`);
+          $("#popup .popup-body").innerHTML = newForm;
+          let moreLinks = document.querySelectorAll(".mais-opcoes");
+          moreLinks.forEach((link) => {
             link.onclick = (e) => {
-                activeMoreOptions(e);
-            }
-        })
-        let buttonsVariables = document.querySelectorAll('.container-more-options button');
-        buttonsVariables.forEach(button => {
+              activeMoreOptions(e);
+            };
+          });
+          let buttonsVariables = document.querySelectorAll(
+            ".container-more-options button"
+          );
+          buttonsVariables.forEach((button) => {
             button.onclick = (e) => {
-                changeVariable(e);
-            }
-        })
-        popupActive(classPopup);
-    } 
-    else if(popupOpen == 'receitaCreate') {
-        var data = new Date();
-        var dataReceita = data.getFullYear() + '-' + ("0" + (data.getMonth()+1)).slice(-2) + '-' + ("0" + data.getDate()).slice(-2);
-        let newForm = popups[popupOpen]
-            .replace('receitaCreate_data', dataReceita);
-        $('#popup .popup-body').innerHTML = newForm;
-        var ajax = new XMLHttpRequest();
-        ajax.open("GET", "/listacarteirasreceita", true);
-        ajax.send();
-        ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
-                var data = JSON.parse(ajax.responseText);
-                data.forEach(carteira => {
-                    let option = document.createElement("option");
-                    option.innerHTML = carteira.nome;
-                    option.setAttribute('value', carteira.id);
-                    $('#carteira-create').appendChild(option);
-                })
-                
-            }
-        }
+              changeVariable(e);
+            };
+          });
+          popupActive(classPopup);
+        });
+      break;
 
-        var ajax2 = new XMLHttpRequest();
-        ajax2.open("GET", "/listatiposreceita", true);
-        ajax2.send();
-        ajax2.onreadystatechange = function() {
-            if (ajax2.readyState == 4 && (ajax2.status == 200 || ajax2.status == 304) ) {
-                var data2 = JSON.parse(ajax2.responseText);
-                data2.forEach(tiporeceita => {
-                    let option2 = document.createElement("option");
-                    option2.innerHTML = tiporeceita.nome;
-                    option2.setAttribute('value', tiporeceita.id);
-                    $('#tiporeceita-create').appendChild(option2);
-                })
-                
-            }
-        }
+    default:
+      $("#popup .popup-body").innerHTML = popups[popupOpen];
 
-        popupActive(classPopup);
-    }
-    else if(popupOpen == 'receitaEdit') {
-        let receitaId = e.target.getAttribute('data-id');
-        let receitaData = e.target.getAttribute('data-date');
-
-        let receitaValor = e.target.getAttribute('data-valor');
-        let receitaCarteiraId = e.target.getAttribute('data-carteiraid');
-        let receitaTipoCarteiraId = e.target.getAttribute('data-tiporeceitaid');
-        let receitaObs = e.target.getAttribute('data-obs');
-        
-        let newForm = popups[popupOpen]
-            .replace('receitaEdit_id', receitaId)
-            .replace('receitaEdit_data', receitaData)
-            .replace('receitaEdit_valor', receitaValor)
-            .replace('receitaEdit_obs', receitaObs);
-        $('#popup .popup-body').innerHTML = newForm;
-               
-        var ajax = new XMLHttpRequest();
-        ajax.open("GET", "/listacarteirasreceita", true);
-        ajax.send();
-        ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
-                var data = JSON.parse(ajax.responseText);
-                data.forEach(carteira => {
-                    let option = document.createElement("option");
-                    option.innerHTML = carteira.nome;
-                    option.setAttribute('value', carteira.id);
-                    if (carteira.id == receitaCarteiraId){
-                        option.setAttribute('selected','selected');
-                    }
-                    $('#carteira-create').appendChild(option);
-                })
-                
-            }
-        }
-
-        var ajax2 = new XMLHttpRequest();
-        ajax2.open("GET", "/listatiposreceita", true);
-        ajax2.send();
-        ajax2.onreadystatechange = function() {
-            if (ajax2.readyState == 4 && (ajax2.status == 200 || ajax2.status == 304) ) {
-                var data2 = JSON.parse(ajax2.responseText);
-                data2.forEach(tiporeceita => {
-                    let option2 = document.createElement("option");
-                    option2.innerHTML = tiporeceita.nome;
-                    option2.setAttribute('value', tiporeceita.id);
-                    if (tiporeceita.id == receitaTipoCarteiraId){
-                        option2.setAttribute('selected', 'selected');
-                    }
-                    $('#tiporeceita-create').appendChild(option2);
-                })
-                
-            }
-        }
-
-        popupActive(classPopup);
-    }
-    else if(popupOpen == 'transferenciaCreate') {
-        var data = new Date();
-        var dataReceita = data.getFullYear() + '-' + ("0" + (data.getMonth()+1)).slice(-2) + '-' + ("0" + data.getDate()).slice(-2);
-        let newForm = popups[popupOpen]
-            .replace('transferenciaCreate_data', dataReceita);
-        $('#popup .popup-body').innerHTML = newForm;
-        var ajax = new XMLHttpRequest();
-        ajax.open("GET", "/listacarteirasreceita", true);
-        ajax.send();
-        ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
-                var data = JSON.parse(ajax.responseText);
-                data.forEach(carteira => {
-                    let option = document.createElement("option");
-                    option.innerHTML = carteira.nome;
-                    option.setAttribute('value', carteira.id);
-                    $('#carteiraOrigem-create').appendChild(option);
-                    
-                    let option2 = document.createElement("option");
-                    option2.innerHTML = carteira.nome;
-                    option2.setAttribute('value', carteira.id);
-                    $('#carteiraDestino-create').appendChild(option2);
-                })
-                popupActive(classPopup);
-            }
-        }
-    }
-    else if(popupOpen == 'transferenciaEdit') {
-        let tId = e.target.getAttribute('data-id');
-        let tData = e.target.getAttribute('data-date');
-        let tValor = e.target.getAttribute('data-valor');
-        let tCarteiraId = e.target.getAttribute('data-carteiraid');
-        let tCarteiraId_transf = e.target.getAttribute('data-carteiraid-transf');
-
-        let newForm = popups[popupOpen]
-            .replace('transferenciaEdit_id', tId)
-            .replace('transferenciaEdit_data', tData)
-            .replace('transferenciaEdit_valor', tValor);
-        $('#popup .popup-body').innerHTML = newForm;
-        var ajax = new XMLHttpRequest();
-        ajax.open("GET", "/listacarteirasreceita", true);
-        ajax.send();
-        ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
-                var data = JSON.parse(ajax.responseText);
-                data.forEach(carteira => {
-                    let option = document.createElement("option");
-                    option.innerHTML = carteira.nome;
-                    option.setAttribute('value', carteira.id);
-                    if (carteira.id == tCarteiraId){
-                        option.setAttribute('selected','selected');
-                    }
-                    else {
-                        option.setAttribute('disabled','disabled');
-                    }
-                    $('#carteiraOrigem-edit').appendChild(option);
-                                        
-                    let option2 = document.createElement("option");
-                    option2.innerHTML = carteira.nome;
-                    option2.setAttribute('value', carteira.id);
-                    if (carteira.id == tCarteiraId_transf){
-                        option2.setAttribute('selected','selected');
-                    }
-                    else {
-                        option2.setAttribute('disabled','disabled');
-                    }
-                    $('#carteiraDestino-edit').appendChild(option2);
-                })
-                popupActive(classPopup);
-            }
-        }
-    }
-    else if(popupOpen == 'categoriaEdit'){
-        let id = e.target.getAttribute('data-id');
-        let name = e.target.getAttribute('data-name');
-        let type = e.target.getAttribute('data-type');
-        let color = e.target.getAttribute('data-color');
-        let ico = e.target.getAttribute('data-ico');
-        let newForm = popups[popupOpen]
-            .replace('categoriaEdit_id', id)
-            .replace('categoriaEdit_name', name)
-            .replace(/categoriaEdit_color/g, color)
-            .replace(/categoriaEdit_ico/g, ico)
-            .replace(`>${type}`, `selected>${type}`);
-        $('#popup .popup-body').innerHTML = newForm;
-        let moreLinks = document.querySelectorAll('.mais-opcoes');
-        moreLinks.forEach(link => {
-            link.onclick = (e) => {
-                activeMoreOptions(e);
-            }
-        })
-        let buttonsVariables = document.querySelectorAll('.container-more-options button');
-        buttonsVariables.forEach(button => {
-            button.onclick = (e) => {
-                changeVariable(e);
-            }
-        })
-        popupActive(classPopup);
-    }
-    else if(popupOpen == 'despesaEdit'){
-        let dId = e.target.getAttribute('data-id');
-        let dData = e.target.getAttribute('data-date');
-        let dValor = e.target.getAttribute('data-valor');
-        let dCarteiraId = e.target.getAttribute('data-carteiraid');
-        let dCategoriaId = e.target.getAttribute('data-categoriaid');
-        let dObs = e.target.getAttribute('data-obs');
-        
-        let newForm = popups[popupOpen]
-            .replace('despesaEdit_id', dId)
-            .replace('despesaEdit_data', dData)
-            .replace('despesaEdit_valor', dValor)
-            .replace('despesaEdit_obs', dObs);
-        $('#popup .popup-body').innerHTML = newForm;
-
-        var ajax = new XMLHttpRequest();
-        ajax.open("GET", "/listacarteiras", true);
-        ajax.send();
-        ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
-                var data = JSON.parse(ajax.responseText);
-                data.forEach(carteira => {
-                    let option = document.createElement("option");
-                    option.innerHTML = carteira.nome;
-                    option.setAttribute('value', carteira.id);
-                    if (carteira.id == dCarteiraId){
-                        option.setAttribute('selected','selected');
-                    }
-
-                    $('#despesaCarteira-edit').appendChild(option);
-                })
-                
-            }
-        }
-
-        var ajax2 = new XMLHttpRequest();
-        ajax2.open("GET", "/listaCategoriasMetas", true);
-        ajax2.send();
-        ajax2.onreadystatechange = function() {
-            if (ajax2.readyState == 4 && (ajax2.status == 200 || ajax2.status == 304) ) {
-                var data2 = JSON.parse(ajax2.responseText);
-                data2.forEach(categoria => {
-                    let option2 = document.createElement("option");
-                    option2.innerHTML = categoria.nome;
-                    option2.setAttribute('value', categoria.id);
-                    if (categoria.id == dCategoriaId){
-                        option2.setAttribute('selected','selected');
-                    }
-                    $('#despesaCategoria-edit').appendChild(option2);
-                })
-                
-            }
-        }
-
-        popupActive(classPopup);
-
-    }     
-    
-    else if(popupOpen == 'metaCreate') {
-        let tAno = e.target.getAttribute('data-ano');
-        let tMes = e.target.getAttribute('data-mes');
-        let tCategoriaId = e.target.getAttribute('data-categoriaid');
-        //categoria-create
-        let newForm = popups[popupOpen]
-            .replace('metaCreate_ano', tAno)
-            .replace('metaCreate_mes', tMes);
-        $('#popup .popup-body').innerHTML = newForm;
-        var ajax = new XMLHttpRequest();
-        ajax.open("GET", "/listaCategoriasMetas", true);
-        ajax.send();
-        ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
-                var data = JSON.parse(ajax.responseText);
-                data.forEach(categoria => {
-                    if (categoria.id == tCategoriaId){
-                        let option = document.createElement("option");
-                        option.setAttribute('selected','selected');
-                        option.innerHTML = categoria.nome;
-                        option.setAttribute('value', categoria.id);
-                        $('#categoria-create').appendChild(option);
-                    }
-                })
-                popupActive(classPopup);
-            }
-        }
-    }
-    else if(popupOpen == 'metaEdit') {
-        let tId = e.target.getAttribute('data-id');
-        let tAno = e.target.getAttribute('data-ano');
-        let tMes = e.target.getAttribute('data-mes');
-        let tCategoriaId = e.target.getAttribute('data-categoriaid');
-        let tvalorprevisto = e.target.getAttribute('data-valor');
-        //categoria-create
-        let newForm = popups[popupOpen]
-            .replace('metaEdit_id', tId)
-            .replace('metaEdit_ano', tAno)
-            .replace('metaEdit_mes', tMes)
-            .replace('valorprevistoEdit', tvalorprevisto);
-        $('#popup .popup-body').innerHTML = newForm;
-        var ajax = new XMLHttpRequest();
-        ajax.open("GET", "/listaCategoriasMetas", true);
-        ajax.send();
-        ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
-                var data = JSON.parse(ajax.responseText);
-                data.forEach(categoria => {
-                    if (categoria.id == tCategoriaId){
-                        let option = document.createElement("option");
-                        option.setAttribute('selected','selected');
-                        option.innerHTML = categoria.nome;
-                        option.setAttribute('value', categoria.id);
-                        $('#categoria-edit').appendChild(option);
-                    }
-                })
-                popupActive(classPopup);
-            }
-        }
-    }
-    else if(popupOpen == 'despesaCreate') {
-        var data = new Date();
-        var dataDespesa = data.getFullYear() + '-' + ("0" + (data.getMonth()+1)).slice(-2) + '-' + ("0" + data.getDate()).slice(-2);
-        let newForm = popups[popupOpen]
-            .replace('despesaCreate_data', dataDespesa);
-        $('#popup .popup-body').innerHTML = newForm;
-        var ajax = new XMLHttpRequest();
-        ajax.open("GET", "/listacarteiras", true);
-        ajax.send();
-        ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304) ) {
-                var data = JSON.parse(ajax.responseText);
-                data.forEach(carteira => {
-                    let option = document.createElement("option");
-                    option.innerHTML = carteira.nome;
-                    option.setAttribute('value', carteira.id);
-                    $('#despesaCarteira-create').appendChild(option);
-                })
-                
-            }
-        }
-
-        var ajax2 = new XMLHttpRequest();
-        ajax2.open("GET", "/listaCategoriasMetas", true);
-        ajax2.send();
-        ajax2.onreadystatechange = function() {
-            if (ajax2.readyState == 4 && (ajax2.status == 200 || ajax2.status == 304) ) {
-                var data2 = JSON.parse(ajax2.responseText);
-                data2.forEach(categoria => {
-                    let option2 = document.createElement("option");
-                    option2.innerHTML = categoria.nome;
-                    option2.setAttribute('value', categoria.id);
-                    $('#despesaCategoria-create').appendChild(option2);
-                })
-                
-            }
-        }
-
-        popupActive(classPopup);
-    }
-
-}
-
-function deactivatedPopup(e){
-    e.preventDefault();
-    popupDeactivated(classPopup);
-}
-
-window.addEventListener("load", () => {
-    let popupsLinks = document.querySelectorAll('.popup');
-    popupsLinks.forEach(link => {
+      let moreLinks = document.querySelectorAll(".mais-opcoes");
+      moreLinks.forEach((link) => {
         link.onclick = (e) => {
-            activePopup(e);
-        }
-    })
-    $('.sob-popup').onclick = (e) => { deactivatedPopup(e) };
-}, false);
+          activeMoreOptions(e);
+        };
+      });
+      let buttonsVariables = document.querySelectorAll(
+        ".container-more-options button"
+      );
+      buttonsVariables.forEach((button) => {
+        button.onclick = (e) => {
+          changeVariable(e);
+        };
+      });
+
+      popupActive(classPopup);
+      break;
+  }
+
+  if (popupOpen == "tiporeceitaEdit") {
+    let id = e.target.getAttribute("data-id");
+    let name = e.target.getAttribute("data-name");
+    let color = e.target.getAttribute("data-color");
+    let ico = e.target.getAttribute("data-ico");
+    let newForm = popups[popupOpen]
+      .replace("tiporeceitaEdit_id", id)
+      .replace("tiporeceitaEdit_name", name)
+      .replace(/tiporeceitaEdit_color/g, color)
+      .replace(/tiporeceitaEdit_ico/g, ico);
+    $("#popup .popup-body").innerHTML = newForm;
+    let moreLinks = document.querySelectorAll(".mais-opcoes");
+    moreLinks.forEach((link) => {
+      link.onclick = (e) => {
+        activeMoreOptions(e);
+      };
+    });
+    let buttonsVariables = document.querySelectorAll(
+      ".container-more-options button"
+    );
+    buttonsVariables.forEach((button) => {
+      button.onclick = (e) => {
+        changeVariable(e);
+      };
+    });
+    popupActive(classPopup);
+  } else if (popupOpen == "receitaCreate") {
+    var data = new Date();
+    var dataReceita =
+      data.getFullYear() +
+      "-" +
+      ("0" + (data.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("0" + data.getDate()).slice(-2);
+    let newForm = popups[popupOpen].replace("receitaCreate_data", dataReceita);
+    $("#popup .popup-body").innerHTML = newForm;
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "/listacarteirasreceita", true);
+    ajax.send();
+    ajax.onreadystatechange = function() {
+      if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304)) {
+        var data = JSON.parse(ajax.responseText);
+        data.forEach((carteira) => {
+          let option = document.createElement("option");
+          option.innerHTML = carteira.nome;
+          option.setAttribute("value", carteira.id);
+          $("#carteira-create").appendChild(option);
+        });
+      }
+    };
+
+    var ajax2 = new XMLHttpRequest();
+    ajax2.open("GET", "/listatiposreceita", true);
+    ajax2.send();
+    ajax2.onreadystatechange = function() {
+      if (
+        ajax2.readyState == 4 &&
+        (ajax2.status == 200 || ajax2.status == 304)
+      ) {
+        var data2 = JSON.parse(ajax2.responseText);
+        data2.forEach((tiporeceita) => {
+          let option2 = document.createElement("option");
+          option2.innerHTML = tiporeceita.nome;
+          option2.setAttribute("value", tiporeceita.id);
+          $("#tiporeceita-create").appendChild(option2);
+        });
+      }
+    };
+
+    popupActive(classPopup);
+  } else if (popupOpen == "receitaEdit") {
+    let receitaId = e.target.getAttribute("data-id");
+    let receitaData = e.target.getAttribute("data-date");
+
+    let receitaValor = e.target.getAttribute("data-valor");
+    let receitaCarteiraId = e.target.getAttribute("data-carteiraid");
+    let receitaTipoCarteiraId = e.target.getAttribute("data-tiporeceitaid");
+    let receitaObs = e.target.getAttribute("data-obs");
+
+    let newForm = popups[popupOpen]
+      .replace("receitaEdit_id", receitaId)
+      .replace("receitaEdit_data", receitaData)
+      .replace("receitaEdit_valor", receitaValor)
+      .replace("receitaEdit_obs", receitaObs);
+    $("#popup .popup-body").innerHTML = newForm;
+
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "/listacarteirasreceita", true);
+    ajax.send();
+    ajax.onreadystatechange = function() {
+      if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304)) {
+        var data = JSON.parse(ajax.responseText);
+        data.forEach((carteira) => {
+          let option = document.createElement("option");
+          option.innerHTML = carteira.nome;
+          option.setAttribute("value", carteira.id);
+          if (carteira.id == receitaCarteiraId) {
+            option.setAttribute("selected", "selected");
+          }
+          $("#carteira-create").appendChild(option);
+        });
+      }
+    };
+
+    var ajax2 = new XMLHttpRequest();
+    ajax2.open("GET", "/listatiposreceita", true);
+    ajax2.send();
+    ajax2.onreadystatechange = function() {
+      if (
+        ajax2.readyState == 4 &&
+        (ajax2.status == 200 || ajax2.status == 304)
+      ) {
+        var data2 = JSON.parse(ajax2.responseText);
+        data2.forEach((tiporeceita) => {
+          let option2 = document.createElement("option");
+          option2.innerHTML = tiporeceita.nome;
+          option2.setAttribute("value", tiporeceita.id);
+          if (tiporeceita.id == receitaTipoCarteiraId) {
+            option2.setAttribute("selected", "selected");
+          }
+          $("#tiporeceita-create").appendChild(option2);
+        });
+      }
+    };
+
+    popupActive(classPopup);
+  } else if (popupOpen == "transferenciaCreate") {
+    var data = new Date();
+    var dataReceita =
+      data.getFullYear() +
+      "-" +
+      ("0" + (data.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("0" + data.getDate()).slice(-2);
+    let newForm = popups[popupOpen].replace(
+      "transferenciaCreate_data",
+      dataReceita
+    );
+    $("#popup .popup-body").innerHTML = newForm;
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "/listacarteirasreceita", true);
+    ajax.send();
+    ajax.onreadystatechange = function() {
+      if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304)) {
+        var data = JSON.parse(ajax.responseText);
+        data.forEach((carteira) => {
+          let option = document.createElement("option");
+          option.innerHTML = carteira.nome;
+          option.setAttribute("value", carteira.id);
+          $("#carteiraOrigem-create").appendChild(option);
+
+          let option2 = document.createElement("option");
+          option2.innerHTML = carteira.nome;
+          option2.setAttribute("value", carteira.id);
+          $("#carteiraDestino-create").appendChild(option2);
+        });
+        popupActive(classPopup);
+      }
+    };
+  } else if (popupOpen == "transferenciaEdit") {
+    let tId = e.target.getAttribute("data-id");
+    let tData = e.target.getAttribute("data-date");
+    let tValor = e.target.getAttribute("data-valor");
+    let tCarteiraId = e.target.getAttribute("data-carteiraid");
+    let tCarteiraId_transf = e.target.getAttribute("data-carteiraid-transf");
+
+    let newForm = popups[popupOpen]
+      .replace("transferenciaEdit_id", tId)
+      .replace("transferenciaEdit_data", tData)
+      .replace("transferenciaEdit_valor", tValor);
+    $("#popup .popup-body").innerHTML = newForm;
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "/listacarteirasreceita", true);
+    ajax.send();
+    ajax.onreadystatechange = function() {
+      if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304)) {
+        var data = JSON.parse(ajax.responseText);
+        data.forEach((carteira) => {
+          let option = document.createElement("option");
+          option.innerHTML = carteira.nome;
+          option.setAttribute("value", carteira.id);
+          if (carteira.id == tCarteiraId) {
+            option.setAttribute("selected", "selected");
+          } else {
+            option.setAttribute("disabled", "disabled");
+          }
+          $("#carteiraOrigem-edit").appendChild(option);
+
+          let option2 = document.createElement("option");
+          option2.innerHTML = carteira.nome;
+          option2.setAttribute("value", carteira.id);
+          if (carteira.id == tCarteiraId_transf) {
+            option2.setAttribute("selected", "selected");
+          } else {
+            option2.setAttribute("disabled", "disabled");
+          }
+          $("#carteiraDestino-edit").appendChild(option2);
+        });
+        popupActive(classPopup);
+      }
+    };
+  } else if (popupOpen == "categoriaEdit") {
+    let id = e.target.getAttribute("data-id");
+    let name = e.target.getAttribute("data-name");
+    let type = e.target.getAttribute("data-type");
+    let color = e.target.getAttribute("data-color");
+    let ico = e.target.getAttribute("data-ico");
+    let newForm = popups[popupOpen]
+      .replace("categoriaEdit_id", id)
+      .replace("categoriaEdit_name", name)
+      .replace(/categoriaEdit_color/g, color)
+      .replace(/categoriaEdit_ico/g, ico)
+      .replace(`>${type}`, `selected>${type}`);
+    $("#popup .popup-body").innerHTML = newForm;
+    let moreLinks = document.querySelectorAll(".mais-opcoes");
+    moreLinks.forEach((link) => {
+      link.onclick = (e) => {
+        activeMoreOptions(e);
+      };
+    });
+    let buttonsVariables = document.querySelectorAll(
+      ".container-more-options button"
+    );
+    buttonsVariables.forEach((button) => {
+      button.onclick = (e) => {
+        changeVariable(e);
+      };
+    });
+    popupActive(classPopup);
+  } else if (popupOpen == "despesaEdit") {
+    let dId = e.target.getAttribute("data-id");
+    let dData = e.target.getAttribute("data-date");
+    let dValor = e.target.getAttribute("data-valor");
+    let dCarteiraId = e.target.getAttribute("data-carteiraid");
+    let dCategoriaId = e.target.getAttribute("data-categoriaid");
+    let dObs = e.target.getAttribute("data-obs");
+
+    let newForm = popups[popupOpen]
+      .replace("despesaEdit_id", dId)
+      .replace("despesaEdit_data", dData)
+      .replace("despesaEdit_valor", dValor)
+      .replace("despesaEdit_obs", dObs);
+    $("#popup .popup-body").innerHTML = newForm;
+
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "/listacarteiras", true);
+    ajax.send();
+    ajax.onreadystatechange = function() {
+      if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304)) {
+        var data = JSON.parse(ajax.responseText);
+        data.forEach((carteira) => {
+          let option = document.createElement("option");
+          option.innerHTML = carteira.nome;
+          option.setAttribute("value", carteira.id);
+          if (carteira.id == dCarteiraId) {
+            option.setAttribute("selected", "selected");
+          }
+
+          $("#despesaCarteira-edit").appendChild(option);
+        });
+      }
+    };
+
+    var ajax2 = new XMLHttpRequest();
+    ajax2.open("GET", "/listaCategoriasMetas", true);
+    ajax2.send();
+    ajax2.onreadystatechange = function() {
+      if (
+        ajax2.readyState == 4 &&
+        (ajax2.status == 200 || ajax2.status == 304)
+      ) {
+        var data2 = JSON.parse(ajax2.responseText);
+        data2.forEach((categoria) => {
+          let option2 = document.createElement("option");
+          option2.innerHTML = categoria.nome;
+          option2.setAttribute("value", categoria.id);
+          if (categoria.id == dCategoriaId) {
+            option2.setAttribute("selected", "selected");
+          }
+          $("#despesaCategoria-edit").appendChild(option2);
+        });
+      }
+    };
+
+    popupActive(classPopup);
+  } else if (popupOpen == "metaCreate") {
+    let tAno = e.target.getAttribute("data-ano");
+    let tMes = e.target.getAttribute("data-mes");
+    let tCategoriaId = e.target.getAttribute("data-categoriaid");
+    //categoria-create
+    let newForm = popups[popupOpen]
+      .replace("metaCreate_ano", tAno)
+      .replace("metaCreate_mes", tMes);
+    $("#popup .popup-body").innerHTML = newForm;
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "/listaCategoriasMetas", true);
+    ajax.send();
+    ajax.onreadystatechange = function() {
+      if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304)) {
+        var data = JSON.parse(ajax.responseText);
+        data.forEach((categoria) => {
+          if (categoria.id == tCategoriaId) {
+            let option = document.createElement("option");
+            option.setAttribute("selected", "selected");
+            option.innerHTML = categoria.nome;
+            option.setAttribute("value", categoria.id);
+            $("#categoria-create").appendChild(option);
+          }
+        });
+        popupActive(classPopup);
+      }
+    };
+  } else if (popupOpen == "metaEdit") {
+    let tId = e.target.getAttribute("data-id");
+    let tAno = e.target.getAttribute("data-ano");
+    let tMes = e.target.getAttribute("data-mes");
+    let tCategoriaId = e.target.getAttribute("data-categoriaid");
+    let tvalorprevisto = e.target.getAttribute("data-valor");
+    //categoria-create
+    let newForm = popups[popupOpen]
+      .replace("metaEdit_id", tId)
+      .replace("metaEdit_ano", tAno)
+      .replace("metaEdit_mes", tMes)
+      .replace("valorprevistoEdit", tvalorprevisto);
+    $("#popup .popup-body").innerHTML = newForm;
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "/listaCategoriasMetas", true);
+    ajax.send();
+    ajax.onreadystatechange = function() {
+      if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304)) {
+        var data = JSON.parse(ajax.responseText);
+        data.forEach((categoria) => {
+          if (categoria.id == tCategoriaId) {
+            let option = document.createElement("option");
+            option.setAttribute("selected", "selected");
+            option.innerHTML = categoria.nome;
+            option.setAttribute("value", categoria.id);
+            $("#categoria-edit").appendChild(option);
+          }
+        });
+        popupActive(classPopup);
+      }
+    };
+  } else if (popupOpen == "despesaCreate") {
+    var data = new Date();
+    var dataDespesa =
+      data.getFullYear() +
+      "-" +
+      ("0" + (data.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("0" + data.getDate()).slice(-2);
+    let newForm = popups[popupOpen].replace("despesaCreate_data", dataDespesa);
+    $("#popup .popup-body").innerHTML = newForm;
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "/listacarteiras", true);
+    ajax.send();
+    ajax.onreadystatechange = function() {
+      if (ajax.readyState == 4 && (ajax.status == 200 || ajax.status == 304)) {
+        var data = JSON.parse(ajax.responseText);
+        data.forEach((carteira) => {
+          let option = document.createElement("option");
+          option.innerHTML = carteira.nome;
+          option.setAttribute("value", carteira.id);
+          $("#despesaCarteira-create").appendChild(option);
+        });
+      }
+    };
+
+    var ajax2 = new XMLHttpRequest();
+    ajax2.open("GET", "/listaCategoriasMetas", true);
+    ajax2.send();
+    ajax2.onreadystatechange = function() {
+      if (
+        ajax2.readyState == 4 &&
+        (ajax2.status == 200 || ajax2.status == 304)
+      ) {
+        var data2 = JSON.parse(ajax2.responseText);
+        data2.forEach((categoria) => {
+          let option2 = document.createElement("option");
+          option2.innerHTML = categoria.nome;
+          option2.setAttribute("value", categoria.id);
+          $("#despesaCategoria-create").appendChild(option2);
+        });
+      }
+    };
+
+    popupActive(classPopup);
+  }
+}
+
+function deactivatedPopup(e) {
+  e.preventDefault();
+  popupDeactivated(classPopup);
+}
+
+window.addEventListener(
+  "load",
+  () => {
+    let popupsLinks = document.querySelectorAll(".popup");
+    popupsLinks.forEach((link) => {
+      link.onclick = (e) => {
+        activePopup(e);
+      };
+    });
+    $(".sob-popup").onclick = (e) => {
+      deactivatedPopup(e);
+    };
+  },
+  false
+);
 
 // ATIVA A SELEÇÃO A CAIXA COM MAIS OPÇÕES NO FORMULÁRIO DO POPUP
 function activeMoreOptions(e) {
-    e.target.closest('.container-more-options').classList.add('active');
+  e.target.closest(".container-more-options").classList.add("active");
 }
 
 // Muda a variável que está selecionada
 function changeVariable(e) {
-    let valorHexadecimal = e.target.getAttribute('data-color');
-    let valorTexto = e.target.innerText;
-    let container = e.target.closest('.container-more-options');
+  let valorHexadecimal = e.target.getAttribute("data-color");
+  let valorTexto = e.target.innerText;
+  let container = e.target.closest(".container-more-options");
 
-    if(valorHexadecimal != null){
-        container.children[0].value = valorHexadecimal;
-         container.children[1].style.backgroundColor = valorHexadecimal;
-    }
+  if (valorHexadecimal != null) {
+    container.children[0].value = valorHexadecimal;
+    container.children[1].style.backgroundColor = valorHexadecimal;
+  }
 
-    if(valorTexto != ''){
-        container.children[0].value = valorTexto;
-        container.children[1].innerText = valorTexto;
-    }
+  if (valorTexto != "") {
+    container.children[0].value = valorTexto;
+    container.children[1].innerText = valorTexto;
+  }
 
-    container.classList.remove('active');
-    return;
+  container.classList.remove("active");
+  return;
 }

@@ -14,6 +14,9 @@
   <body>
     <header class="header">
       <nav class="container navigation">
+        <div class="container-hamburger">
+          <span id="hamburger"></span>
+        </div>
         <div class="container-logo">
           <img src="/images/logo.png" alt="Logo Cash Control" />
         </div>
@@ -23,8 +26,8 @@
             <li><a href="#">Funcionalidades</a></li>
             <li><a href="#">Time</a></li>
             <li><a href="#">Satander Coders</a></li>
-            <li><a href="#">Entrar</a></li>
-            <li><a href="#">Cadastre-se</a></li>
+            <li><a class="popup" href="#login">Entrar</a></li>
+            <li><a class="popup" href="#cadastro">Cadastre-se</a></li>
           </ul>
         </div>
       </nav>
@@ -180,13 +183,7 @@
     <div id="popup">
       <div class="popup-body"></div>
     </div>
-    <div class="notification-container">
-      <p></p>
-      <!-- <button class="positive btn green">Sim</button> -->
-      <!-- <button class="negative btn red">Não</button> -->
-    </div>
-    <!-- <script src="/js/index.js"></script>
+    <script src="/js/landing-page.js"></script>
     <script src="/js/popup.js"></script>
-    <script src="/js/notification.js"></script> -->
   </body>
 </html>
