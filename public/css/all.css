@@ -109,6 +109,7 @@ header.active .container-navigation {
   height: 100vh;
   width: 93px;
   position: fixed;
+  z-index: 3;
   transition: 0.3s;
 }
 .container-navigation.active a .text-link {
@@ -348,6 +349,10 @@ main {
   overflow: hidden;
   padding: 20px;
   box-sizing: border-box;
+}
+main > div {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .notification-container {

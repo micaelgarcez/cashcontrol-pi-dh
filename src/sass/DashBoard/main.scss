@@ -1,8 +1,12 @@
 main {
-    background-color: #393944; //f3f3f3
-    width: 100%;
-    min-height: 100vh;
-    overflow: hidden;
-    padding: 20px;
-    box-sizing: border-box;
+  background-color: #393944; //f3f3f3
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 20px;
+  box-sizing: border-box;
+  > div {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
