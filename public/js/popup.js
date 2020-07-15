@@ -70,7 +70,6 @@ const popups = {
                 <option selected disabled>Selecione</option>
                 <option value="1">Conta Bancária</option>
                 <option value="2">Carteira Pessoal</option>
-                <option value="3">Cartão de Débito</option>
                 <option value="4">Cartão de Crédito</option>
             </select>
             </div>
@@ -142,7 +141,6 @@ const popups = {
             <select name="tipo" id="tipo" required>
                 <option value="1">Conta Bancária</option>
                 <option value="2">Carteira Pessoal</option>
-                <option value="3">Cartão de Débito</option>
                 <option value="4">Cartão de Crédito</option>
             </select>
             </div>
