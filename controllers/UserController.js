@@ -102,7 +102,7 @@ module.exports = {
     //Sesssion do usuário logado
     req.session.usuario = JSON.stringify(usuario);
     //Principal
-    return res.redirect("/");
+    return res.redirect("/dashboard");
   },
   create: (req, res) => {
     //res.send("Chegou aqui!");
