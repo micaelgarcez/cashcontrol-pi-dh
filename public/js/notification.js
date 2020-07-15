@@ -73,21 +73,27 @@ window.addEventListener("load", () => {
 
     $('.positive').onclick = () => {
         let urlForPost = notificationContainer.getAttribute('data-url');
-        fetch(urlForPost, { method: 'POST' })
-        .then(response =>  response.json())
-        .then(data => {
-            console.log(data);
-            if(data.success){
-                notificationDeactivated();
-                let itemRemoved = $(`.notification[data-url="${urlForPost}"]`).closest('.item');
-                fadeOut(itemRemoved, 0.3);
-                setInterval(() => {
-                    itemRemoved.remove();
-                }, 300);
-            } else {
+        if(urlForPost){
+            fetch(urlForPost, { method: 'POST' })
+            .then(response =>  response.json())
+            .then(data => {
                 console.log(data);
-            }
-        })
+                if(data.success){
+                    notificationDeactivated();
+                    let itemRemoved = $(`.notification[data-url="${urlForPost}"]`).closest('.item');
+                    fadeOut(itemRemoved, 0.3);
+                    setInterval(() => {
+                        itemRemoved.remove();
+                    }, 300);
+                    return;
+                } else {
+                    console.log(data);
+                    return;
+                }
+            })
+        }
+        let classForm = `.cd-${urlForPost.replace(/\D/gim, '')}`;
+        $(classForm).submit();
     }
 
     $('.negative').onclick = () => {

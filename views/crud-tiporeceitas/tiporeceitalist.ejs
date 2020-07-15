@@ -1,47 +1,40 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Tipo de Receitas'}); %>
-<main>
-	<div class="container-button">
-		<a class="btn blue popup" href="#tiporeceitaCreate">Adicionar novo Tipo de Receita</a>
-	</div>
-	<section class="container">
-		<div id="list-tiporeceita">
-			<div class="item head">
-				<div class="datas">
-					<div class="name"><p>Nome Exemplo</p></div>
-					<div class="name"><p>Cor Exemplo</p></div>
-					<div class="name"><p>Icone Exemplo</p></div>
-				</div>
-				<div class="buttons">
-					<a href="#tiporeceitaEdit">
-						<%- include('../../public/img/icons/edit.svg'); %>
-					</a>
-					<a href="#tiporeceitaDelete">
-						<%- include('../../public/img/icons/delete.svg'); %>
-					</a>
-				</div>
+<body>
+	<div class="app">
+		<%- include('../parts/header'); %>
+		<main>
+			<div class="container-button">
+				<a class="btn blue popup" href="#tiporeceitaCreate">Adicionar novo Tipo de Receita</a>
 			</div>
-			<% for(let tiporeceita of tiporeceitas ) { %>
-				<div class="item">
-					<div class="datas">
-						<div class="name"><p><%= tiporeceita.nome %></p></div>
-						<div class="name"><p><%= tiporeceita.cor %></p></div>
-						<div class="name"><p><%= tiporeceita.icone %></p></div>
+			<section class="container">
+				<div id="list">
+					<div class="item head">
+						<div class="name"><p>Nome</p></div>
+						<div class="name"><p>Cor/Icone</p></div>
+						<div class="buttons"><p>Ações</p></div>
 					</div>
-					<div class="buttons">
-						<a class="popup" href="#tiporeceitaEdit" data-id="<%= tiporeceita.id %>" data-name="<%= tiporeceita.nome %>" data-color="<%= tiporeceita.cor %>" data-ico="<%= tiporeceita.icone %>">
-							<%- include('../../public/img/icons/edit.svg'); %>
-						</a>
-						<a class="notification" href="#tiporeceitaDelete" data-id="<%= tiporeceita.id %>">
-							<%- include('../../public/img/icons/delete.svg'); %>
-							<form class="cd-<%= tiporeceita.id %>" method="POST" action="/tiporeceitas/<%= tiporeceita.id %>/delete?_method=DELETE">
-								<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
-							</form>
-						</a>
-					</div>
+					<% for(let tiporeceita of tiporeceitas ) { %>
+						<div class="item">
+							<div class="name"><p><%= tiporeceita.nome %></p></div>
+							<div class="cor icone">
+								<span class="material-icons-outlined" 
+								style="background-color:<%= tiporeceita.cor %>;">
+									<%= tiporeceita.icone %>
+								</span>
+							</div>
+							<div class="buttons">
+								<a class="popup" href="#tiporeceitaEdit" data-id="<%= tiporeceita.id %>" data-name="<%= tiporeceita.nome %>" data-color="<%= tiporeceita.cor %>" data-ico="<%= tiporeceita.icone %>">
+									<span class="material-icons-outlined">edit</span>
+								</a>
+								<a class="notification" href="#tiporeceitaDelete" data-url="/tiporeceitas/<%= tiporeceita.id %>/delete?_method=DELETE">
+									<span class="material-icons-outlined">delete</span>
+								</a>
+							</div>
+						</div>
+					<% } %>
 				</div>
-			<% } %>
-		</div>
-	</section>
-</main>
+			</section>
+		</main>
+	</div>
 <%- include('../parts/foot'); %>
 

@@ -204,9 +204,7 @@ module.exports = {
         { where: { id: origem.id } }
       );
 
-      const movimentos = await listaMovimentos(id, anofiltro, mesfiltro);
-
-      res.render("crud-movimentos/movimentolist", { movimentos, Periodo });
+      res.redirect("/movimentos");
     } else {
       res.status(404).send("Campos obrigatórios não preenchidos!");
     }
@@ -257,13 +255,7 @@ module.exports = {
         { where: { id: mov.id_transf } }
       );
 
-      const movimentos = await listaMovimentos(
-        usuario_id,
-        anofiltro,
-        mesfiltro
-      );
-
-      res.render("crud-movimentos/movimentolist", { movimentos, Periodo });
+      res.redirect("/movimentos");
     } else {
       return res.status(404).send("Campos obrigatórios não preenchidos!");
     }
@@ -296,14 +288,7 @@ module.exports = {
 
     await Movimentos.destroy({ where: { id: mov.id } });
 
-    //const movimentos = await listaMovimentos(usuario_id, anofiltro, mesfiltro);
-
-    //res.render("crud-movimentos/movimentolist", { movimentos, Periodo });
-
-    res.status(200).send({
-      success: true,
-      message: "Transferência removida com sucesso!!!",
-    });
+    res.redirect("/movimentos");
   },
   async listaCarteirasReceita(req, res) {
     let { id } = JSON.parse(req.session.usuario);

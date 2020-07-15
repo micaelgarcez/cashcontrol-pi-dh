@@ -1,26 +1,26 @@
 <%- include('./parts/head',{title:'Login - Cash Control'}); %>
 <main>
-  <form method="POST" action="/login">
-    <h1 class="title">Login</h1>  
-    <button class="btn facebook" ype="button">Login com Facebook</button>
-    <button class="btn google" type="button">Login com Google</button>
-
-    <div class="container-field">
-      <input type="email" id="email" name="email" placeholder="Informe seu Email">
-    </div>
-
-    <div class="container-field">
-      <input type="password" id="password" name="password" placeholder="Digite sua Senha">
-    </div>            
+  <div class="container-login">
+    <form method="POST" action="/login">
+      <h1 class="title">Login</h1>
   
-    <button class="btn green" type="submit">Entrar</button>
+      <div class="container-field">
+        <input type="email" id="email" name="email" placeholder="Informe seu Email">
+      </div>
+  
+      <div class="container-field">
+        <input type="password" id="password" name="password" placeholder="Digite sua Senha">
+      </div>            
     
-    <div class="last-link">
-      <p> Faça seu Cadastro, 
-        <a href="/users/create" title="cadastror">Clique Aqui!</a>
-      </p>
-    </div>
-    </div>
-  </form>
+      <button class="btn green" type="submit">Entrar</button>
+      
+      <div class="last-link">
+        <p> Faça seu Cadastro, 
+          <a href="/users/create" title="cadastror">Clique Aqui!</a>
+        </p>
+      </div>
+      </div>
+    </form>
+  </div>
 </main>
 <%- include('./parts/foot'); %>
