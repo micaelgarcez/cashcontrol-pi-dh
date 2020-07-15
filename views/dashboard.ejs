@@ -4,6 +4,46 @@
   <div class="app">
     <%- include('./parts/header'); %>
     <main>
+      <div class="container-mes">
+        <div class="prev">
+          <span class="material-icons">navigate_before</span>
+        </div>
+        <div class="mes">
+          <% let meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+          'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro',
+          'Dezembro'] %> <%= meses[parseInt(Periodo.Mes)-1] %> - <%= Periodo.Ano
+          %>
+        </div>
+        <div class="next">
+          <span class="material-icons">keyboard_arrow_right</span>
+        </div>
+      </div>
+
+      <form class="hidden" id="formMesFilter" method="GET" action="/dashboard">
+        <div>
+          <label>
+            Ano:
+            <input
+              type="number"
+              name="ano"
+              id="ano"
+              value="<%= Periodo.Ano %>"
+            />
+          </label>
+          <br />
+          <label>
+            Mês:
+            <input
+              type="number"
+              name="mes"
+              id="mes"
+              value="<%= Periodo.Mes %>"
+            />
+          </label>
+        </div>
+        <button type="submit">Buscar</button>
+      </form>
+
       <section class="container">
         <div id="saldos">
           <div class="item-saldo">
@@ -12,9 +52,12 @@
                 <p>Saldo Atual</p>
               </div>
               <div class="value">
+                <script>
+                  console.log(JSON.stringify(saldo));
+                </script>
                 <p>
-                  <%= `R$ ${String(resumo[0].credito -
-                  resumo[0].debito).replace('.', ',')}` %>
+                  <%= `R$ ${String(((resumo[0].credito + saldo) -
+                  resumo[0].debito).toFixed(2)).replace('.', ',')}` %>
                 </p>
               </div>
             </div>
@@ -170,5 +213,6 @@
       </script>
     </main>
   </div>
+  <script src="/js/metas.js"></script>
   <%- include('./parts/foot'); %>
 </body>

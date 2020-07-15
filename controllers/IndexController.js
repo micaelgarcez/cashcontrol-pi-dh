@@ -71,10 +71,33 @@ module.exports = {
       }
     );
 
-    //return res.send(resultado);
+    const saldo = await con.query(
+      "Select (sum(credito) - sum(debito)) saldoAnterior from ( " +
+        "Select IFNULL(sum(m.valor_mov),0) credito, 0 debito, 0 despesas, 0 cartao from movimentos m " +
+        "WHERE m.usuario_id=:usuariofiltro AND m.tipo_mov=2 AND (YEAR(m.data_mov)<:anofiltro or (YEAR(m.data_mov)=:anofiltro AND MONTH(m.data_mov)<:mesfiltro)) " +
+        "UNION " +
+        "Select 0 credito, IFNULL(sum(m.valor_mov),0) debito, 0 despesas, 0 cartao from movimentos m " +
+        "WHERE m.usuario_id=:usuariofiltro AND m.tipo_mov=1 AND (YEAR(m.data_mov)<:anofiltro or (YEAR(m.data_mov)=:anofiltro AND MONTH(m.data_mov)<:mesfiltro)) " +
+        ") x ",
+      {
+        replacements: {
+          anofiltro,
+          mesfiltro,
+          usuariofiltro,
+        },
+        type: Sequelize.QueryTypes.SELECT,
+      }
+    );
 
-    //console.log(resumo);
+    //return res.send(saldo);
 
-    res.render("dashboard", { resultado, resumo });
+    //console.log(saldo);
+
+    res.render("dashboard", {
+      resultado,
+      resumo,
+      Periodo,
+      saldo: saldo[0].saldoAnterior,
+    });
   },
 };

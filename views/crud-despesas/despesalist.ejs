@@ -1,45 +1,101 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Despesas'}); %>
 
 <body>
-	<div class="app">
-		<%- include('../parts/header'); %>
-		<main>
-			<div class="container-button">	
-				<a class="btn blue popup" href="#despesaCreate">Adicionar nova Despesa</a>
-				
-			</div>
-			<section class="container">
-				<div id="list">
-					<div class="item head">
-						
-						<div class="category"><p>Categoria</p></div>
-						<div class="value"><p>Valor</p></div>
-						<div class="wallet"><p>Carteira</p></div>
-						<div class="date"><p>Data</p></div>
-						<div class="note"><p>Obs</p></div>
-						<div class="note">Ações</div>
-					</div>
-					<% for(let despesa of despesas ) { %>
-						<div class="item">
-							<div class="category"><p><%= despesa.categoria %></p></div>
-							<div class="value"><p><%= `R$ ${(despesa.valor).replace('.', ',')}` %></p></div>
-							<div class="wallet"><p><%= despesa.carteira %></p></div>
-							<div class="date"><p><%= despesa.data_despesa %></p></div>
-							<div class="date"><p><%= despesa.obs %></p></div>
-							<div class="buttons">
-								<a class="popup" href="#despesaEdit" data-id="<%= despesa.id %>" data-obs="<%= despesa.obs %>"
-									data-date="<%= despesa.data_despesa2 %>" data-valor="<%= despesa.valor %>" 
-									data-carteiraid="<%= despesa.carteira_id %>" data-categoriaid="<%= despesa.categoria_id %>">
-									<span class="material-icons-outlined">edit</span>
-								</a>
-								<a class="notification" href="#despesaDelete" data-id="<%= despesa.id %>" data-url="/despesas/<%= despesa.id %>/delete?_method=DELETE">
-									<span class="material-icons-outlined">delete</span>
-								</a>
-							</div>
-						</div>
-						<% } %>
-				</div>
-			</section>
-		</main>
-	</div>
-<%- include('../parts/foot'); %>
+  <div class="app">
+    <%- include('../parts/header'); %>
+    <main>
+      <div class="container-mes">
+        <div class="prev">
+          <span class="material-icons">navigate_before</span>
+        </div>
+        <div class="mes">
+          <% let meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+          'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro',
+          'Dezembro'] %> <%= meses[parseInt(Periodo.Mes)-1] %> - <%= Periodo.Ano
+          %>
+        </div>
+        <div class="next">
+          <span class="material-icons">keyboard_arrow_right</span>
+        </div>
+      </div>
+
+      <form class="hidden" id="formMesFilter" method="GET" action="/despesas">
+        <div>
+          <label>
+            Ano:
+            <input
+              type="number"
+              name="ano"
+              id="ano"
+              value="<%= Periodo.Ano %>"
+            />
+          </label>
+          <br />
+          <label>
+            Mês:
+            <input
+              type="number"
+              name="mes"
+              id="mes"
+              value="<%= Periodo.Mes %>"
+            />
+          </label>
+        </div>
+        <button type="submit">Buscar</button>
+      </form>
+
+      <div class="container-button">
+        <a class="btn blue popup" href="#despesaCreate"
+          >Adicionar nova Despesa</a
+        >
+      </div>
+      <section class="container">
+        <div id="list">
+          <div class="item head">
+            <div class="category"><p>Categoria</p></div>
+            <div class="value"><p>Valor</p></div>
+            <div class="wallet"><p>Carteira</p></div>
+            <div class="date"><p>Data</p></div>
+            <div class="note"><p>Obs</p></div>
+            <div class="note">Ações</div>
+          </div>
+          <% for(let despesa of despesas ) { %>
+          <div class="item">
+            <div class="category"><p><%= despesa.categoria %></p></div>
+            <div class="value">
+              <p><%= `R$ ${(despesa.valor).replace('.', ',')}` %></p>
+            </div>
+            <div class="wallet"><p><%= despesa.carteira %></p></div>
+            <div class="date"><p><%= despesa.data_despesa %></p></div>
+            <div class="date"><p><%= despesa.obs %></p></div>
+            <div class="buttons">
+              <a
+                class="popup"
+                href="#despesaEdit"
+                data-id="<%= despesa.id %>"
+                data-obs="<%= despesa.obs %>"
+                data-date="<%= despesa.data_despesa2 %>"
+                data-valor="<%= despesa.valor %>"
+                data-carteiraid="<%= despesa.carteira_id %>"
+                data-categoriaid="<%= despesa.categoria_id %>"
+              >
+                <span class="material-icons-outlined">edit</span>
+              </a>
+              <a
+                class="notification"
+                href="#despesaDelete"
+                data-id="<%= despesa.id %>"
+                data-url="/despesas/<%= despesa.id %>/delete?_method=DELETE"
+              >
+                <span class="material-icons-outlined">delete</span>
+              </a>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/js/metas.js"></script>
+  <%- include('../parts/foot'); %>
+</body>
