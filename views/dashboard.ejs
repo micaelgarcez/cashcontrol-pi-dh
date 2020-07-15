@@ -164,7 +164,9 @@
                     0: { targetAxisIndex: 0 },
                     //1: {targetAxisIndex: 1}
                 },
-                title: 'Previsto X Gasto',
+                title: 'Meta X Gasto',
+                colors: ['#28123e', '#ef5181'],
+                vAxis: { gridlines: { count: 4 }, format: 'decimal' }
                 /*
                 vAxes: {
                 // Adds titles to each axis.
@@ -198,7 +200,8 @@
                     title: 'Gasto por Categoria',
                     height: 400,
                     width: 500,
-                    pieHole: 0.5
+                    pieHole: 0.5,
+                    colors: ['#28123e', '#ef5181', '#59288A', '#70263C', '#453357', '#F29BB5', '#6D518A', '#704854', '#8A3ED6', '#BD4066']
                 }
 
                 const chart2 = new google.visualization.PieChart(container)

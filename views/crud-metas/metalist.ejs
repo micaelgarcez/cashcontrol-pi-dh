@@ -80,7 +80,7 @@
 										data-categoriaid="<%= categoria.id %>">
 										<span class="material-icons-outlined">edit</span>
 									</a>
-									<a class="notification" href="#metaDelete" data-id="<%= categoria.meta_id %>">
+									<a class="notification" href="#metaDelete" data-url="/metas/<%= categoria.meta_id %>/delete?_method=DELETE">
 										<span class="material-icons-outlined">delete</span>
 										<form class="cd-<%= categoria.meta_id %>" method="POST" action="/metas/<%= categoria.meta_id %>/delete?_method=DELETE">
 											<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>

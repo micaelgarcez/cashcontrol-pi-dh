@@ -359,6 +359,6 @@ module.exports = {
             }
           );
         
-        res.render('crud-metas/metalist', {categorias, Periodo})
+        res.redirect('/metas');
     }
 }
