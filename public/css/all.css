@@ -115,6 +115,9 @@ header.active .container-navigation {
 .container-navigation.active a .text-link {
   width: 100%;
   margin-left: 10px;
+  font-size: 13px;
+  line-height: 1.2;
+  height: 15px;
 }
 .container-navigation nav {
   height: 100%;
@@ -175,6 +178,9 @@ header.active .container-navigation {
     width: 0;
     overflow: hidden;
     transition: 0.3s;
+    font-size: 13px;
+    line-height: 1.2;
+    height: 0;
   }
 }
 

@@ -1,5 +1,5 @@
-//const Usuario = require("../models/Usuarios");
-//const users = require("../database/Users.json");
+const Usuario = require("../models/Usuarios");
+// const users = require("../database/Users.json");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
 
@@ -24,7 +24,7 @@ module.exports = {
 		//Sesssion do usuário logado
         req.session.usuario=JSON.stringify(usuario);
 		//Principal	
-        return res.redirect("/principal");
+        return res.redirect("/");
     },
     create: (req, res) => {
         //res.send("Chegou aqui!");

@@ -52,11 +52,8 @@
                 <p>Saldo Atual</p>
               </div>
               <div class="value">
-                <script>
-                  console.log(JSON.stringify(saldo));
-                </script>
                 <p>
-                  <%= `R$ ${String(((resumo[0].credito + saldo) -
+                  <%= `R$ ${String(((Number(resumo[0].credito)+ Number(saldo)) -
                   resumo[0].debito).toFixed(2)).replace('.', ',')}` %>
                 </p>
               </div>

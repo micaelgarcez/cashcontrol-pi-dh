@@ -89,10 +89,6 @@ module.exports = {
       }
     );
 
-    //return res.send(saldo);
-
-    //console.log(saldo);
-
     res.render("dashboard", {
       resultado,
       resumo,
