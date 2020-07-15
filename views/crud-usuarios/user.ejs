@@ -1,29 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Cadastro</title>
-</head>
-<body>
-<form id="form-pizza" method="POST" action="/users/store">
-  <h1 name="cash" id="cash">Cadastro</h1>
-  <label>
-    Nome:
-    <input type="text" name="nome" id="nome" placeholder="Digite o seu nome">
-  </label>
-  <label>
-    E-mail:
-    <input type="email" name="email" id="email" placeholder="Digite o seu E-mail">
-  </label>
-  <label>
-    Senha:
-    <input type="password" name="password" id="password" placeholder="Digite sua senha">
-  </label>
-  <button type="submit">Salvar</button>
-</form>
-<form id="form-pizza" method="GET" action="/login">
-  <button type="submit">Entrar</button>
-</form>
-</body>
-</html>
+<%- include('../parts/head',{title:'Login - Cash Control'}); %>
+<main>
+  <div class="container-login">
+    <form method="POST" action="/users/store">
+      <h1 class="title">Cadastro</h1>
+
+      <div class="container-field">
+        <input type="text" id="nome" name="nome" placeholder="Digite o seu nome">
+      </div>
+
+      <div class="container-field">
+        <input type="email" id="email" name="email" placeholder="Digite o seu E-mail">
+      </div>
+
+      <div class="container-field">
+        <input type="password" id="password" name="password" placeholder="Digite sua senha">
+      </div>
+
+      <button class="btn green" type="submit">Cadastrar</button>
+
+      <div class="last-link">
+        <p> Já tenho Cadastro, 
+          <a href="/login" title="cadastror">Clique Aqui!</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</main>
+<%- include('../parts/foot'); %>
